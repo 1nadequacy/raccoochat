@@ -1,4 +1,3 @@
-#include "RaccooChat.h"
 #include "RaccooChatServer.h"
 
 #include <iostream>
@@ -21,28 +20,25 @@ using namespace ::apache::thrift::transport;
 using namespace ::apache::thrift::server;
 using namespace ::apache::thrift::concurrency;
 
-using boost::shared_ptr;
 
 using namespace ::raccoochat;
 
-//DEFINE_uint64(port, 9090, "port number");
-//DEFINE_uint64(threads, 32, "number of threads");
+DEFINE_uint64(port, 9090, "port number");
+DEFINE_uint64(threads, 32, "number of threads");
 
 int main(int argc, char **argv) {
-  int32_t port = 9090;
-  size_t threads = 32;
-  //google::SetUsageMessage("server");
-  //google::ParseCommandLineFlags(&argc, &argv, true);
-  //google::InitGoogleLogging(argv[0]);
+  google::SetUsageMessage("RaccooChat Server");
+  google::ParseCommandLineFlags(&argc, &argv, true);
+  google::InitGoogleLogging(argv[0]);
 
-  shared_ptr<RaccooChatHandler> handler(new RaccooChatHandler());
-  shared_ptr<TProcessor> processor(new RaccooChatProcessor(handler));
-  shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
-  shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
-  shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+  boost::shared_ptr<RaccooChatHandler> handler(new RaccooChatHandler());
+  boost::shared_ptr<TProcessor> processor(new RaccooChatProcessor(handler));
+  boost::shared_ptr<TServerTransport> serverTransport(new TServerSocket(FLAGS_port));
+  boost::shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+  boost::shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 
-  shared_ptr<ThreadManager> threadManager = ThreadManager::newSimpleThreadManager(threads);
-  shared_ptr<ThreadFactory> threadFactory(new PosixThreadFactory());
+  boost::shared_ptr<ThreadManager> threadManager = ThreadManager::newSimpleThreadManager(FLAGS_threads);
+  boost::shared_ptr<ThreadFactory> threadFactory(new PosixThreadFactory());
   threadManager->threadFactory(threadFactory);
   threadManager->start();
 
@@ -50,11 +46,9 @@ int main(int argc, char **argv) {
   //TNonblockingServer* server = new TNonblockingServer(processor, protocolFactory, port, threadManager);
   TThreadedServer server(processor, serverTransport, transportFactory, protocolFactory);
 
-  //LOG(INFO) << "Server has started.";
-  std::cout << "Server has started." << std::endl;
+  LOG(INFO) << "Server has started";
   server.serve();
-  std::cout << "Done." << std::endl;
+  LOG(INFO) << "Server has stopped";
 
   return 0;
 }
-

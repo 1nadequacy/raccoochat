@@ -4,21 +4,21 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#ifndef tutorial_CONSTANTS_H
-#define tutorial_CONSTANTS_H
+#ifndef raccoochat_CONSTANTS_H
+#define raccoochat_CONSTANTS_H
 
-#include "tutorial_types.h"
+#include "raccoochat_types.h"
 
-namespace tutorial {
+namespace raccoochat {
 
-class tutorialConstants {
+class raccoochatConstants {
  public:
-  tutorialConstants();
+  raccoochatConstants();
 
   std::map<std::string, std::string>  MAP_COMMAND;
 };
 
-extern const tutorialConstants g_tutorial_constants;
+extern const raccoochatConstants g_raccoochat_constants;
 
 } // namespace
 

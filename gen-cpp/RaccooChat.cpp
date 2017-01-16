@@ -4,16 +4,16 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "RacconChat.h"
+#include "RaccooChat.h"
 
-namespace tutorial {
+namespace raccoochat {
 
 
-RacconChat_connectUser_args::~RacconChat_connectUser_args() throw() {
+RaccooChat_connectUser_args::~RaccooChat_connectUser_args() throw() {
 }
 
 
-uint32_t RacconChat_connectUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_connectUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -54,10 +54,10 @@ uint32_t RacconChat_connectUser_args::read(::apache::thrift::protocol::TProtocol
   return xfer;
 }
 
-uint32_t RacconChat_connectUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_connectUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_connectUser_args");
+  xfer += oprot->writeStructBegin("RaccooChat_connectUser_args");
 
   xfer += oprot->writeFieldBegin("user", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->user);
@@ -69,14 +69,14 @@ uint32_t RacconChat_connectUser_args::write(::apache::thrift::protocol::TProtoco
 }
 
 
-RacconChat_connectUser_pargs::~RacconChat_connectUser_pargs() throw() {
+RaccooChat_connectUser_pargs::~RaccooChat_connectUser_pargs() throw() {
 }
 
 
-uint32_t RacconChat_connectUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_connectUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_connectUser_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_connectUser_pargs");
 
   xfer += oprot->writeFieldBegin("user", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->user)));
@@ -88,11 +88,11 @@ uint32_t RacconChat_connectUser_pargs::write(::apache::thrift::protocol::TProtoc
 }
 
 
-RacconChat_connectUser_result::~RacconChat_connectUser_result() throw() {
+RaccooChat_connectUser_result::~RaccooChat_connectUser_result() throw() {
 }
 
 
-uint32_t RacconChat_connectUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_connectUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -121,14 +121,6 @@ uint32_t RacconChat_connectUser_result::read(::apache::thrift::protocol::TProtoc
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -141,19 +133,15 @@ uint32_t RacconChat_connectUser_result::read(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-uint32_t RacconChat_connectUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_connectUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RacconChat_connectUser_result");
+  xfer += oprot->writeStructBegin("RaccooChat_connectUser_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_BOOL, 0);
     xfer += oprot->writeBool(this->success);
-    xfer += oprot->writeFieldEnd();
-  } else if (this->__isset.e) {
-    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->e.write(oprot);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -162,11 +150,11 @@ uint32_t RacconChat_connectUser_result::write(::apache::thrift::protocol::TProto
 }
 
 
-RacconChat_connectUser_presult::~RacconChat_connectUser_presult() throw() {
+RaccooChat_connectUser_presult::~RaccooChat_connectUser_presult() throw() {
 }
 
 
-uint32_t RacconChat_connectUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_connectUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -195,14 +183,6 @@ uint32_t RacconChat_connectUser_presult::read(::apache::thrift::protocol::TProto
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -216,11 +196,11 @@ uint32_t RacconChat_connectUser_presult::read(::apache::thrift::protocol::TProto
 }
 
 
-RacconChat_disconnectUser_args::~RacconChat_disconnectUser_args() throw() {
+RaccooChat_disconnectUser_args::~RaccooChat_disconnectUser_args() throw() {
 }
 
 
-uint32_t RacconChat_disconnectUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_disconnectUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -261,10 +241,10 @@ uint32_t RacconChat_disconnectUser_args::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t RacconChat_disconnectUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_disconnectUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_disconnectUser_args");
+  xfer += oprot->writeStructBegin("RaccooChat_disconnectUser_args");
 
   xfer += oprot->writeFieldBegin("user", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->user);
@@ -276,14 +256,14 @@ uint32_t RacconChat_disconnectUser_args::write(::apache::thrift::protocol::TProt
 }
 
 
-RacconChat_disconnectUser_pargs::~RacconChat_disconnectUser_pargs() throw() {
+RaccooChat_disconnectUser_pargs::~RaccooChat_disconnectUser_pargs() throw() {
 }
 
 
-uint32_t RacconChat_disconnectUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_disconnectUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_disconnectUser_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_disconnectUser_pargs");
 
   xfer += oprot->writeFieldBegin("user", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->user)));
@@ -295,119 +275,11 @@ uint32_t RacconChat_disconnectUser_pargs::write(::apache::thrift::protocol::TPro
 }
 
 
-RacconChat_disconnectUser_result::~RacconChat_disconnectUser_result() throw() {
+RaccooChat_disconnectUser_result::~RaccooChat_disconnectUser_result() throw() {
 }
 
 
-uint32_t RacconChat_disconnectUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t RacconChat_disconnectUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
-
-  uint32_t xfer = 0;
-
-  xfer += oprot->writeStructBegin("RacconChat_disconnectUser_result");
-
-  if (this->__isset.e) {
-    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->e.write(oprot);
-    xfer += oprot->writeFieldEnd();
-  }
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-RacconChat_disconnectUser_presult::~RacconChat_disconnectUser_presult() throw() {
-}
-
-
-uint32_t RacconChat_disconnectUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-
-RacconChat_getAllOnlineUsers_args::~RacconChat_getAllOnlineUsers_args() throw() {
-}
-
-
-uint32_t RacconChat_getAllOnlineUsers_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_disconnectUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -435,10 +307,11 @@ uint32_t RacconChat_getAllOnlineUsers_args::read(::apache::thrift::protocol::TPr
   return xfer;
 }
 
-uint32_t RacconChat_getAllOnlineUsers_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_disconnectUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+
   uint32_t xfer = 0;
-  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_getAllOnlineUsers_args");
+
+  xfer += oprot->writeStructBegin("RaccooChat_disconnectUser_result");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -446,14 +319,75 @@ uint32_t RacconChat_getAllOnlineUsers_args::write(::apache::thrift::protocol::TP
 }
 
 
-RacconChat_getAllOnlineUsers_pargs::~RacconChat_getAllOnlineUsers_pargs() throw() {
+RaccooChat_disconnectUser_presult::~RaccooChat_disconnectUser_presult() throw() {
 }
 
 
-uint32_t RacconChat_getAllOnlineUsers_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_disconnectUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    xfer += iprot->skip(ftype);
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+
+RaccooChat_getAllOnlineUsers_args::~RaccooChat_getAllOnlineUsers_args() throw() {
+}
+
+
+uint32_t RaccooChat_getAllOnlineUsers_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    xfer += iprot->skip(ftype);
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t RaccooChat_getAllOnlineUsers_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_getAllOnlineUsers_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_getAllOnlineUsers_args");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -461,11 +395,26 @@ uint32_t RacconChat_getAllOnlineUsers_pargs::write(::apache::thrift::protocol::T
 }
 
 
-RacconChat_getAllOnlineUsers_result::~RacconChat_getAllOnlineUsers_result() throw() {
+RaccooChat_getAllOnlineUsers_pargs::~RaccooChat_getAllOnlineUsers_pargs() throw() {
 }
 
 
-uint32_t RacconChat_getAllOnlineUsers_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getAllOnlineUsers_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("RaccooChat_getAllOnlineUsers_pargs");
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getAllOnlineUsers_result::~RaccooChat_getAllOnlineUsers_result() throw() {
+}
+
+
+uint32_t RaccooChat_getAllOnlineUsers_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -509,14 +458,6 @@ uint32_t RacconChat_getAllOnlineUsers_result::read(::apache::thrift::protocol::T
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -529,11 +470,11 @@ uint32_t RacconChat_getAllOnlineUsers_result::read(::apache::thrift::protocol::T
   return xfer;
 }
 
-uint32_t RacconChat_getAllOnlineUsers_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getAllOnlineUsers_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RacconChat_getAllOnlineUsers_result");
+  xfer += oprot->writeStructBegin("RaccooChat_getAllOnlineUsers_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_MAP, 0);
@@ -548,10 +489,6 @@ uint32_t RacconChat_getAllOnlineUsers_result::write(::apache::thrift::protocol::
       xfer += oprot->writeMapEnd();
     }
     xfer += oprot->writeFieldEnd();
-  } else if (this->__isset.e) {
-    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->e.write(oprot);
-    xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -559,11 +496,11 @@ uint32_t RacconChat_getAllOnlineUsers_result::write(::apache::thrift::protocol::
 }
 
 
-RacconChat_getAllOnlineUsers_presult::~RacconChat_getAllOnlineUsers_presult() throw() {
+RaccooChat_getAllOnlineUsers_presult::~RaccooChat_getAllOnlineUsers_presult() throw() {
 }
 
 
-uint32_t RacconChat_getAllOnlineUsers_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getAllOnlineUsers_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -607,14 +544,6 @@ uint32_t RacconChat_getAllOnlineUsers_presult::read(::apache::thrift::protocol::
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -628,11 +557,11 @@ uint32_t RacconChat_getAllOnlineUsers_presult::read(::apache::thrift::protocol::
 }
 
 
-RacconChat_getNewMessages_args::~RacconChat_getNewMessages_args() throw() {
+RaccooChat_getNewMessages_args::~RaccooChat_getNewMessages_args() throw() {
 }
 
 
-uint32_t RacconChat_getNewMessages_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getNewMessages_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -673,10 +602,10 @@ uint32_t RacconChat_getNewMessages_args::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t RacconChat_getNewMessages_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getNewMessages_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_getNewMessages_args");
+  xfer += oprot->writeStructBegin("RaccooChat_getNewMessages_args");
 
   xfer += oprot->writeFieldBegin("user", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->user);
@@ -688,14 +617,14 @@ uint32_t RacconChat_getNewMessages_args::write(::apache::thrift::protocol::TProt
 }
 
 
-RacconChat_getNewMessages_pargs::~RacconChat_getNewMessages_pargs() throw() {
+RaccooChat_getNewMessages_pargs::~RaccooChat_getNewMessages_pargs() throw() {
 }
 
 
-uint32_t RacconChat_getNewMessages_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getNewMessages_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_getNewMessages_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_getNewMessages_pargs");
 
   xfer += oprot->writeFieldBegin("user", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->user)));
@@ -707,11 +636,11 @@ uint32_t RacconChat_getNewMessages_pargs::write(::apache::thrift::protocol::TPro
 }
 
 
-RacconChat_getNewMessages_result::~RacconChat_getNewMessages_result() throw() {
+RaccooChat_getNewMessages_result::~RaccooChat_getNewMessages_result() throw() {
 }
 
 
-uint32_t RacconChat_getNewMessages_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getNewMessages_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -752,14 +681,6 @@ uint32_t RacconChat_getNewMessages_result::read(::apache::thrift::protocol::TPro
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -772,11 +693,11 @@ uint32_t RacconChat_getNewMessages_result::read(::apache::thrift::protocol::TPro
   return xfer;
 }
 
-uint32_t RacconChat_getNewMessages_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getNewMessages_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RacconChat_getNewMessages_result");
+  xfer += oprot->writeStructBegin("RaccooChat_getNewMessages_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
@@ -790,10 +711,6 @@ uint32_t RacconChat_getNewMessages_result::write(::apache::thrift::protocol::TPr
       xfer += oprot->writeListEnd();
     }
     xfer += oprot->writeFieldEnd();
-  } else if (this->__isset.e) {
-    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->e.write(oprot);
-    xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -801,11 +718,11 @@ uint32_t RacconChat_getNewMessages_result::write(::apache::thrift::protocol::TPr
 }
 
 
-RacconChat_getNewMessages_presult::~RacconChat_getNewMessages_presult() throw() {
+RaccooChat_getNewMessages_presult::~RaccooChat_getNewMessages_presult() throw() {
 }
 
 
-uint32_t RacconChat_getNewMessages_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getNewMessages_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -846,14 +763,6 @@ uint32_t RacconChat_getNewMessages_presult::read(::apache::thrift::protocol::TPr
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -867,11 +776,11 @@ uint32_t RacconChat_getNewMessages_presult::read(::apache::thrift::protocol::TPr
 }
 
 
-RacconChat_getLastFiveMessages_args::~RacconChat_getLastFiveMessages_args() throw() {
+RaccooChat_getLastFiveMessages_args::~RaccooChat_getLastFiveMessages_args() throw() {
 }
 
 
-uint32_t RacconChat_getLastFiveMessages_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getLastFiveMessages_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -899,10 +808,10 @@ uint32_t RacconChat_getLastFiveMessages_args::read(::apache::thrift::protocol::T
   return xfer;
 }
 
-uint32_t RacconChat_getLastFiveMessages_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getLastFiveMessages_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_getLastFiveMessages_args");
+  xfer += oprot->writeStructBegin("RaccooChat_getLastFiveMessages_args");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -910,14 +819,14 @@ uint32_t RacconChat_getLastFiveMessages_args::write(::apache::thrift::protocol::
 }
 
 
-RacconChat_getLastFiveMessages_pargs::~RacconChat_getLastFiveMessages_pargs() throw() {
+RaccooChat_getLastFiveMessages_pargs::~RaccooChat_getLastFiveMessages_pargs() throw() {
 }
 
 
-uint32_t RacconChat_getLastFiveMessages_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getLastFiveMessages_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_getLastFiveMessages_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_getLastFiveMessages_pargs");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -925,11 +834,11 @@ uint32_t RacconChat_getLastFiveMessages_pargs::write(::apache::thrift::protocol:
 }
 
 
-RacconChat_getLastFiveMessages_result::~RacconChat_getLastFiveMessages_result() throw() {
+RaccooChat_getLastFiveMessages_result::~RaccooChat_getLastFiveMessages_result() throw() {
 }
 
 
-uint32_t RacconChat_getLastFiveMessages_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getLastFiveMessages_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -970,14 +879,6 @@ uint32_t RacconChat_getLastFiveMessages_result::read(::apache::thrift::protocol:
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -990,11 +891,11 @@ uint32_t RacconChat_getLastFiveMessages_result::read(::apache::thrift::protocol:
   return xfer;
 }
 
-uint32_t RacconChat_getLastFiveMessages_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getLastFiveMessages_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RacconChat_getLastFiveMessages_result");
+  xfer += oprot->writeStructBegin("RaccooChat_getLastFiveMessages_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
@@ -1008,10 +909,6 @@ uint32_t RacconChat_getLastFiveMessages_result::write(::apache::thrift::protocol
       xfer += oprot->writeListEnd();
     }
     xfer += oprot->writeFieldEnd();
-  } else if (this->__isset.e) {
-    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->e.write(oprot);
-    xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -1019,11 +916,11 @@ uint32_t RacconChat_getLastFiveMessages_result::write(::apache::thrift::protocol
 }
 
 
-RacconChat_getLastFiveMessages_presult::~RacconChat_getLastFiveMessages_presult() throw() {
+RaccooChat_getLastFiveMessages_presult::~RaccooChat_getLastFiveMessages_presult() throw() {
 }
 
 
-uint32_t RacconChat_getLastFiveMessages_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getLastFiveMessages_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1064,14 +961,6 @@ uint32_t RacconChat_getLastFiveMessages_presult::read(::apache::thrift::protocol
           xfer += iprot->skip(ftype);
         }
         break;
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -1085,11 +974,11 @@ uint32_t RacconChat_getLastFiveMessages_presult::read(::apache::thrift::protocol
 }
 
 
-RacconChat_addMessage_args::~RacconChat_addMessage_args() throw() {
+RaccooChat_addMessage_args::~RaccooChat_addMessage_args() throw() {
 }
 
 
-uint32_t RacconChat_addMessage_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_addMessage_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1130,10 +1019,10 @@ uint32_t RacconChat_addMessage_args::read(::apache::thrift::protocol::TProtocol*
   return xfer;
 }
 
-uint32_t RacconChat_addMessage_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_addMessage_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_addMessage_args");
+  xfer += oprot->writeStructBegin("RaccooChat_addMessage_args");
 
   xfer += oprot->writeFieldBegin("msg", ::apache::thrift::protocol::T_STRUCT, 1);
   xfer += this->msg.write(oprot);
@@ -1145,14 +1034,14 @@ uint32_t RacconChat_addMessage_args::write(::apache::thrift::protocol::TProtocol
 }
 
 
-RacconChat_addMessage_pargs::~RacconChat_addMessage_pargs() throw() {
+RaccooChat_addMessage_pargs::~RaccooChat_addMessage_pargs() throw() {
 }
 
 
-uint32_t RacconChat_addMessage_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_addMessage_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RacconChat_addMessage_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_addMessage_pargs");
 
   xfer += oprot->writeFieldBegin("msg", ::apache::thrift::protocol::T_STRUCT, 1);
   xfer += (*(this->msg)).write(oprot);
@@ -1164,11 +1053,11 @@ uint32_t RacconChat_addMessage_pargs::write(::apache::thrift::protocol::TProtoco
 }
 
 
-RacconChat_addMessage_result::~RacconChat_addMessage_result() throw() {
+RaccooChat_addMessage_result::~RaccooChat_addMessage_result() throw() {
 }
 
 
-uint32_t RacconChat_addMessage_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_addMessage_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1187,20 +1076,7 @@ uint32_t RacconChat_addMessage_result::read(::apache::thrift::protocol::TProtoco
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
+    xfer += iprot->skip(ftype);
     xfer += iprot->readFieldEnd();
   }
 
@@ -1209,28 +1085,23 @@ uint32_t RacconChat_addMessage_result::read(::apache::thrift::protocol::TProtoco
   return xfer;
 }
 
-uint32_t RacconChat_addMessage_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_addMessage_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RacconChat_addMessage_result");
+  xfer += oprot->writeStructBegin("RaccooChat_addMessage_result");
 
-  if (this->__isset.e) {
-    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
-    xfer += this->e.write(oprot);
-    xfer += oprot->writeFieldEnd();
-  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-RacconChat_addMessage_presult::~RacconChat_addMessage_presult() throw() {
+RaccooChat_addMessage_presult::~RaccooChat_addMessage_presult() throw() {
 }
 
 
-uint32_t RacconChat_addMessage_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_addMessage_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1249,20 +1120,7 @@ uint32_t RacconChat_addMessage_presult::read(::apache::thrift::protocol::TProtoc
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    switch (fid)
-    {
-      case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->e.read(iprot);
-          this->__isset.e = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
+    xfer += iprot->skip(ftype);
     xfer += iprot->readFieldEnd();
   }
 
@@ -1271,18 +1129,18 @@ uint32_t RacconChat_addMessage_presult::read(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-bool RacconChatClient::connectUser(const std::string& user)
+bool RaccooChatClient::connectUser(const std::string& user)
 {
   send_connectUser(user);
   return recv_connectUser();
 }
 
-void RacconChatClient::send_connectUser(const std::string& user)
+void RaccooChatClient::send_connectUser(const std::string& user)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("connectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_connectUser_pargs args;
+  RaccooChat_connectUser_pargs args;
   args.user = &user;
   args.write(oprot_);
 
@@ -1291,7 +1149,7 @@ void RacconChatClient::send_connectUser(const std::string& user)
   oprot_->getTransport()->flush();
 }
 
-bool RacconChatClient::recv_connectUser()
+bool RaccooChatClient::recv_connectUser()
 {
 
   int32_t rseqid = 0;
@@ -1317,7 +1175,7 @@ bool RacconChatClient::recv_connectUser()
     iprot_->getTransport()->readEnd();
   }
   bool _return;
-  RacconChat_connectUser_presult result;
+  RaccooChat_connectUser_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -1326,24 +1184,21 @@ bool RacconChatClient::recv_connectUser()
   if (result.__isset.success) {
     return _return;
   }
-  if (result.__isset.e) {
-    throw result.e;
-  }
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "connectUser failed: unknown result");
 }
 
-void RacconChatClient::disconnectUser(const std::string& user)
+void RaccooChatClient::disconnectUser(const std::string& user)
 {
   send_disconnectUser(user);
   recv_disconnectUser();
 }
 
-void RacconChatClient::send_disconnectUser(const std::string& user)
+void RaccooChatClient::send_disconnectUser(const std::string& user)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("disconnectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_disconnectUser_pargs args;
+  RaccooChat_disconnectUser_pargs args;
   args.user = &user;
   args.write(oprot_);
 
@@ -1352,7 +1207,7 @@ void RacconChatClient::send_disconnectUser(const std::string& user)
   oprot_->getTransport()->flush();
 }
 
-void RacconChatClient::recv_disconnectUser()
+void RaccooChatClient::recv_disconnectUser()
 {
 
   int32_t rseqid = 0;
@@ -1377,29 +1232,26 @@ void RacconChatClient::recv_disconnectUser()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RacconChat_disconnectUser_presult result;
+  RaccooChat_disconnectUser_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
-  if (result.__isset.e) {
-    throw result.e;
-  }
   return;
 }
 
-void RacconChatClient::getAllOnlineUsers(std::map<std::string, int32_t> & _return)
+void RaccooChatClient::getAllOnlineUsers(std::map<std::string, int32_t> & _return)
 {
   send_getAllOnlineUsers();
   recv_getAllOnlineUsers(_return);
 }
 
-void RacconChatClient::send_getAllOnlineUsers()
+void RaccooChatClient::send_getAllOnlineUsers()
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("getAllOnlineUsers", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_getAllOnlineUsers_pargs args;
+  RaccooChat_getAllOnlineUsers_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -1407,7 +1259,7 @@ void RacconChatClient::send_getAllOnlineUsers()
   oprot_->getTransport()->flush();
 }
 
-void RacconChatClient::recv_getAllOnlineUsers(std::map<std::string, int32_t> & _return)
+void RaccooChatClient::recv_getAllOnlineUsers(std::map<std::string, int32_t> & _return)
 {
 
   int32_t rseqid = 0;
@@ -1432,7 +1284,7 @@ void RacconChatClient::recv_getAllOnlineUsers(std::map<std::string, int32_t> & _
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RacconChat_getAllOnlineUsers_presult result;
+  RaccooChat_getAllOnlineUsers_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -1442,24 +1294,21 @@ void RacconChatClient::recv_getAllOnlineUsers(std::map<std::string, int32_t> & _
     // _return pointer has now been filled
     return;
   }
-  if (result.__isset.e) {
-    throw result.e;
-  }
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getAllOnlineUsers failed: unknown result");
 }
 
-void RacconChatClient::getNewMessages(std::vector<Message> & _return, const std::string& user)
+void RaccooChatClient::getNewMessages(std::vector<Message> & _return, const std::string& user)
 {
   send_getNewMessages(user);
   recv_getNewMessages(_return);
 }
 
-void RacconChatClient::send_getNewMessages(const std::string& user)
+void RaccooChatClient::send_getNewMessages(const std::string& user)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("getNewMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_getNewMessages_pargs args;
+  RaccooChat_getNewMessages_pargs args;
   args.user = &user;
   args.write(oprot_);
 
@@ -1468,7 +1317,7 @@ void RacconChatClient::send_getNewMessages(const std::string& user)
   oprot_->getTransport()->flush();
 }
 
-void RacconChatClient::recv_getNewMessages(std::vector<Message> & _return)
+void RaccooChatClient::recv_getNewMessages(std::vector<Message> & _return)
 {
 
   int32_t rseqid = 0;
@@ -1493,7 +1342,7 @@ void RacconChatClient::recv_getNewMessages(std::vector<Message> & _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RacconChat_getNewMessages_presult result;
+  RaccooChat_getNewMessages_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -1503,24 +1352,21 @@ void RacconChatClient::recv_getNewMessages(std::vector<Message> & _return)
     // _return pointer has now been filled
     return;
   }
-  if (result.__isset.e) {
-    throw result.e;
-  }
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getNewMessages failed: unknown result");
 }
 
-void RacconChatClient::getLastFiveMessages(std::vector<Message> & _return)
+void RaccooChatClient::getLastFiveMessages(std::vector<Message> & _return)
 {
   send_getLastFiveMessages();
   recv_getLastFiveMessages(_return);
 }
 
-void RacconChatClient::send_getLastFiveMessages()
+void RaccooChatClient::send_getLastFiveMessages()
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("getLastFiveMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_getLastFiveMessages_pargs args;
+  RaccooChat_getLastFiveMessages_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -1528,7 +1374,7 @@ void RacconChatClient::send_getLastFiveMessages()
   oprot_->getTransport()->flush();
 }
 
-void RacconChatClient::recv_getLastFiveMessages(std::vector<Message> & _return)
+void RaccooChatClient::recv_getLastFiveMessages(std::vector<Message> & _return)
 {
 
   int32_t rseqid = 0;
@@ -1553,7 +1399,7 @@ void RacconChatClient::recv_getLastFiveMessages(std::vector<Message> & _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RacconChat_getLastFiveMessages_presult result;
+  RaccooChat_getLastFiveMessages_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -1563,24 +1409,21 @@ void RacconChatClient::recv_getLastFiveMessages(std::vector<Message> & _return)
     // _return pointer has now been filled
     return;
   }
-  if (result.__isset.e) {
-    throw result.e;
-  }
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getLastFiveMessages failed: unknown result");
 }
 
-void RacconChatClient::addMessage(const Message& msg)
+void RaccooChatClient::addMessage(const Message& msg)
 {
   send_addMessage(msg);
   recv_addMessage();
 }
 
-void RacconChatClient::send_addMessage(const Message& msg)
+void RaccooChatClient::send_addMessage(const Message& msg)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("addMessage", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_addMessage_pargs args;
+  RaccooChat_addMessage_pargs args;
   args.msg = &msg;
   args.write(oprot_);
 
@@ -1589,7 +1432,7 @@ void RacconChatClient::send_addMessage(const Message& msg)
   oprot_->getTransport()->flush();
 }
 
-void RacconChatClient::recv_addMessage()
+void RaccooChatClient::recv_addMessage()
 {
 
   int32_t rseqid = 0;
@@ -1614,18 +1457,15 @@ void RacconChatClient::recv_addMessage()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RacconChat_addMessage_presult result;
+  RaccooChat_addMessage_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
-  if (result.__isset.e) {
-    throw result.e;
-  }
   return;
 }
 
-bool RacconChatProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool RaccooChatProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -1644,37 +1484,34 @@ bool RacconChatProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* ip
   return true;
 }
 
-void RacconChatProcessor::process_connectUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_connectUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RacconChat.connectUser", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.connectUser", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RacconChat.connectUser");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.connectUser");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RacconChat.connectUser");
+    this->eventHandler_->preRead(ctx, "RaccooChat.connectUser");
   }
 
-  RacconChat_connectUser_args args;
+  RaccooChat_connectUser_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RacconChat.connectUser", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.connectUser", bytes);
   }
 
-  RacconChat_connectUser_result result;
+  RaccooChat_connectUser_result result;
   try {
     result.success = iface_->connectUser(args.user);
     result.__isset.success = true;
-  } catch (InvalidValueException &e) {
-    result.e = e;
-    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RacconChat.connectUser");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.connectUser");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -1687,7 +1524,7 @@ void RacconChatProcessor::process_connectUser(int32_t seqid, ::apache::thrift::p
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RacconChat.connectUser");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.connectUser");
   }
 
   oprot->writeMessageBegin("connectUser", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -1697,40 +1534,37 @@ void RacconChatProcessor::process_connectUser(int32_t seqid, ::apache::thrift::p
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RacconChat.connectUser", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.connectUser", bytes);
   }
 }
 
-void RacconChatProcessor::process_disconnectUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_disconnectUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RacconChat.disconnectUser", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.disconnectUser", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RacconChat.disconnectUser");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.disconnectUser");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RacconChat.disconnectUser");
+    this->eventHandler_->preRead(ctx, "RaccooChat.disconnectUser");
   }
 
-  RacconChat_disconnectUser_args args;
+  RaccooChat_disconnectUser_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RacconChat.disconnectUser", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.disconnectUser", bytes);
   }
 
-  RacconChat_disconnectUser_result result;
+  RaccooChat_disconnectUser_result result;
   try {
     iface_->disconnectUser(args.user);
-  } catch (InvalidValueException &e) {
-    result.e = e;
-    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RacconChat.disconnectUser");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.disconnectUser");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -1743,7 +1577,7 @@ void RacconChatProcessor::process_disconnectUser(int32_t seqid, ::apache::thrift
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RacconChat.disconnectUser");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.disconnectUser");
   }
 
   oprot->writeMessageBegin("disconnectUser", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -1753,41 +1587,38 @@ void RacconChatProcessor::process_disconnectUser(int32_t seqid, ::apache::thrift
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RacconChat.disconnectUser", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.disconnectUser", bytes);
   }
 }
 
-void RacconChatProcessor::process_getAllOnlineUsers(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_getAllOnlineUsers(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RacconChat.getAllOnlineUsers", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.getAllOnlineUsers", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RacconChat.getAllOnlineUsers");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getAllOnlineUsers");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RacconChat.getAllOnlineUsers");
+    this->eventHandler_->preRead(ctx, "RaccooChat.getAllOnlineUsers");
   }
 
-  RacconChat_getAllOnlineUsers_args args;
+  RaccooChat_getAllOnlineUsers_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RacconChat.getAllOnlineUsers", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.getAllOnlineUsers", bytes);
   }
 
-  RacconChat_getAllOnlineUsers_result result;
+  RaccooChat_getAllOnlineUsers_result result;
   try {
     iface_->getAllOnlineUsers(result.success);
     result.__isset.success = true;
-  } catch (InvalidValueException &e) {
-    result.e = e;
-    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RacconChat.getAllOnlineUsers");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.getAllOnlineUsers");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -1800,7 +1631,7 @@ void RacconChatProcessor::process_getAllOnlineUsers(int32_t seqid, ::apache::thr
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RacconChat.getAllOnlineUsers");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.getAllOnlineUsers");
   }
 
   oprot->writeMessageBegin("getAllOnlineUsers", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -1810,41 +1641,38 @@ void RacconChatProcessor::process_getAllOnlineUsers(int32_t seqid, ::apache::thr
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RacconChat.getAllOnlineUsers", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.getAllOnlineUsers", bytes);
   }
 }
 
-void RacconChatProcessor::process_getNewMessages(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_getNewMessages(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RacconChat.getNewMessages", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.getNewMessages", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RacconChat.getNewMessages");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getNewMessages");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RacconChat.getNewMessages");
+    this->eventHandler_->preRead(ctx, "RaccooChat.getNewMessages");
   }
 
-  RacconChat_getNewMessages_args args;
+  RaccooChat_getNewMessages_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RacconChat.getNewMessages", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.getNewMessages", bytes);
   }
 
-  RacconChat_getNewMessages_result result;
+  RaccooChat_getNewMessages_result result;
   try {
     iface_->getNewMessages(result.success, args.user);
     result.__isset.success = true;
-  } catch (InvalidValueException &e) {
-    result.e = e;
-    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RacconChat.getNewMessages");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.getNewMessages");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -1857,7 +1685,7 @@ void RacconChatProcessor::process_getNewMessages(int32_t seqid, ::apache::thrift
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RacconChat.getNewMessages");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.getNewMessages");
   }
 
   oprot->writeMessageBegin("getNewMessages", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -1867,41 +1695,38 @@ void RacconChatProcessor::process_getNewMessages(int32_t seqid, ::apache::thrift
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RacconChat.getNewMessages", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.getNewMessages", bytes);
   }
 }
 
-void RacconChatProcessor::process_getLastFiveMessages(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_getLastFiveMessages(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RacconChat.getLastFiveMessages", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.getLastFiveMessages", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RacconChat.getLastFiveMessages");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getLastFiveMessages");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RacconChat.getLastFiveMessages");
+    this->eventHandler_->preRead(ctx, "RaccooChat.getLastFiveMessages");
   }
 
-  RacconChat_getLastFiveMessages_args args;
+  RaccooChat_getLastFiveMessages_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RacconChat.getLastFiveMessages", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.getLastFiveMessages", bytes);
   }
 
-  RacconChat_getLastFiveMessages_result result;
+  RaccooChat_getLastFiveMessages_result result;
   try {
     iface_->getLastFiveMessages(result.success);
     result.__isset.success = true;
-  } catch (InvalidValueException &e) {
-    result.e = e;
-    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RacconChat.getLastFiveMessages");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.getLastFiveMessages");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -1914,7 +1739,7 @@ void RacconChatProcessor::process_getLastFiveMessages(int32_t seqid, ::apache::t
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RacconChat.getLastFiveMessages");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.getLastFiveMessages");
   }
 
   oprot->writeMessageBegin("getLastFiveMessages", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -1924,40 +1749,37 @@ void RacconChatProcessor::process_getLastFiveMessages(int32_t seqid, ::apache::t
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RacconChat.getLastFiveMessages", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.getLastFiveMessages", bytes);
   }
 }
 
-void RacconChatProcessor::process_addMessage(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_addMessage(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RacconChat.addMessage", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.addMessage", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RacconChat.addMessage");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.addMessage");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RacconChat.addMessage");
+    this->eventHandler_->preRead(ctx, "RaccooChat.addMessage");
   }
 
-  RacconChat_addMessage_args args;
+  RaccooChat_addMessage_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RacconChat.addMessage", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.addMessage", bytes);
   }
 
-  RacconChat_addMessage_result result;
+  RaccooChat_addMessage_result result;
   try {
     iface_->addMessage(args.msg);
-  } catch (InvalidValueException &e) {
-    result.e = e;
-    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RacconChat.addMessage");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.addMessage");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -1970,7 +1792,7 @@ void RacconChatProcessor::process_addMessage(int32_t seqid, ::apache::thrift::pr
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RacconChat.addMessage");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.addMessage");
   }
 
   oprot->writeMessageBegin("addMessage", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -1980,30 +1802,30 @@ void RacconChatProcessor::process_addMessage(int32_t seqid, ::apache::thrift::pr
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RacconChat.addMessage", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.addMessage", bytes);
   }
 }
 
-::boost::shared_ptr< ::apache::thrift::TProcessor > RacconChatProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< RacconChatIfFactory > cleanup(handlerFactory_);
-  ::boost::shared_ptr< RacconChatIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new RacconChatProcessor(handler));
+::boost::shared_ptr< ::apache::thrift::TProcessor > RaccooChatProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< RaccooChatIfFactory > cleanup(handlerFactory_);
+  ::boost::shared_ptr< RaccooChatIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new RaccooChatProcessor(handler));
   return processor;
 }
 
-bool RacconChatConcurrentClient::connectUser(const std::string& user)
+bool RaccooChatConcurrentClient::connectUser(const std::string& user)
 {
   int32_t seqid = send_connectUser(user);
   return recv_connectUser(seqid);
 }
 
-int32_t RacconChatConcurrentClient::send_connectUser(const std::string& user)
+int32_t RaccooChatConcurrentClient::send_connectUser(const std::string& user)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("connectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_connectUser_pargs args;
+  RaccooChat_connectUser_pargs args;
   args.user = &user;
   args.write(oprot_);
 
@@ -2015,7 +1837,7 @@ int32_t RacconChatConcurrentClient::send_connectUser(const std::string& user)
   return cseqid;
 }
 
-bool RacconChatConcurrentClient::recv_connectUser(const int32_t seqid)
+bool RaccooChatConcurrentClient::recv_connectUser(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -2054,7 +1876,7 @@ bool RacconChatConcurrentClient::recv_connectUser(const int32_t seqid)
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
       bool _return;
-      RacconChat_connectUser_presult result;
+      RaccooChat_connectUser_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -2063,10 +1885,6 @@ bool RacconChatConcurrentClient::recv_connectUser(const int32_t seqid)
       if (result.__isset.success) {
         sentry.commit();
         return _return;
-      }
-      if (result.__isset.e) {
-        sentry.commit();
-        throw result.e;
       }
       // in a bad state, don't commit
       throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "connectUser failed: unknown result");
@@ -2079,19 +1897,19 @@ bool RacconChatConcurrentClient::recv_connectUser(const int32_t seqid)
   } // end while(true)
 }
 
-void RacconChatConcurrentClient::disconnectUser(const std::string& user)
+void RaccooChatConcurrentClient::disconnectUser(const std::string& user)
 {
   int32_t seqid = send_disconnectUser(user);
   recv_disconnectUser(seqid);
 }
 
-int32_t RacconChatConcurrentClient::send_disconnectUser(const std::string& user)
+int32_t RaccooChatConcurrentClient::send_disconnectUser(const std::string& user)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("disconnectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_disconnectUser_pargs args;
+  RaccooChat_disconnectUser_pargs args;
   args.user = &user;
   args.write(oprot_);
 
@@ -2103,7 +1921,7 @@ int32_t RacconChatConcurrentClient::send_disconnectUser(const std::string& user)
   return cseqid;
 }
 
-void RacconChatConcurrentClient::recv_disconnectUser(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_disconnectUser(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -2141,15 +1959,11 @@ void RacconChatConcurrentClient::recv_disconnectUser(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RacconChat_disconnectUser_presult result;
+      RaccooChat_disconnectUser_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
-      if (result.__isset.e) {
-        sentry.commit();
-        throw result.e;
-      }
       sentry.commit();
       return;
     }
@@ -2161,19 +1975,19 @@ void RacconChatConcurrentClient::recv_disconnectUser(const int32_t seqid)
   } // end while(true)
 }
 
-void RacconChatConcurrentClient::getAllOnlineUsers(std::map<std::string, int32_t> & _return)
+void RaccooChatConcurrentClient::getAllOnlineUsers(std::map<std::string, int32_t> & _return)
 {
   int32_t seqid = send_getAllOnlineUsers();
   recv_getAllOnlineUsers(_return, seqid);
 }
 
-int32_t RacconChatConcurrentClient::send_getAllOnlineUsers()
+int32_t RaccooChatConcurrentClient::send_getAllOnlineUsers()
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("getAllOnlineUsers", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_getAllOnlineUsers_pargs args;
+  RaccooChat_getAllOnlineUsers_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -2184,7 +1998,7 @@ int32_t RacconChatConcurrentClient::send_getAllOnlineUsers()
   return cseqid;
 }
 
-void RacconChatConcurrentClient::recv_getAllOnlineUsers(std::map<std::string, int32_t> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getAllOnlineUsers(std::map<std::string, int32_t> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -2222,7 +2036,7 @@ void RacconChatConcurrentClient::recv_getAllOnlineUsers(std::map<std::string, in
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RacconChat_getAllOnlineUsers_presult result;
+      RaccooChat_getAllOnlineUsers_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -2232,10 +2046,6 @@ void RacconChatConcurrentClient::recv_getAllOnlineUsers(std::map<std::string, in
         // _return pointer has now been filled
         sentry.commit();
         return;
-      }
-      if (result.__isset.e) {
-        sentry.commit();
-        throw result.e;
       }
       // in a bad state, don't commit
       throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getAllOnlineUsers failed: unknown result");
@@ -2248,19 +2058,19 @@ void RacconChatConcurrentClient::recv_getAllOnlineUsers(std::map<std::string, in
   } // end while(true)
 }
 
-void RacconChatConcurrentClient::getNewMessages(std::vector<Message> & _return, const std::string& user)
+void RaccooChatConcurrentClient::getNewMessages(std::vector<Message> & _return, const std::string& user)
 {
   int32_t seqid = send_getNewMessages(user);
   recv_getNewMessages(_return, seqid);
 }
 
-int32_t RacconChatConcurrentClient::send_getNewMessages(const std::string& user)
+int32_t RaccooChatConcurrentClient::send_getNewMessages(const std::string& user)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("getNewMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_getNewMessages_pargs args;
+  RaccooChat_getNewMessages_pargs args;
   args.user = &user;
   args.write(oprot_);
 
@@ -2272,7 +2082,7 @@ int32_t RacconChatConcurrentClient::send_getNewMessages(const std::string& user)
   return cseqid;
 }
 
-void RacconChatConcurrentClient::recv_getNewMessages(std::vector<Message> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getNewMessages(std::vector<Message> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -2310,7 +2120,7 @@ void RacconChatConcurrentClient::recv_getNewMessages(std::vector<Message> & _ret
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RacconChat_getNewMessages_presult result;
+      RaccooChat_getNewMessages_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -2320,10 +2130,6 @@ void RacconChatConcurrentClient::recv_getNewMessages(std::vector<Message> & _ret
         // _return pointer has now been filled
         sentry.commit();
         return;
-      }
-      if (result.__isset.e) {
-        sentry.commit();
-        throw result.e;
       }
       // in a bad state, don't commit
       throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getNewMessages failed: unknown result");
@@ -2336,19 +2142,19 @@ void RacconChatConcurrentClient::recv_getNewMessages(std::vector<Message> & _ret
   } // end while(true)
 }
 
-void RacconChatConcurrentClient::getLastFiveMessages(std::vector<Message> & _return)
+void RaccooChatConcurrentClient::getLastFiveMessages(std::vector<Message> & _return)
 {
   int32_t seqid = send_getLastFiveMessages();
   recv_getLastFiveMessages(_return, seqid);
 }
 
-int32_t RacconChatConcurrentClient::send_getLastFiveMessages()
+int32_t RaccooChatConcurrentClient::send_getLastFiveMessages()
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("getLastFiveMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_getLastFiveMessages_pargs args;
+  RaccooChat_getLastFiveMessages_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -2359,7 +2165,7 @@ int32_t RacconChatConcurrentClient::send_getLastFiveMessages()
   return cseqid;
 }
 
-void RacconChatConcurrentClient::recv_getLastFiveMessages(std::vector<Message> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getLastFiveMessages(std::vector<Message> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -2397,7 +2203,7 @@ void RacconChatConcurrentClient::recv_getLastFiveMessages(std::vector<Message> &
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RacconChat_getLastFiveMessages_presult result;
+      RaccooChat_getLastFiveMessages_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -2407,10 +2213,6 @@ void RacconChatConcurrentClient::recv_getLastFiveMessages(std::vector<Message> &
         // _return pointer has now been filled
         sentry.commit();
         return;
-      }
-      if (result.__isset.e) {
-        sentry.commit();
-        throw result.e;
       }
       // in a bad state, don't commit
       throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getLastFiveMessages failed: unknown result");
@@ -2423,19 +2225,19 @@ void RacconChatConcurrentClient::recv_getLastFiveMessages(std::vector<Message> &
   } // end while(true)
 }
 
-void RacconChatConcurrentClient::addMessage(const Message& msg)
+void RaccooChatConcurrentClient::addMessage(const Message& msg)
 {
   int32_t seqid = send_addMessage(msg);
   recv_addMessage(seqid);
 }
 
-int32_t RacconChatConcurrentClient::send_addMessage(const Message& msg)
+int32_t RaccooChatConcurrentClient::send_addMessage(const Message& msg)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("addMessage", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RacconChat_addMessage_pargs args;
+  RaccooChat_addMessage_pargs args;
   args.msg = &msg;
   args.write(oprot_);
 
@@ -2447,7 +2249,7 @@ int32_t RacconChatConcurrentClient::send_addMessage(const Message& msg)
   return cseqid;
 }
 
-void RacconChatConcurrentClient::recv_addMessage(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_addMessage(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -2485,15 +2287,11 @@ void RacconChatConcurrentClient::recv_addMessage(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RacconChat_addMessage_presult result;
+      RaccooChat_addMessage_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
-      if (result.__isset.e) {
-        sentry.commit();
-        throw result.e;
-      }
       sentry.commit();
       return;
     }

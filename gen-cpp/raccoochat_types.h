@@ -4,8 +4,8 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#ifndef tutorial_TYPES_H
-#define tutorial_TYPES_H
+#ifndef raccoochat_TYPES_H
+#define raccoochat_TYPES_H
 
 #include <iosfwd>
 
@@ -18,19 +18,17 @@
 #include <thrift/cxxfunctional.h>
 
 
-namespace tutorial {
-
-typedef int32_t MyInteger;
+namespace raccoochat {
 
 class Message;
 
 class InvalidValueException;
 
 typedef struct _Message__isset {
-  _Message__isset() : time(false), user_name(false), text(false) {}
+  _Message__isset() : time(false), userName(false), textMessage(false) {}
   bool time :1;
-  bool user_name :1;
-  bool text :1;
+  bool userName :1;
+  bool textMessage :1;
 } _Message__isset;
 
 class Message : public virtual ::apache::thrift::TBase {
@@ -38,29 +36,29 @@ class Message : public virtual ::apache::thrift::TBase {
 
   Message(const Message&);
   Message& operator=(const Message&);
-  Message() : time(), user_name(), text() {
+  Message() : time(), userName(), textMessage() {
   }
 
   virtual ~Message() throw();
   std::string time;
-  std::string user_name;
-  std::string text;
+  std::string userName;
+  std::string textMessage;
 
   _Message__isset __isset;
 
   void __set_time(const std::string& val);
 
-  void __set_user_name(const std::string& val);
+  void __set_userName(const std::string& val);
 
-  void __set_text(const std::string& val);
+  void __set_textMessage(const std::string& val);
 
   bool operator == (const Message & rhs) const
   {
     if (!(time == rhs.time))
       return false;
-    if (!(user_name == rhs.user_name))
+    if (!(userName == rhs.userName))
       return false;
-    if (!(text == rhs.text))
+    if (!(textMessage == rhs.textMessage))
       return false;
     return true;
   }
@@ -85,9 +83,9 @@ inline std::ostream& operator<<(std::ostream& out, const Message& obj)
 }
 
 typedef struct _InvalidValueException__isset {
-  _InvalidValueException__isset() : error_code(false), error_msg(false) {}
-  bool error_code :1;
-  bool error_msg :1;
+  _InvalidValueException__isset() : errorCode(false), errorMessage(false) {}
+  bool errorCode :1;
+  bool errorMessage :1;
 } _InvalidValueException__isset;
 
 class InvalidValueException : public ::apache::thrift::TException {
@@ -95,24 +93,24 @@ class InvalidValueException : public ::apache::thrift::TException {
 
   InvalidValueException(const InvalidValueException&);
   InvalidValueException& operator=(const InvalidValueException&);
-  InvalidValueException() : error_code(0), error_msg() {
+  InvalidValueException() : errorCode(0), errorMessage() {
   }
 
   virtual ~InvalidValueException() throw();
-  int32_t error_code;
-  std::string error_msg;
+  int32_t errorCode;
+  std::string errorMessage;
 
   _InvalidValueException__isset __isset;
 
-  void __set_error_code(const int32_t val);
+  void __set_errorCode(const int32_t val);
 
-  void __set_error_msg(const std::string& val);
+  void __set_errorMessage(const std::string& val);
 
   bool operator == (const InvalidValueException & rhs) const
   {
-    if (!(error_code == rhs.error_code))
+    if (!(errorCode == rhs.errorCode))
       return false;
-    if (!(error_msg == rhs.error_msg))
+    if (!(errorMessage == rhs.errorMessage))
       return false;
     return true;
   }

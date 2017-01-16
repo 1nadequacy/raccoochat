@@ -17,21 +17,21 @@ class Message(object):
     """
     Attributes:
      - time
-     - user_name
-     - text
+     - userName
+     - textMessage
     """
 
     thrift_spec = (
         None,  # 0
         (1, TType.STRING, 'time', 'UTF8', None, ),  # 1
-        (2, TType.STRING, 'user_name', 'UTF8', None, ),  # 2
-        (3, TType.STRING, 'text', 'UTF8', None, ),  # 3
+        (2, TType.STRING, 'userName', 'UTF8', None, ),  # 2
+        (3, TType.STRING, 'textMessage', 'UTF8', None, ),  # 3
     )
 
-    def __init__(self, time=None, user_name=None, text=None,):
+    def __init__(self, time=None, userName=None, textMessage=None,):
         self.time = time
-        self.user_name = user_name
-        self.text = text
+        self.userName = userName
+        self.textMessage = textMessage
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -49,12 +49,12 @@ class Message(object):
                     iprot.skip(ftype)
             elif fid == 2:
                 if ftype == TType.STRING:
-                    self.user_name = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.userName = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 3:
                 if ftype == TType.STRING:
-                    self.text = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.textMessage = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -71,13 +71,13 @@ class Message(object):
             oprot.writeFieldBegin('time', TType.STRING, 1)
             oprot.writeString(self.time.encode('utf-8') if sys.version_info[0] == 2 else self.time)
             oprot.writeFieldEnd()
-        if self.user_name is not None:
-            oprot.writeFieldBegin('user_name', TType.STRING, 2)
-            oprot.writeString(self.user_name.encode('utf-8') if sys.version_info[0] == 2 else self.user_name)
+        if self.userName is not None:
+            oprot.writeFieldBegin('userName', TType.STRING, 2)
+            oprot.writeString(self.userName.encode('utf-8') if sys.version_info[0] == 2 else self.userName)
             oprot.writeFieldEnd()
-        if self.text is not None:
-            oprot.writeFieldBegin('text', TType.STRING, 3)
-            oprot.writeString(self.text.encode('utf-8') if sys.version_info[0] == 2 else self.text)
+        if self.textMessage is not None:
+            oprot.writeFieldBegin('textMessage', TType.STRING, 3)
+            oprot.writeString(self.textMessage.encode('utf-8') if sys.version_info[0] == 2 else self.textMessage)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -100,19 +100,19 @@ class Message(object):
 class InvalidValueException(TException):
     """
     Attributes:
-     - error_code
-     - error_msg
+     - errorCode
+     - errorMessage
     """
 
     thrift_spec = (
         None,  # 0
-        (1, TType.I32, 'error_code', None, None, ),  # 1
-        (2, TType.STRING, 'error_msg', 'UTF8', None, ),  # 2
+        (1, TType.I32, 'errorCode', None, None, ),  # 1
+        (2, TType.STRING, 'errorMessage', 'UTF8', None, ),  # 2
     )
 
-    def __init__(self, error_code=None, error_msg=None,):
-        self.error_code = error_code
-        self.error_msg = error_msg
+    def __init__(self, errorCode=None, errorMessage=None,):
+        self.errorCode = errorCode
+        self.errorMessage = errorMessage
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -125,12 +125,12 @@ class InvalidValueException(TException):
                 break
             if fid == 1:
                 if ftype == TType.I32:
-                    self.error_code = iprot.readI32()
+                    self.errorCode = iprot.readI32()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
                 if ftype == TType.STRING:
-                    self.error_msg = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.errorMessage = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             else:
@@ -143,13 +143,13 @@ class InvalidValueException(TException):
             oprot.trans.write(oprot._fast_encode(self, (self.__class__, self.thrift_spec)))
             return
         oprot.writeStructBegin('InvalidValueException')
-        if self.error_code is not None:
-            oprot.writeFieldBegin('error_code', TType.I32, 1)
-            oprot.writeI32(self.error_code)
+        if self.errorCode is not None:
+            oprot.writeFieldBegin('errorCode', TType.I32, 1)
+            oprot.writeI32(self.errorCode)
             oprot.writeFieldEnd()
-        if self.error_msg is not None:
-            oprot.writeFieldBegin('error_msg', TType.STRING, 2)
-            oprot.writeString(self.error_msg.encode('utf-8') if sys.version_info[0] == 2 else self.error_msg)
+        if self.errorMessage is not None:
+            oprot.writeFieldBegin('errorMessage', TType.STRING, 2)
+            oprot.writeString(self.errorMessage.encode('utf-8') if sys.version_info[0] == 2 else self.errorMessage)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()

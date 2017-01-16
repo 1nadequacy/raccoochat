@@ -16,8 +16,8 @@ else:
 from thrift.transport import TTransport, TSocket, TSSLSocket, THttpClient
 from thrift.protocol.TBinaryProtocol import TBinaryProtocol
 
-from tutorial import RacconChat
-from tutorial.ttypes import *
+from raccoochat import RaccooChat
+from raccoochat.ttypes import *
 
 if len(sys.argv) <= 1 or sys.argv[1] == '--help':
     print('')
@@ -106,7 +106,7 @@ else:
     else:
         transport = TTransport.TBufferedTransport(socket)
 protocol = TBinaryProtocol(transport)
-client = RacconChat.Client(protocol)
+client = RaccooChat.Client(protocol)
 transport.open()
 
 if cmd == 'connectUser':

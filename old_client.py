@@ -1,13 +1,11 @@
-#!/usr/bin/env python
-
 import sys
 import time, readline, thread
 import datetime
 sys.path.append('./gen-py')
 
-from tutorial import RacconChat
-from tutorial.ttypes import *
-from tutorial.constants import *
+from raccoochat import RacconChat
+from raccoochat.ttypes import *
+from raccoochat.constants import *
 
 from thrift import Thrift
 from thrift.transport import TSocket
@@ -17,10 +15,10 @@ from thrift.protocol import TBinaryProtocol
 def printMessages(messageArray):
     for msg in messageArray:
         shift = 10 - len(msg.user_name)
-        print '[' + msg.time + ']' + (' ' * shift) + msg.user_name + ' : ' + msg.text
+        print "[%s] %s %s : %s " % (msg.time, ' ' * shift, msg.user_name, msg.text)
 
 def printUsers(usersArray):
-    print 'Users online: ' + ', '.join(map(str, usersArray))
+    print "Users online: %s." % (', '.join(map(str, usersArray)))
 
 def printCommands():
     for val in MAP_COMMAND.values():

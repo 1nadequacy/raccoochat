@@ -4,14 +4,14 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "tutorial_types.h"
+#include "raccoochat_types.h"
 
 #include <algorithm>
 #include <ostream>
 
 #include <thrift/TToString.h>
 
-namespace tutorial {
+namespace raccoochat {
 
 
 Message::~Message() throw() {
@@ -22,12 +22,12 @@ void Message::__set_time(const std::string& val) {
   this->time = val;
 }
 
-void Message::__set_user_name(const std::string& val) {
-  this->user_name = val;
+void Message::__set_userName(const std::string& val) {
+  this->userName = val;
 }
 
-void Message::__set_text(const std::string& val) {
-  this->text = val;
+void Message::__set_textMessage(const std::string& val) {
+  this->textMessage = val;
 }
 
 uint32_t Message::read(::apache::thrift::protocol::TProtocol* iprot) {
@@ -61,16 +61,16 @@ uint32_t Message::read(::apache::thrift::protocol::TProtocol* iprot) {
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->user_name);
-          this->__isset.user_name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 3:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->text);
-          this->__isset.text = true;
+          xfer += iprot->readString(this->textMessage);
+          this->__isset.textMessage = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -96,12 +96,12 @@ uint32_t Message::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeString(this->time);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("user_name", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->user_name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("text", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeString(this->text);
+  xfer += oprot->writeFieldBegin("textMessage", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeString(this->textMessage);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -112,21 +112,21 @@ uint32_t Message::write(::apache::thrift::protocol::TProtocol* oprot) const {
 void swap(Message &a, Message &b) {
   using ::std::swap;
   swap(a.time, b.time);
-  swap(a.user_name, b.user_name);
-  swap(a.text, b.text);
+  swap(a.userName, b.userName);
+  swap(a.textMessage, b.textMessage);
   swap(a.__isset, b.__isset);
 }
 
 Message::Message(const Message& other0) {
   time = other0.time;
-  user_name = other0.user_name;
-  text = other0.text;
+  userName = other0.userName;
+  textMessage = other0.textMessage;
   __isset = other0.__isset;
 }
 Message& Message::operator=(const Message& other1) {
   time = other1.time;
-  user_name = other1.user_name;
-  text = other1.text;
+  userName = other1.userName;
+  textMessage = other1.textMessage;
   __isset = other1.__isset;
   return *this;
 }
@@ -134,8 +134,8 @@ void Message::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
   out << "Message(";
   out << "time=" << to_string(time);
-  out << ", " << "user_name=" << to_string(user_name);
-  out << ", " << "text=" << to_string(text);
+  out << ", " << "userName=" << to_string(userName);
+  out << ", " << "textMessage=" << to_string(textMessage);
   out << ")";
 }
 
@@ -144,12 +144,12 @@ InvalidValueException::~InvalidValueException() throw() {
 }
 
 
-void InvalidValueException::__set_error_code(const int32_t val) {
-  this->error_code = val;
+void InvalidValueException::__set_errorCode(const int32_t val) {
+  this->errorCode = val;
 }
 
-void InvalidValueException::__set_error_msg(const std::string& val) {
-  this->error_msg = val;
+void InvalidValueException::__set_errorMessage(const std::string& val) {
+  this->errorMessage = val;
 }
 
 uint32_t InvalidValueException::read(::apache::thrift::protocol::TProtocol* iprot) {
@@ -175,16 +175,16 @@ uint32_t InvalidValueException::read(::apache::thrift::protocol::TProtocol* ipro
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_I32) {
-          xfer += iprot->readI32(this->error_code);
-          this->__isset.error_code = true;
+          xfer += iprot->readI32(this->errorCode);
+          this->__isset.errorCode = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->error_msg);
-          this->__isset.error_msg = true;
+          xfer += iprot->readString(this->errorMessage);
+          this->__isset.errorMessage = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -206,12 +206,12 @@ uint32_t InvalidValueException::write(::apache::thrift::protocol::TProtocol* opr
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("InvalidValueException");
 
-  xfer += oprot->writeFieldBegin("error_code", ::apache::thrift::protocol::T_I32, 1);
-  xfer += oprot->writeI32(this->error_code);
+  xfer += oprot->writeFieldBegin("errorCode", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->errorCode);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("error_msg", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->error_msg);
+  xfer += oprot->writeFieldBegin("errorMessage", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->errorMessage);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -221,27 +221,27 @@ uint32_t InvalidValueException::write(::apache::thrift::protocol::TProtocol* opr
 
 void swap(InvalidValueException &a, InvalidValueException &b) {
   using ::std::swap;
-  swap(a.error_code, b.error_code);
-  swap(a.error_msg, b.error_msg);
+  swap(a.errorCode, b.errorCode);
+  swap(a.errorMessage, b.errorMessage);
   swap(a.__isset, b.__isset);
 }
 
 InvalidValueException::InvalidValueException(const InvalidValueException& other2) : TException() {
-  error_code = other2.error_code;
-  error_msg = other2.error_msg;
+  errorCode = other2.errorCode;
+  errorMessage = other2.errorMessage;
   __isset = other2.__isset;
 }
 InvalidValueException& InvalidValueException::operator=(const InvalidValueException& other3) {
-  error_code = other3.error_code;
-  error_msg = other3.error_msg;
+  errorCode = other3.errorCode;
+  errorMessage = other3.errorMessage;
   __isset = other3.__isset;
   return *this;
 }
 void InvalidValueException::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
   out << "InvalidValueException(";
-  out << "error_code=" << to_string(error_code);
-  out << ", " << "error_msg=" << to_string(error_msg);
+  out << "errorCode=" << to_string(errorCode);
+  out << ", " << "errorMessage=" << to_string(errorMessage);
   out << ")";
 }
 

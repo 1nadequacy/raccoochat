@@ -87,8 +87,6 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        if result.e is not None:
-            raise result.e
         raise TApplicationException(TApplicationException.MISSING_RESULT, "connectUser failed: unknown result")
 
     def disconnectUser(self, user):
@@ -118,8 +116,6 @@ class Client(Iface):
         result = disconnectUser_result()
         result.read(iprot)
         iprot.readMessageEnd()
-        if result.e is not None:
-            raise result.e
         return
 
     def getAllOnlineUsers(self):
@@ -146,8 +142,6 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        if result.e is not None:
-            raise result.e
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getAllOnlineUsers failed: unknown result")
 
     def getNewMessages(self, user):
@@ -179,8 +173,6 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        if result.e is not None:
-            raise result.e
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getNewMessages failed: unknown result")
 
     def getLastFiveMessages(self):
@@ -207,8 +199,6 @@ class Client(Iface):
         iprot.readMessageEnd()
         if result.success is not None:
             return result.success
-        if result.e is not None:
-            raise result.e
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getLastFiveMessages failed: unknown result")
 
     def addMessage(self, msg):
@@ -238,8 +228,6 @@ class Client(Iface):
         result = addMessage_result()
         result.read(iprot)
         iprot.readMessageEnd()
-        if result.e is not None:
-            raise result.e
         return
 
 
@@ -279,9 +267,6 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.REPLY
         except (TTransport.TTransportException, KeyboardInterrupt, SystemExit):
             raise
-        except InvalidValueException as e:
-            msg_type = TMessageType.REPLY
-            result.e = e
         except Exception as ex:
             msg_type = TMessageType.EXCEPTION
             logging.exception(ex)
@@ -301,9 +286,6 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.REPLY
         except (TTransport.TTransportException, KeyboardInterrupt, SystemExit):
             raise
-        except InvalidValueException as e:
-            msg_type = TMessageType.REPLY
-            result.e = e
         except Exception as ex:
             msg_type = TMessageType.EXCEPTION
             logging.exception(ex)
@@ -323,9 +305,6 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.REPLY
         except (TTransport.TTransportException, KeyboardInterrupt, SystemExit):
             raise
-        except InvalidValueException as e:
-            msg_type = TMessageType.REPLY
-            result.e = e
         except Exception as ex:
             msg_type = TMessageType.EXCEPTION
             logging.exception(ex)
@@ -345,9 +324,6 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.REPLY
         except (TTransport.TTransportException, KeyboardInterrupt, SystemExit):
             raise
-        except InvalidValueException as e:
-            msg_type = TMessageType.REPLY
-            result.e = e
         except Exception as ex:
             msg_type = TMessageType.EXCEPTION
             logging.exception(ex)
@@ -367,9 +343,6 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.REPLY
         except (TTransport.TTransportException, KeyboardInterrupt, SystemExit):
             raise
-        except InvalidValueException as e:
-            msg_type = TMessageType.REPLY
-            result.e = e
         except Exception as ex:
             msg_type = TMessageType.EXCEPTION
             logging.exception(ex)
@@ -389,9 +362,6 @@ class Processor(Iface, TProcessor):
             msg_type = TMessageType.REPLY
         except (TTransport.TTransportException, KeyboardInterrupt, SystemExit):
             raise
-        except InvalidValueException as e:
-            msg_type = TMessageType.REPLY
-            result.e = e
         except Exception as ex:
             msg_type = TMessageType.EXCEPTION
             logging.exception(ex)
@@ -468,17 +438,14 @@ class connectUser_result(object):
     """
     Attributes:
      - success
-     - e
     """
 
     thrift_spec = (
         (0, TType.BOOL, 'success', None, None, ),  # 0
-        (1, TType.STRUCT, 'e', (InvalidValueException, InvalidValueException.thrift_spec), None, ),  # 1
     )
 
-    def __init__(self, success=None, e=None,):
+    def __init__(self, success=None,):
         self.success = success
-        self.e = e
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -494,12 +461,6 @@ class connectUser_result(object):
                     self.success = iprot.readBool()
                 else:
                     iprot.skip(ftype)
-            elif fid == 1:
-                if ftype == TType.STRUCT:
-                    self.e = InvalidValueException()
-                    self.e.read(iprot)
-                else:
-                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -513,10 +474,6 @@ class connectUser_result(object):
         if self.success is not None:
             oprot.writeFieldBegin('success', TType.BOOL, 0)
             oprot.writeBool(self.success)
-            oprot.writeFieldEnd()
-        if self.e is not None:
-            oprot.writeFieldBegin('e', TType.STRUCT, 1)
-            self.e.write(oprot)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -597,18 +554,9 @@ class disconnectUser_args(object):
 
 
 class disconnectUser_result(object):
-    """
-    Attributes:
-     - e
-    """
 
     thrift_spec = (
-        None,  # 0
-        (1, TType.STRUCT, 'e', (InvalidValueException, InvalidValueException.thrift_spec), None, ),  # 1
     )
-
-    def __init__(self, e=None,):
-        self.e = e
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -619,12 +567,6 @@ class disconnectUser_result(object):
             (fname, ftype, fid) = iprot.readFieldBegin()
             if ftype == TType.STOP:
                 break
-            if fid == 1:
-                if ftype == TType.STRUCT:
-                    self.e = InvalidValueException()
-                    self.e.read(iprot)
-                else:
-                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -635,10 +577,6 @@ class disconnectUser_result(object):
             oprot.trans.write(oprot._fast_encode(self, (self.__class__, self.thrift_spec)))
             return
         oprot.writeStructBegin('disconnectUser_result')
-        if self.e is not None:
-            oprot.writeFieldBegin('e', TType.STRUCT, 1)
-            self.e.write(oprot)
-            oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
 
@@ -703,17 +641,14 @@ class getAllOnlineUsers_result(object):
     """
     Attributes:
      - success
-     - e
     """
 
     thrift_spec = (
         (0, TType.MAP, 'success', (TType.STRING, 'UTF8', TType.I32, None, False), None, ),  # 0
-        (1, TType.STRUCT, 'e', (InvalidValueException, InvalidValueException.thrift_spec), None, ),  # 1
     )
 
-    def __init__(self, success=None, e=None,):
+    def __init__(self, success=None,):
         self.success = success
-        self.e = e
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -735,12 +670,6 @@ class getAllOnlineUsers_result(object):
                     iprot.readMapEnd()
                 else:
                     iprot.skip(ftype)
-            elif fid == 1:
-                if ftype == TType.STRUCT:
-                    self.e = InvalidValueException()
-                    self.e.read(iprot)
-                else:
-                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -758,10 +687,6 @@ class getAllOnlineUsers_result(object):
                 oprot.writeString(kiter7.encode('utf-8') if sys.version_info[0] == 2 else kiter7)
                 oprot.writeI32(viter8)
             oprot.writeMapEnd()
-            oprot.writeFieldEnd()
-        if self.e is not None:
-            oprot.writeFieldBegin('e', TType.STRUCT, 1)
-            self.e.write(oprot)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -845,17 +770,14 @@ class getNewMessages_result(object):
     """
     Attributes:
      - success
-     - e
     """
 
     thrift_spec = (
         (0, TType.LIST, 'success', (TType.STRUCT, (Message, Message.thrift_spec), False), None, ),  # 0
-        (1, TType.STRUCT, 'e', (InvalidValueException, InvalidValueException.thrift_spec), None, ),  # 1
     )
 
-    def __init__(self, success=None, e=None,):
+    def __init__(self, success=None,):
         self.success = success
-        self.e = e
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -877,12 +799,6 @@ class getNewMessages_result(object):
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
-            elif fid == 1:
-                if ftype == TType.STRUCT:
-                    self.e = InvalidValueException()
-                    self.e.read(iprot)
-                else:
-                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -899,10 +815,6 @@ class getNewMessages_result(object):
             for iter15 in self.success:
                 iter15.write(oprot)
             oprot.writeListEnd()
-            oprot.writeFieldEnd()
-        if self.e is not None:
-            oprot.writeFieldBegin('e', TType.STRUCT, 1)
-            self.e.write(oprot)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -968,17 +880,14 @@ class getLastFiveMessages_result(object):
     """
     Attributes:
      - success
-     - e
     """
 
     thrift_spec = (
         (0, TType.LIST, 'success', (TType.STRUCT, (Message, Message.thrift_spec), False), None, ),  # 0
-        (1, TType.STRUCT, 'e', (InvalidValueException, InvalidValueException.thrift_spec), None, ),  # 1
     )
 
-    def __init__(self, success=None, e=None,):
+    def __init__(self, success=None,):
         self.success = success
-        self.e = e
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -1000,12 +909,6 @@ class getLastFiveMessages_result(object):
                     iprot.readListEnd()
                 else:
                     iprot.skip(ftype)
-            elif fid == 1:
-                if ftype == TType.STRUCT:
-                    self.e = InvalidValueException()
-                    self.e.read(iprot)
-                else:
-                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -1022,10 +925,6 @@ class getLastFiveMessages_result(object):
             for iter22 in self.success:
                 iter22.write(oprot)
             oprot.writeListEnd()
-            oprot.writeFieldEnd()
-        if self.e is not None:
-            oprot.writeFieldBegin('e', TType.STRUCT, 1)
-            self.e.write(oprot)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -1107,18 +1006,9 @@ class addMessage_args(object):
 
 
 class addMessage_result(object):
-    """
-    Attributes:
-     - e
-    """
 
     thrift_spec = (
-        None,  # 0
-        (1, TType.STRUCT, 'e', (InvalidValueException, InvalidValueException.thrift_spec), None, ),  # 1
     )
-
-    def __init__(self, e=None,):
-        self.e = e
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -1129,12 +1019,6 @@ class addMessage_result(object):
             (fname, ftype, fid) = iprot.readFieldBegin()
             if ftype == TType.STOP:
                 break
-            if fid == 1:
-                if ftype == TType.STRUCT:
-                    self.e = InvalidValueException()
-                    self.e.read(iprot)
-                else:
-                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -1145,10 +1029,6 @@ class addMessage_result(object):
             oprot.trans.write(oprot._fast_encode(self, (self.__class__, self.thrift_spec)))
             return
         oprot.writeStructBegin('addMessage_result')
-        if self.e is not None:
-            oprot.writeFieldBegin('e', TType.STRUCT, 1)
-            self.e.write(oprot)
-            oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
 

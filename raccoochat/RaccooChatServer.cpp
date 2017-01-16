@@ -1,19 +1,22 @@
-#include "RaccooChat.h"
 #include "RaccooChatServer.h"
 
-#include <iostream>
 #include <vector>
 #include <map>
 #include <algorithm>
 
-using namespace ::raccoochat;
+#include <glog/logging.h>
+
+namespace raccoochat {
 
 RaccooChatHandler::RaccooChatHandler() {}
 
 bool RaccooChatHandler::connectUser(const std::string& user) {
   const auto isUser = usersOnline_.find(user);
-  if (isUser != usersOnline_.end()) return false;
-  std::cout << "User " << user << "'s connected to chat." << std::endl;
+  if (isUser != usersOnline_.end()) {
+    return false;
+  }
+
+  LOG(INFO) << "User " << user << "'s connected to the chat";
   usersOnline_[user] = chatMessages_.size() - 1;
   return true;
 }
@@ -21,7 +24,7 @@ bool RaccooChatHandler::connectUser(const std::string& user) {
 void RaccooChatHandler::disconnectUser(const std::string& user) {
   const auto isUser = usersOnline_.find(user);
   usersOnline_.erase(isUser);
-  std::cout << "User " << user << "'s left from the chat." << std::endl;
+  LOG(INFO) << "User " << user << "'s left from the chat";
 }
 
 void RaccooChatHandler::getAllOnlineUsers(std::map<std::string, int32_t>& _return) {
@@ -50,4 +53,6 @@ void RaccooChatHandler::getLastFiveMessages(std::vector<raccoochat::Message>& _r
 
 void RaccooChatHandler::addMessage(const raccoochat::Message& msg) {
   chatMessages_.push_back(msg);
+}
+
 }

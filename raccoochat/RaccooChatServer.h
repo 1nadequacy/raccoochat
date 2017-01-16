@@ -1,8 +1,12 @@
 #pragma once
 
-#include "RaccooChat.h"
+#include "gen-cpp/RaccooChat.h"
 
-using namespace ::raccoochat;
+#include <string>
+#include <map>
+#include <vector>
+
+namespace raccoochat {
 
 class RaccooChatHandler : virtual public RaccooChatIf {
  public:
@@ -18,3 +22,5 @@ class RaccooChatHandler : virtual public RaccooChatIf {
   std::map<std::string, int32_t> usersOnline_;
   std::vector<raccoochat::Message> chatMessages_;
 };
+
+}

@@ -24,12 +24,15 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
     print('Usage: ' + sys.argv[0] + ' [-h host[:port]] [-u url] [-f[ramed]] [-s[sl]] [-novalidate] [-ca_certs certs] [-keyfile keyfile] [-certfile certfile] function [arg1 [arg2...]]')
     print('')
     print('Functions:')
-    print('  bool connectUser(string user)')
-    print('  void disconnectUser(string user)')
+    print('  bool findUser(string name)')
+    print('  bool connectUser(string name)')
+    print('  void disconnectUser(string name)')
     print('   getAllOnlineUsers()')
-    print('   getNewMessages(string user)')
+    print('   getNewMessages(string name)')
+    print('   getNewPrivateMessages(string name)')
     print('   getLastFiveMessages()')
-    print('  void addMessage(Message msg)')
+    print('  void addMessage(SimpleMessage msg)')
+    print('  void addPrivateMessage(SimpleMessage msg, string name)')
     print('')
     sys.exit(0)
 
@@ -109,7 +112,13 @@ protocol = TBinaryProtocol(transport)
 client = RaccooChat.Client(protocol)
 transport.open()
 
-if cmd == 'connectUser':
+if cmd == 'findUser':
+    if len(args) != 1:
+        print('findUser requires 1 args')
+        sys.exit(1)
+    pp.pprint(client.findUser(args[0],))
+
+elif cmd == 'connectUser':
     if len(args) != 1:
         print('connectUser requires 1 args')
         sys.exit(1)
@@ -133,6 +142,12 @@ elif cmd == 'getNewMessages':
         sys.exit(1)
     pp.pprint(client.getNewMessages(args[0],))
 
+elif cmd == 'getNewPrivateMessages':
+    if len(args) != 1:
+        print('getNewPrivateMessages requires 1 args')
+        sys.exit(1)
+    pp.pprint(client.getNewPrivateMessages(args[0],))
+
 elif cmd == 'getLastFiveMessages':
     if len(args) != 0:
         print('getLastFiveMessages requires 0 args')
@@ -144,6 +159,12 @@ elif cmd == 'addMessage':
         print('addMessage requires 1 args')
         sys.exit(1)
     pp.pprint(client.addMessage(eval(args[0]),))
+
+elif cmd == 'addPrivateMessage':
+    if len(args) != 2:
+        print('addPrivateMessage requires 2 args')
+        sys.exit(1)
+    pp.pprint(client.addPrivateMessage(eval(args[0]), args[1],))
 
 else:
     print('Unrecognized method %s' % cmd)

@@ -20,7 +20,6 @@ using namespace ::apache::thrift::transport;
 using namespace ::apache::thrift::server;
 using namespace ::apache::thrift::concurrency;
 
-
 using namespace ::raccoochat;
 
 DEFINE_uint64(port, 9090, "port number");

@@ -10,8 +10,9 @@ from thrift.Thrift import TType, TMessageType, TFrozenDict, TException, TApplica
 from thrift.protocol.TProtocol import TProtocolException
 import sys
 from .ttypes import *
-MAP_COMMAND = {
-    "users": "/users - returns all users that are online.",
-    "last": "/last - returns last five messages",
-    "exit": "/exit - sing out from the chat",
+MAP_COMMANDS = {
+    "/users": "returns all users that are online.",
+    "/last": "returns last five messages",
+    "/exit": "sing out from the chat",
+    ".{username}": "send a private message for {username}",
 }

@@ -1,9 +1,11 @@
+#!/usr/local/bin/python
+
 import sys
 import time, readline, thread
 import datetime
 sys.path.append('./gen-py')
 
-from raccoochat import RacconChat
+from raccoochat import RaccooChat
 from raccoochat.ttypes import *
 from raccoochat.constants import *
 
@@ -14,8 +16,8 @@ from thrift.protocol import TBinaryProtocol
 
 def printMessages(messageArray):
     for msg in messageArray:
-        shift = 10 - len(msg.user_name)
-        print "[%s] %s %s : %s " % (msg.time, ' ' * shift, msg.user_name, msg.text)
+        shift = 10 - len(msg.userName)
+        print "[%s] %s %s : %s " % (msg.time, ' ' * shift, msg.userName, msg.textMessage)
 
 def printUsers(usersArray):
     print "Users online: %s." % (', '.join(map(str, usersArray)))
@@ -43,7 +45,7 @@ def main():
     transport = TSocket.TSocket('localhost', 9090)
     transport = TTransport.TBufferedTransport(transport)
     protocol = TBinaryProtocol.TBinaryProtocol(transport)
-    client = RacconChat.Client(protocol)
+    client = RaccooChat.Client(protocol)
 
     transport.open()
 
@@ -84,4 +86,4 @@ if __name__ == '__main__':
     try:
         main()
     except Thrift.TException as tx:
-        print('%s' % tx.error_msg)
+        print('%s' % tx.errorMessage)

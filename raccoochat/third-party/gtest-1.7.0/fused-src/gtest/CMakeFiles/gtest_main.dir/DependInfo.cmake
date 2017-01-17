@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest_main.cc" "/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest_main.dir/gtest_main.cc.o"
+  "/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest_main.cc" "/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest_main.dir/gtest_main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
@@ -16,7 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

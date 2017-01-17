@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc" "/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest.dir/gtest-all.cc.o"
+  "/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc" "/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest.dir/gtest-all.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

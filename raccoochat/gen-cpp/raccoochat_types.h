@@ -20,31 +20,93 @@
 
 namespace raccoochat {
 
-class Message;
+class User;
+
+class SimpleMessage;
+
+class PrivateMessage;
 
 class InvalidValueException;
 
-typedef struct _Message__isset {
-  _Message__isset() : time(false), userName(false), textMessage(false) {}
+typedef struct _User__isset {
+  _User__isset() : userId(false), allMessageIndex(false), privateMessageIndex(false) {}
+  bool userId :1;
+  bool allMessageIndex :1;
+  bool privateMessageIndex :1;
+} _User__isset;
+
+class User : public virtual ::apache::thrift::TBase {
+ public:
+
+  User(const User&);
+  User& operator=(const User&);
+  User() : userId(0), allMessageIndex(0), privateMessageIndex(0) {
+  }
+
+  virtual ~User() throw();
+  int32_t userId;
+  int32_t allMessageIndex;
+  int32_t privateMessageIndex;
+
+  _User__isset __isset;
+
+  void __set_userId(const int32_t val);
+
+  void __set_allMessageIndex(const int32_t val);
+
+  void __set_privateMessageIndex(const int32_t val);
+
+  bool operator == (const User & rhs) const
+  {
+    if (!(userId == rhs.userId))
+      return false;
+    if (!(allMessageIndex == rhs.allMessageIndex))
+      return false;
+    if (!(privateMessageIndex == rhs.privateMessageIndex))
+      return false;
+    return true;
+  }
+  bool operator != (const User &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const User & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(User &a, User &b);
+
+inline std::ostream& operator<<(std::ostream& out, const User& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+typedef struct _SimpleMessage__isset {
+  _SimpleMessage__isset() : time(false), userName(false), textMessage(false) {}
   bool time :1;
   bool userName :1;
   bool textMessage :1;
-} _Message__isset;
+} _SimpleMessage__isset;
 
-class Message : public virtual ::apache::thrift::TBase {
+class SimpleMessage : public virtual ::apache::thrift::TBase {
  public:
 
-  Message(const Message&);
-  Message& operator=(const Message&);
-  Message() : time(), userName(), textMessage() {
+  SimpleMessage(const SimpleMessage&);
+  SimpleMessage& operator=(const SimpleMessage&);
+  SimpleMessage() : time(), userName(), textMessage() {
   }
 
-  virtual ~Message() throw();
+  virtual ~SimpleMessage() throw();
   std::string time;
   std::string userName;
   std::string textMessage;
 
-  _Message__isset __isset;
+  _SimpleMessage__isset __isset;
 
   void __set_time(const std::string& val);
 
@@ -52,7 +114,7 @@ class Message : public virtual ::apache::thrift::TBase {
 
   void __set_textMessage(const std::string& val);
 
-  bool operator == (const Message & rhs) const
+  bool operator == (const SimpleMessage & rhs) const
   {
     if (!(time == rhs.time))
       return false;
@@ -62,11 +124,11 @@ class Message : public virtual ::apache::thrift::TBase {
       return false;
     return true;
   }
-  bool operator != (const Message &rhs) const {
+  bool operator != (const SimpleMessage &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const Message & ) const;
+  bool operator < (const SimpleMessage & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -74,9 +136,61 @@ class Message : public virtual ::apache::thrift::TBase {
   virtual void printTo(std::ostream& out) const;
 };
 
-void swap(Message &a, Message &b);
+void swap(SimpleMessage &a, SimpleMessage &b);
 
-inline std::ostream& operator<<(std::ostream& out, const Message& obj)
+inline std::ostream& operator<<(std::ostream& out, const SimpleMessage& obj)
+{
+  obj.printTo(out);
+  return out;
+}
+
+typedef struct _PrivateMessage__isset {
+  _PrivateMessage__isset() : senderName(false), message(false) {}
+  bool senderName :1;
+  bool message :1;
+} _PrivateMessage__isset;
+
+class PrivateMessage : public virtual ::apache::thrift::TBase {
+ public:
+
+  PrivateMessage(const PrivateMessage&);
+  PrivateMessage& operator=(const PrivateMessage&);
+  PrivateMessage() : senderName() {
+  }
+
+  virtual ~PrivateMessage() throw();
+  std::string senderName;
+  SimpleMessage message;
+
+  _PrivateMessage__isset __isset;
+
+  void __set_senderName(const std::string& val);
+
+  void __set_message(const SimpleMessage& val);
+
+  bool operator == (const PrivateMessage & rhs) const
+  {
+    if (!(senderName == rhs.senderName))
+      return false;
+    if (!(message == rhs.message))
+      return false;
+    return true;
+  }
+  bool operator != (const PrivateMessage &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const PrivateMessage & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+  virtual void printTo(std::ostream& out) const;
+};
+
+void swap(PrivateMessage &a, PrivateMessage &b);
+
+inline std::ostream& operator<<(std::ostream& out, const PrivateMessage& obj)
 {
   obj.printTo(out);
   return out;

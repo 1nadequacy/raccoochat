@@ -1,4 +1,4 @@
-# Install script for directory: /Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest
+# Install script for directory: /Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

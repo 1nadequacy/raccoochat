@@ -14,23 +14,149 @@
 namespace raccoochat {
 
 
-Message::~Message() throw() {
+User::~User() throw() {
 }
 
 
-void Message::__set_time(const std::string& val) {
+void User::__set_userId(const int32_t val) {
+  this->userId = val;
+}
+
+void User::__set_allMessageIndex(const int32_t val) {
+  this->allMessageIndex = val;
+}
+
+void User::__set_privateMessageIndex(const int32_t val) {
+  this->privateMessageIndex = val;
+}
+
+uint32_t User::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->userId);
+          this->__isset.userId = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->allMessageIndex);
+          this->__isset.allMessageIndex = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 3:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->privateMessageIndex);
+          this->__isset.privateMessageIndex = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t User::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("User");
+
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->userId);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("allMessageIndex", ::apache::thrift::protocol::T_I32, 2);
+  xfer += oprot->writeI32(this->allMessageIndex);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("privateMessageIndex", ::apache::thrift::protocol::T_I32, 3);
+  xfer += oprot->writeI32(this->privateMessageIndex);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(User &a, User &b) {
+  using ::std::swap;
+  swap(a.userId, b.userId);
+  swap(a.allMessageIndex, b.allMessageIndex);
+  swap(a.privateMessageIndex, b.privateMessageIndex);
+  swap(a.__isset, b.__isset);
+}
+
+User::User(const User& other0) {
+  userId = other0.userId;
+  allMessageIndex = other0.allMessageIndex;
+  privateMessageIndex = other0.privateMessageIndex;
+  __isset = other0.__isset;
+}
+User& User::operator=(const User& other1) {
+  userId = other1.userId;
+  allMessageIndex = other1.allMessageIndex;
+  privateMessageIndex = other1.privateMessageIndex;
+  __isset = other1.__isset;
+  return *this;
+}
+void User::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "User(";
+  out << "userId=" << to_string(userId);
+  out << ", " << "allMessageIndex=" << to_string(allMessageIndex);
+  out << ", " << "privateMessageIndex=" << to_string(privateMessageIndex);
+  out << ")";
+}
+
+
+SimpleMessage::~SimpleMessage() throw() {
+}
+
+
+void SimpleMessage::__set_time(const std::string& val) {
   this->time = val;
 }
 
-void Message::__set_userName(const std::string& val) {
+void SimpleMessage::__set_userName(const std::string& val) {
   this->userName = val;
 }
 
-void Message::__set_textMessage(const std::string& val) {
+void SimpleMessage::__set_textMessage(const std::string& val) {
   this->textMessage = val;
 }
 
-uint32_t Message::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t SimpleMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -87,10 +213,10 @@ uint32_t Message::read(::apache::thrift::protocol::TProtocol* iprot) {
   return xfer;
 }
 
-uint32_t Message::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t SimpleMessage::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("Message");
+  xfer += oprot->writeStructBegin("SimpleMessage");
 
   xfer += oprot->writeFieldBegin("time", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->time);
@@ -109,7 +235,7 @@ uint32_t Message::write(::apache::thrift::protocol::TProtocol* oprot) const {
   return xfer;
 }
 
-void swap(Message &a, Message &b) {
+void swap(SimpleMessage &a, SimpleMessage &b) {
   using ::std::swap;
   swap(a.time, b.time);
   swap(a.userName, b.userName);
@@ -117,25 +243,131 @@ void swap(Message &a, Message &b) {
   swap(a.__isset, b.__isset);
 }
 
-Message::Message(const Message& other0) {
-  time = other0.time;
-  userName = other0.userName;
-  textMessage = other0.textMessage;
-  __isset = other0.__isset;
+SimpleMessage::SimpleMessage(const SimpleMessage& other2) {
+  time = other2.time;
+  userName = other2.userName;
+  textMessage = other2.textMessage;
+  __isset = other2.__isset;
 }
-Message& Message::operator=(const Message& other1) {
-  time = other1.time;
-  userName = other1.userName;
-  textMessage = other1.textMessage;
-  __isset = other1.__isset;
+SimpleMessage& SimpleMessage::operator=(const SimpleMessage& other3) {
+  time = other3.time;
+  userName = other3.userName;
+  textMessage = other3.textMessage;
+  __isset = other3.__isset;
   return *this;
 }
-void Message::printTo(std::ostream& out) const {
+void SimpleMessage::printTo(std::ostream& out) const {
   using ::apache::thrift::to_string;
-  out << "Message(";
+  out << "SimpleMessage(";
   out << "time=" << to_string(time);
   out << ", " << "userName=" << to_string(userName);
   out << ", " << "textMessage=" << to_string(textMessage);
+  out << ")";
+}
+
+
+PrivateMessage::~PrivateMessage() throw() {
+}
+
+
+void PrivateMessage::__set_senderName(const std::string& val) {
+  this->senderName = val;
+}
+
+void PrivateMessage::__set_message(const SimpleMessage& val) {
+  this->message = val;
+}
+
+uint32_t PrivateMessage::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->senderName);
+          this->__isset.senderName = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 2:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->message.read(iprot);
+          this->__isset.message = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t PrivateMessage::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("PrivateMessage");
+
+  xfer += oprot->writeFieldBegin("senderName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->senderName);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("message", ::apache::thrift::protocol::T_STRUCT, 2);
+  xfer += this->message.write(oprot);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(PrivateMessage &a, PrivateMessage &b) {
+  using ::std::swap;
+  swap(a.senderName, b.senderName);
+  swap(a.message, b.message);
+  swap(a.__isset, b.__isset);
+}
+
+PrivateMessage::PrivateMessage(const PrivateMessage& other4) {
+  senderName = other4.senderName;
+  message = other4.message;
+  __isset = other4.__isset;
+}
+PrivateMessage& PrivateMessage::operator=(const PrivateMessage& other5) {
+  senderName = other5.senderName;
+  message = other5.message;
+  __isset = other5.__isset;
+  return *this;
+}
+void PrivateMessage::printTo(std::ostream& out) const {
+  using ::apache::thrift::to_string;
+  out << "PrivateMessage(";
+  out << "senderName=" << to_string(senderName);
+  out << ", " << "message=" << to_string(message);
   out << ")";
 }
 
@@ -226,15 +458,15 @@ void swap(InvalidValueException &a, InvalidValueException &b) {
   swap(a.__isset, b.__isset);
 }
 
-InvalidValueException::InvalidValueException(const InvalidValueException& other2) : TException() {
-  errorCode = other2.errorCode;
-  errorMessage = other2.errorMessage;
-  __isset = other2.__isset;
+InvalidValueException::InvalidValueException(const InvalidValueException& other6) : TException() {
+  errorCode = other6.errorCode;
+  errorMessage = other6.errorMessage;
+  __isset = other6.__isset;
 }
-InvalidValueException& InvalidValueException::operator=(const InvalidValueException& other3) {
-  errorCode = other3.errorCode;
-  errorMessage = other3.errorMessage;
-  __isset = other3.__isset;
+InvalidValueException& InvalidValueException::operator=(const InvalidValueException& other7) {
+  errorCode = other7.errorCode;
+  errorMessage = other7.errorMessage;
+  __isset = other7.__isset;
   return *this;
 }
 void InvalidValueException::printTo(std::ostream& out) const {

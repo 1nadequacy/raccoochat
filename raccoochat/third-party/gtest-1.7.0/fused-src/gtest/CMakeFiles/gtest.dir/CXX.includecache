@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest-all.cc
 gtest/gtest.h
-/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest/gtest.h
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest/gtest.h
 ctype.h
 -
 math.h

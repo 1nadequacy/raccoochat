@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest_main.cc
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest_main.cc
 stdio.h
 -
 gtest/gtest.h
-/Users/denisy/workspace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest/gtest.h
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest/gtest.h
 
 raccoochat/third-party/gtest-1.7.0/fused-src/gtest/gtest.h
 limits

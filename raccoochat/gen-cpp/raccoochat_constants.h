@@ -15,7 +15,7 @@ class raccoochatConstants {
  public:
   raccoochatConstants();
 
-  std::map<std::string, std::string>  MAP_COMMAND;
+  std::map<std::string, std::string>  MAP_COMMANDS;
 };
 
 extern const raccoochatConstants g_raccoochat_constants;

@@ -1,0 +1,11 @@
+/Users/Alex/workplace/raccoochat/CMakeFiles/rebuild_cache.dir
+/Users/Alex/workplace/raccoochat/CMakeFiles/edit_cache.dir
+/Users/Alex/workplace/raccoochat/CMakeFiles/SimpleTest.dir
+/Users/Alex/workplace/raccoochat/CMakeFiles/test.dir
+/Users/Alex/workplace/raccoochat/CMakeFiles/server.dir
+/Users/Alex/workplace/raccoochat/CMakeFiles/raccoochat.dir
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/test.dir
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/rebuild_cache.dir
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/edit_cache.dir
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest_main.dir
+/Users/Alex/workplace/raccoochat/raccoochat/third-party/gtest-1.7.0/fused-src/gtest/CMakeFiles/gtest.dir

@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libraccoochat.a  CMakeFiles/raccoochat.dir/raccoochat/gen-cpp/RaccooChat.cpp.o CMakeFiles/raccoochat.dir/raccoochat/gen-cpp/raccoochat_constants.cpp.o CMakeFiles/raccoochat.dir/raccoochat/gen-cpp/raccoochat_types.cpp.o CMakeFiles/raccoochat.dir/raccoochat/RaccooChatServer.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libraccoochat.a

@@ -20,21 +20,19 @@ struct SimpleMessage {
   3: string textMessage;
 }
 
-struct PrivateMessage {
-  1: string senderName;
-  2: SimpleMessage message
-}
-
 exception InvalidValueException {
   1: i32 errorCode;
   2: string errorMessage;
 }
 
 service RaccooChat {
+  i32 getMaxUserName();
   bool findUser(1: string name);
-  bool connectUser(1: string name);
+  bool validateName(1: string name);
+  bool checkPassword(1: string name, 2: string password);
+  bool connectUser(1: string name, 2: string password);
   void disconnectUser(1: string name);
-  map<string, User> getAllOnlineUsers();
+  map<string, string> getAllOnlineUsers();
   list<SimpleMessage> getNewMessages(1: string name);
   list<SimpleMessage> getNewPrivateMessages(1: string name);
   list<SimpleMessage> getLastFiveMessages();

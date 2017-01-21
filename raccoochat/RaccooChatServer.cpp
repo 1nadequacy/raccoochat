@@ -1,18 +1,17 @@
 #include "RaccooChatServer.h"
 
-#include <vector>
-#include <map>
 #include <algorithm>
+#include <fstream>
+#include <map>
+#include <vector>
 
 #include <glog/logging.h>
 
 namespace raccoochat {
 
-RaccooChatHandler::RaccooChatHandler() {}
-
 raccoochat::User RaccooChatHandler::createNewUser() {
   User newUser;
-  newUser.userId = raccooUserIndex++;
+  newUser.userId = raccooUserId_++;
   newUser.allMessageIndex = chatMessages_.size() - 1;
   std::vector<raccoochat::SimpleMessage> tmpMessages;
   privateMessages_[newUser.userId] = tmpMessages;
@@ -20,50 +19,94 @@ raccoochat::User RaccooChatHandler::createNewUser() {
   return newUser;
 }
 
-bool RaccooChatHandler::findUser(const std::string& username) {
-  const auto isUser = usersOnline_.find(username);
+std::string RaccooChatHandler::codePassword(const std::string& userPassword) {
+  std::string newPassword;
+  const char secret = '!';
+  for (auto& ch : userPassword) {
+    char tmp = ((ch - secret) + (ch - secret)) % 126 + secret;
+    newPassword.push_back(tmp);
+    newPassword.push_back((ch - secret) % 10 + '0');
+  }
+  return newPassword;
+}
+
+RaccooChatHandler::RaccooChatHandler() {
+  std::ifstream fileIn("raccoochat/DataBaseRC/RC_users.txt", std::ios_base::in);
+  while (true) {
+    std::string userInformation;
+    fileIn >> userInformation;
+    if (userInformation.size() == 0) break;
+    const auto& iterator = userInformation.find('|');
+    const std::string userName = userInformation.substr(0, iterator);
+    const std::string userPassword = userInformation.substr(iterator + 1, userInformation.size());
+    maxUserName_ = std::max(maxUserName_, static_cast<int32_t>(userName.size()));
+    usersData_[userName] = createNewUser();
+    usersOnline_[userName] = userPassword;
+  }
+  registeredUsers_ = static_cast<int32_t>(usersOnline_.size());
+  fileIn.close();
+}
+
+int32_t RaccooChatHandler::getMaxUserName() {
+  return maxUserName_;
+}
+
+bool RaccooChatHandler::findUser(const std::string& userName) {
+  const auto& isUser = usersOnline_.find(userName);
   if (isUser != usersOnline_.end()) {
     return true;
   }
   return false;
 }
 
-bool RaccooChatHandler::connectUser(const std::string& username) {
-  if (findUser(username)) {
-    return false;
+bool RaccooChatHandler::validateName(const std::string& userName) {
+  for (const auto& x : userName) {
+    if (x == ' ' || x == '\'' || x == '\"') {
+      return false;
+    }
   }
-  usersOnline_[username] = RaccooChatHandler::createNewUser();
-  LOG(INFO) << "User " << username << "'s connected to the chat";
   return true;
 }
 
-void RaccooChatHandler::disconnectUser(const std::string& username) {
-  int32_t currentUserId = usersOnline_[username].userId;
-  usersOnline_.erase(username);
-  privateMessages_.erase(currentUserId);
-  LOG(INFO) << "User " << username << "'s left from the chat";
+bool RaccooChatHandler::checkPassword(const std::string& userName, const std::string& userPassword) {
+  if (usersOnline_[userName] == codePassword(userPassword)) return true;
+  else return false;
 }
 
-void RaccooChatHandler::getAllOnlineUsers(std::map<std::string, raccoochat::User>& _return) {
+bool RaccooChatHandler::connectUser(const std::string& userName, const std::string& userPassword) {
+  usersData_[userName] = createNewUser();
+  usersOnline_[userName] = codePassword(userPassword);
+  LOG(INFO) << "User " << userName << "'s connected to the chat";
+  return true;
+}
+
+void RaccooChatHandler::disconnectUser(const std::string& userName) {
+  const auto& currentUserId = usersData_[userName].userId;
+  usersData_.erase(userName);
+  privateMessages_.erase(currentUserId);
+  LOG(INFO) << "User " << userName << "'s left from the chat";
+}
+
+void RaccooChatHandler::getAllOnlineUsers(std::map<std::string, std::string>& _return) {
   _return = usersOnline_;
 }
 
-void RaccooChatHandler::getNewMessages(std::vector<raccoochat::SimpleMessage>& _return, const std::string& username) {
+void RaccooChatHandler::getNewMessages(std::vector<raccoochat::SimpleMessage>& _return, const std::string& userName) {
   std::vector<raccoochat::SimpleMessage> tmpNewMessages;
-  if (usersOnline_[username].allMessageIndex != static_cast<int32_t>(chatMessages_.size()) - 1) {
-    tmpNewMessages.assign(chatMessages_.begin() + usersOnline_[username].allMessageIndex + 1, chatMessages_.end());
-    usersOnline_[username].allMessageIndex = static_cast<int32_t>(chatMessages_.size()) - 1;
+  if (usersData_[userName].allMessageIndex != static_cast<int32_t>(chatMessages_.size()) - 1) {
+    tmpNewMessages.assign(chatMessages_.begin() + usersData_[userName].allMessageIndex + 1, chatMessages_.end());
+    usersData_[userName].allMessageIndex = static_cast<int32_t>(chatMessages_.size()) - 1;
   }
   _return = tmpNewMessages;
 }
 
-void RaccooChatHandler::getNewPrivateMessages(std::vector<raccoochat::SimpleMessage>& _return, const std::string& username) {
+void RaccooChatHandler::getNewPrivateMessages(std::vector<raccoochat::SimpleMessage>& _return, const std::string& userName) {
   std::vector<raccoochat::SimpleMessage> tmpNewPrivateMessages;
-  int32_t currectUserId = usersOnline_[username].userId;
+  const auto& currectUserId = usersData_[userName].userId;
   std::vector<raccoochat::SimpleMessage> userMessages = privateMessages_[currectUserId];
-  if (usersOnline_[username].privateMessageIndex != static_cast<int32_t>(userMessages.size()) - 1) {
-    tmpNewPrivateMessages.assign(userMessages.begin() + usersOnline_[username].privateMessageIndex + 1, userMessages.end());
-    usersOnline_[username].privateMessageIndex = static_cast<int32_t>(userMessages.size()) - 1;
+  if (usersData_[userName].privateMessageIndex != static_cast<int32_t>(userMessages.size()) - 1) {
+    tmpNewPrivateMessages.assign(userMessages.begin() + usersData_[userName].privateMessageIndex + 1, userMessages.end());
+    usersData_[userName].privateMessageIndex = static_cast<int32_t>(userMessages.size()) - 1;
   }
   _return = tmpNewPrivateMessages;
 }
@@ -71,8 +114,8 @@ void RaccooChatHandler::getNewPrivateMessages(std::vector<raccoochat::SimpleMess
 void RaccooChatHandler::getLastFiveMessages(std::vector<raccoochat::SimpleMessage>& _return) {
   std::vector<raccoochat::SimpleMessage> tmpLastFiveMessages;
   if (!chatMessages_.empty()) {
-    int32_t currentSize = chatMessages_.size() - 1;
-    int32_t minIndex = std::min(5, currentSize);
+    const int32_t currentSize = chatMessages_.size() - 1;
+    const int32_t minIndex = std::min(5, currentSize);
     tmpLastFiveMessages.assign(chatMessages_.end() - minIndex - 1, chatMessages_.end());
   }
   _return = tmpLastFiveMessages;
@@ -82,8 +125,8 @@ void RaccooChatHandler::addMessage(const raccoochat::SimpleMessage& msg) {
   chatMessages_.push_back(msg);
 }
 
-void RaccooChatHandler::addPrivateMessage(const raccoochat::SimpleMessage& msg, const std::string& username) {
-  int32_t currentUserId = usersOnline_[username].userId;
+void RaccooChatHandler::addPrivateMessage(const raccoochat::SimpleMessage& msg, const std::string& userName) {
+  const int32_t currentUserId = usersData_[userName].userId;
   privateMessages_[currentUserId].push_back(msg);
 }
 

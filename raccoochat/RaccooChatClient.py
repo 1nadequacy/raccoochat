@@ -28,12 +28,12 @@ class ConnectToServer(object):
 
     def print_messages(self, message_array):
         for message in message_array:
-            shift = self.client.getMaxUserName() - len(message.userName)
+            shift = self.client.getMaxUserNameSize() - len(message.userName)
             print '[%s]%s %s : %s ' % (message.time, ' ' * shift, message.userName, message.textMessage)
 
     def print_private_messages(self, message_array):
         for message in message_array:
-            shift = self.client.getMaxUserName() - len(message.userName)
+            shift = self.client.getMaxUserNameSize() - len(message.userName)
             print '[%s] From%s - %s : %s ' % (message.time, ' ' * shift, message.userName, message.textMessage)
 
     def print_users(self, users_array):
@@ -65,33 +65,39 @@ class ConnectToServer(object):
             if command_line == 'y':
                 while True:
                     user_name = raw_input('Enter your login: ')
-                    if self.client.findUser(user_name):
+                    try:
+                        self.client.findUser(user_name)
+                        self.client.checkIfUserOffline(user_name)
                         while True:
                             self.current_user = user_name
                             user_password = raw_input('Enter your password: ')
-                            if self.client.checkPassword(user_name, user_password):
-                                print 'Welcome ro the chat.'
+                            try:
+                                self.client.checkPassword(user_name, user_password)
+                                self.client.connectUser(user_name)
+                                print 'Welcome to the chat.'
                                 return
-                            else:
-                                'Incorrect password. Try again.'
-                    else:
-                        print 'This user does not exist. Please, try one more time.'
+                            except InvalidNameException as e:
+                                print e.errorMessage
+                    except InvalidNameException as e:
+                        print e.errorMessage
             elif command_line == 'n':
                 while True:
                     user_name = raw_input('Enter your new login: ')
-                    if self.client.validateName(user_name):
+                    try:
+                        self.client.validateName(user_name)
                         while True:
                             self.current_user = user_name
-                            user_password = raw_input('This is good name! Also you need to enter your new password: ')
-                            if self.client.validateName(user_password):
-                                self.client.connectUser(user_name, user_password)
-                                print 'You have been registered. Welome to the chat.'
+                            user_password = raw_input('Also you need to enter your new password: ')
+                            try:
+                                self.client.validatePassword(user_password)
+                                self.client.registerUser(user_name, user_password)
+                                self.client.connectUser(user_name)
+                                print 'You have been registered. Welcome to the chat.'
                                 return
-                            else:
-                                print 'Sorry, but you don\'t have to use these symbols: space, \', \". Please, try again.'
-                    else:
-                        print 'Sorry, but you don\'t have to use these symbols: space, \', \". Please, try again.'
-
+                            except InvalidNameException as e:
+                                print e.errorMessage
+                    except InvalidNameException as e:
+                        print e.errorMessage
 
     def work_with_server(self):
         self.login_user()
@@ -104,8 +110,10 @@ class ConnectToServer(object):
                     self.print_commands()
                 elif command == 'users':
                     self.print_users(self.client.getAllOnlineUsers())
-                elif command == 'last':
-                    self.print_messages(self.client.getLastFiveMessages())
+                elif command == 'history':
+                    print '---------- Chat History ----------'
+                    self.print_messages(self.client.getHistory())
+                    print '----------------------------------'
                 elif command == 'exit':
                     self.client.disconnectUser(self.current_user)
                     break
@@ -115,10 +123,18 @@ class ConnectToServer(object):
                 input_data = input_text[1:].split()
                 destination = input_data[0]
                 text_message = ' ' .join(map(str, input_data[1:]))
-                if self.client.findUser(destination):
-                    self.client.addPrivateMessage(self.create_new_message(text_message), destination)
+                if destination == self.current_user:
+                    print 'You can\'t send a message to yourself.'
                 else:
-                    print 'User %s is offline.' % destination
+                    try:
+                        self.client.findUser(destination)
+                        try:
+                            self.client.checkIfUserOnline(destination)
+                        except:
+                            print 'Message will be delivered when %s will be online' % destination
+                        self.client.addPrivateMessage(self.create_new_message(text_message), destination)
+                    except:
+                        print 'User %s doesn\'t exist.' % destination
             else:
                 self.client.addMessage(self.create_new_message(input_text))
 
@@ -126,4 +142,5 @@ class ConnectToServer(object):
             self.print_private_messages(self.client.getNewPrivateMessages(self.current_user))
 
     def __del__(self):
+        self.client.disconnectUser(self.current_user)
         self.transport.close()

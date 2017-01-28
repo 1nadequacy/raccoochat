@@ -12,7 +12,7 @@ const raccoochatConstants g_raccoochat_constants;
 
 raccoochatConstants::raccoochatConstants() {
   MAP_COMMANDS.insert(std::make_pair("/users", "returns all users that are online."));
-  MAP_COMMANDS.insert(std::make_pair("/last", "returns last five messages"));
+  MAP_COMMANDS.insert(std::make_pair("/history", "returns all the messages"));
   MAP_COMMANDS.insert(std::make_pair("/exit", "sing out from the chat"));
   MAP_COMMANDS.insert(std::make_pair(".{username}", "send a private message for {username}"));
 

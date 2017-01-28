@@ -9,9 +9,16 @@ const map<string, string> MAP_COMMANDS = {
 }
 
 struct User {
-  1: i32 userId;
-  2: i32 allMessageIndex;
-  3: i32 privateMessageIndex;
+  1: i32 userIndex;
+  2: string userPassword;
+}
+
+struct UserData {
+  1: string userName;
+  2: string registrationDate;
+  3: i32 status;
+  4: i32 allMessagesIndex;
+  5: i32 privateMessagesIndex;
 }
 
 struct SimpleMessage {
@@ -32,10 +39,9 @@ service RaccooChat {
   bool checkPassword(1: string name, 2: string password);
   bool connectUser(1: string name, 2: string password);
   void disconnectUser(1: string name);
-  map<string, string> getAllOnlineUsers();
+  list<string> getAllOnlineUsers();
   list<SimpleMessage> getNewMessages(1: string name);
   list<SimpleMessage> getNewPrivateMessages(1: string name);
-  list<SimpleMessage> getLastFiveMessages();
   void addMessage(1: SimpleMessage msg);
   void addPrivateMessage(1: SimpleMessage msg, 2: string name);
 }

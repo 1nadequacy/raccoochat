@@ -7,6 +7,8 @@ rm -r CMakeFiles/
 rm -r test/
 rm -r Testing/
 
+find . -name '*.pyc' -delete
+
 rm cmake_install.cmake
 rm CMakeCache.txt
 rm CTestTestfile.cmake

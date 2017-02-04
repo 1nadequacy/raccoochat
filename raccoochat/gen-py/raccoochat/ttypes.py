@@ -13,100 +13,31 @@ import sys
 from thrift.transport import TTransport
 
 
-class User(object):
-    """
-    Attributes:
-     - userIndex
-     - userPassword
-    """
-
-    thrift_spec = (
-        None,  # 0
-        (1, TType.I32, 'userIndex', None, None, ),  # 1
-        (2, TType.STRING, 'userPassword', 'UTF8', None, ),  # 2
-    )
-
-    def __init__(self, userIndex=None, userPassword=None,):
-        self.userIndex = userIndex
-        self.userPassword = userPassword
-
-    def read(self, iprot):
-        if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
-            iprot._fast_decode(self, iprot, (self.__class__, self.thrift_spec))
-            return
-        iprot.readStructBegin()
-        while True:
-            (fname, ftype, fid) = iprot.readFieldBegin()
-            if ftype == TType.STOP:
-                break
-            if fid == 1:
-                if ftype == TType.I32:
-                    self.userIndex = iprot.readI32()
-                else:
-                    iprot.skip(ftype)
-            elif fid == 2:
-                if ftype == TType.STRING:
-                    self.userPassword = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
-                else:
-                    iprot.skip(ftype)
-            else:
-                iprot.skip(ftype)
-            iprot.readFieldEnd()
-        iprot.readStructEnd()
-
-    def write(self, oprot):
-        if oprot._fast_encode is not None and self.thrift_spec is not None:
-            oprot.trans.write(oprot._fast_encode(self, (self.__class__, self.thrift_spec)))
-            return
-        oprot.writeStructBegin('User')
-        if self.userIndex is not None:
-            oprot.writeFieldBegin('userIndex', TType.I32, 1)
-            oprot.writeI32(self.userIndex)
-            oprot.writeFieldEnd()
-        if self.userPassword is not None:
-            oprot.writeFieldBegin('userPassword', TType.STRING, 2)
-            oprot.writeString(self.userPassword.encode('utf-8') if sys.version_info[0] == 2 else self.userPassword)
-            oprot.writeFieldEnd()
-        oprot.writeFieldStop()
-        oprot.writeStructEnd()
-
-    def validate(self):
-        return
-
-    def __repr__(self):
-        L = ['%s=%r' % (key, value)
-             for key, value in self.__dict__.items()]
-        return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
-
-    def __eq__(self, other):
-        return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
-
-    def __ne__(self, other):
-        return not (self == other)
-
-
 class UserData(object):
     """
     Attributes:
      - userName
-     - registrationDate
-     - allMessagesIndex
-     - privateMessagesIndex
+     - userPassword
+     - status
+     - messagesId
+     - privateMessagesId
     """
 
     thrift_spec = (
         None,  # 0
         (1, TType.STRING, 'userName', 'UTF8', None, ),  # 1
-        (2, TType.STRING, 'registrationDate', 'UTF8', None, ),  # 2
-        (3, TType.I32, 'allMessagesIndex', None, None, ),  # 3
-        (4, TType.I32, 'privateMessagesIndex', None, None, ),  # 4
+        (2, TType.STRING, 'userPassword', 'UTF8', None, ),  # 2
+        (3, TType.I32, 'status', None, None, ),  # 3
+        (4, TType.I32, 'messagesId', None, None, ),  # 4
+        (5, TType.I32, 'privateMessagesId', None, None, ),  # 5
     )
 
-    def __init__(self, userName=None, registrationDate=None, allMessagesIndex=None, privateMessagesIndex=None,):
+    def __init__(self, userName=None, userPassword=None, status=None, messagesId=None, privateMessagesId=None,):
         self.userName = userName
-        self.registrationDate = registrationDate
-        self.allMessagesIndex = allMessagesIndex
-        self.privateMessagesIndex = privateMessagesIndex
+        self.userPassword = userPassword
+        self.status = status
+        self.messagesId = messagesId
+        self.privateMessagesId = privateMessagesId
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -124,17 +55,22 @@ class UserData(object):
                     iprot.skip(ftype)
             elif fid == 2:
                 if ftype == TType.STRING:
-                    self.registrationDate = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.userPassword = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 3:
                 if ftype == TType.I32:
-                    self.allMessagesIndex = iprot.readI32()
+                    self.status = iprot.readI32()
                 else:
                     iprot.skip(ftype)
             elif fid == 4:
                 if ftype == TType.I32:
-                    self.privateMessagesIndex = iprot.readI32()
+                    self.messagesId = iprot.readI32()
+                else:
+                    iprot.skip(ftype)
+            elif fid == 5:
+                if ftype == TType.I32:
+                    self.privateMessagesId = iprot.readI32()
                 else:
                     iprot.skip(ftype)
             else:
@@ -151,17 +87,21 @@ class UserData(object):
             oprot.writeFieldBegin('userName', TType.STRING, 1)
             oprot.writeString(self.userName.encode('utf-8') if sys.version_info[0] == 2 else self.userName)
             oprot.writeFieldEnd()
-        if self.registrationDate is not None:
-            oprot.writeFieldBegin('registrationDate', TType.STRING, 2)
-            oprot.writeString(self.registrationDate.encode('utf-8') if sys.version_info[0] == 2 else self.registrationDate)
+        if self.userPassword is not None:
+            oprot.writeFieldBegin('userPassword', TType.STRING, 2)
+            oprot.writeString(self.userPassword.encode('utf-8') if sys.version_info[0] == 2 else self.userPassword)
             oprot.writeFieldEnd()
-        if self.allMessagesIndex is not None:
-            oprot.writeFieldBegin('allMessagesIndex', TType.I32, 3)
-            oprot.writeI32(self.allMessagesIndex)
+        if self.status is not None:
+            oprot.writeFieldBegin('status', TType.I32, 3)
+            oprot.writeI32(self.status)
             oprot.writeFieldEnd()
-        if self.privateMessagesIndex is not None:
-            oprot.writeFieldBegin('privateMessagesIndex', TType.I32, 4)
-            oprot.writeI32(self.privateMessagesIndex)
+        if self.messagesId is not None:
+            oprot.writeFieldBegin('messagesId', TType.I32, 4)
+            oprot.writeI32(self.messagesId)
+            oprot.writeFieldEnd()
+        if self.privateMessagesId is not None:
+            oprot.writeFieldBegin('privateMessagesId', TType.I32, 5)
+            oprot.writeI32(self.privateMessagesId)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -181,24 +121,24 @@ class UserData(object):
         return not (self == other)
 
 
-class SimpleMessage(object):
+class Message(object):
     """
     Attributes:
-     - time
-     - userName
+     - sendingTime
+     - userId
      - textMessage
     """
 
     thrift_spec = (
         None,  # 0
-        (1, TType.STRING, 'time', 'UTF8', None, ),  # 1
-        (2, TType.STRING, 'userName', 'UTF8', None, ),  # 2
+        (1, TType.STRING, 'sendingTime', 'UTF8', None, ),  # 1
+        (2, TType.I32, 'userId', None, None, ),  # 2
         (3, TType.STRING, 'textMessage', 'UTF8', None, ),  # 3
     )
 
-    def __init__(self, time=None, userName=None, textMessage=None,):
-        self.time = time
-        self.userName = userName
+    def __init__(self, sendingTime=None, userId=None, textMessage=None,):
+        self.sendingTime = sendingTime
+        self.userId = userId
         self.textMessage = textMessage
 
     def read(self, iprot):
@@ -212,12 +152,12 @@ class SimpleMessage(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.time = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.sendingTime = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
-                if ftype == TType.STRING:
-                    self.userName = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                if ftype == TType.I32:
+                    self.userId = iprot.readI32()
                 else:
                     iprot.skip(ftype)
             elif fid == 3:
@@ -234,14 +174,14 @@ class SimpleMessage(object):
         if oprot._fast_encode is not None and self.thrift_spec is not None:
             oprot.trans.write(oprot._fast_encode(self, (self.__class__, self.thrift_spec)))
             return
-        oprot.writeStructBegin('SimpleMessage')
-        if self.time is not None:
-            oprot.writeFieldBegin('time', TType.STRING, 1)
-            oprot.writeString(self.time.encode('utf-8') if sys.version_info[0] == 2 else self.time)
+        oprot.writeStructBegin('Message')
+        if self.sendingTime is not None:
+            oprot.writeFieldBegin('sendingTime', TType.STRING, 1)
+            oprot.writeString(self.sendingTime.encode('utf-8') if sys.version_info[0] == 2 else self.sendingTime)
             oprot.writeFieldEnd()
-        if self.userName is not None:
-            oprot.writeFieldBegin('userName', TType.STRING, 2)
-            oprot.writeString(self.userName.encode('utf-8') if sys.version_info[0] == 2 else self.userName)
+        if self.userId is not None:
+            oprot.writeFieldBegin('userId', TType.I32, 2)
+            oprot.writeI32(self.userId)
             oprot.writeFieldEnd()
         if self.textMessage is not None:
             oprot.writeFieldBegin('textMessage', TType.STRING, 3)

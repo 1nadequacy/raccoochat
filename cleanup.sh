@@ -12,6 +12,7 @@ find . -name '*.pyc' -delete
 rm cmake_install.cmake
 rm CMakeCache.txt
 rm CTestTestfile.cmake
+rm libraccoochat.a
 rm Makefile
 
 cd raccoochat/gen-cpp

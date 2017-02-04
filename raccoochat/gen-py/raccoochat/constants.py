@@ -12,7 +12,7 @@ import sys
 from .ttypes import *
 MAP_COMMANDS = {
     "/users": "returns all users that are online.",
-    "/last": "returns last five messages",
+    "/history": "returns all the messages",
     "/exit": "sing out from the chat",
     ".{username}": "send a private message for {username}",
 }

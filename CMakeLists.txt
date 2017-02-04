@@ -20,7 +20,10 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/raccoochat/gen-cpp/raccoochat_constants.cpp
     ${PROJECT_SOURCE_DIR}/raccoochat/gen-cpp/raccoochat_types.cpp
     # raccoochat
+    ${PROJECT_SOURCE_DIR}/raccoochat/RaccooChatFileDB.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/RaccooChatTools.cpp
     ${PROJECT_SOURCE_DIR}/raccoochat/RaccooChatServer.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/RaccooChatUser.cpp
 )
 
 add_library(raccoochat STATIC ${SOURCES})

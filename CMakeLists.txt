@@ -20,7 +20,13 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/raccoochat/gen-cpp/raccoochat_constants.cpp
     ${PROJECT_SOURCE_DIR}/raccoochat/gen-cpp/raccoochat_types.cpp
     # raccoochat
+    ${PROJECT_SOURCE_DIR}/raccoochat/DeserializationUtils.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/FileDataBase.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/MessageUtils.cpp
     ${PROJECT_SOURCE_DIR}/raccoochat/RaccooChatServer.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/SerializationUtils.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/Tools.cpp
+    ${PROJECT_SOURCE_DIR}/raccoochat/UserUtils.cpp
 )
 
 add_library(raccoochat STATIC ${SOURCES})

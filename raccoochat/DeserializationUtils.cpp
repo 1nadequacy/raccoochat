@@ -9,13 +9,15 @@ namespace raccoochat {
 
 class DeserializationUtils {
  public:
-  template <typename cacheType>
-  static cacheType deserialize(const std::vector<std::string>& data);
+  template <typename T>
+  static T deserialize(const std::vector<std::string>& data);
+  //static raccoochat::UserData deserialize(const std::vector<std::string>& data);
+  //static raccoochat::Message deserialize1(const std::vector<std::string>& data);
 };
 
 template <>
 raccoochat::UserData DeserializationUtils::deserialize(const std::vector<std::string>& data) {
-  raccoochat::UserData newUser = UserUtils::createNewUserData(data[1], data[2], stoi(data[4]));
+  raccoochat::UserData newUser = UserUtils::createNewUserData(data[1], data[2], stoi(data[4]), stoi(data[5]));
   return newUser;
 }
 

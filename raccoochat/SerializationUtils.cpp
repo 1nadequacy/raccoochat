@@ -6,9 +6,9 @@ namespace raccoochat {
 
 class SerializationUtils {
  public:
-  template <typename index, typename cacheType>
-  static std::string serialize(const index id,
-                               const cacheType& data);
+  template <typename idT, typename T>
+  static std::string serialize(const idT id,
+                               const T& data);
 };
 
 template <>

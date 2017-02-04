@@ -9,177 +9,11 @@
 namespace raccoochat {
 
 
-RaccooChat_getMaxUserNameSize_args::~RaccooChat_getMaxUserNameSize_args() throw() {
+RaccooChat_ifRegisteredUser_args::~RaccooChat_ifRegisteredUser_args() throw() {
 }
 
 
-uint32_t RaccooChat_getMaxUserNameSize_args::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    xfer += iprot->skip(ftype);
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t RaccooChat_getMaxUserNameSize_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_getMaxUserNameSize_args");
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-RaccooChat_getMaxUserNameSize_pargs::~RaccooChat_getMaxUserNameSize_pargs() throw() {
-}
-
-
-uint32_t RaccooChat_getMaxUserNameSize_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
-  uint32_t xfer = 0;
-  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_getMaxUserNameSize_pargs");
-
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-RaccooChat_getMaxUserNameSize_result::~RaccooChat_getMaxUserNameSize_result() throw() {
-}
-
-
-uint32_t RaccooChat_getMaxUserNameSize_result::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          xfer += iprot->readI32(this->success);
-          this->__isset.success = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-uint32_t RaccooChat_getMaxUserNameSize_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
-
-  uint32_t xfer = 0;
-
-  xfer += oprot->writeStructBegin("RaccooChat_getMaxUserNameSize_result");
-
-  if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_I32, 0);
-    xfer += oprot->writeI32(this->success);
-    xfer += oprot->writeFieldEnd();
-  }
-  xfer += oprot->writeFieldStop();
-  xfer += oprot->writeStructEnd();
-  return xfer;
-}
-
-
-RaccooChat_getMaxUserNameSize_presult::~RaccooChat_getMaxUserNameSize_presult() throw() {
-}
-
-
-uint32_t RaccooChat_getMaxUserNameSize_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
-
-  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
-  uint32_t xfer = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TType ftype;
-  int16_t fid;
-
-  xfer += iprot->readStructBegin(fname);
-
-  using ::apache::thrift::protocol::TProtocolException;
-
-
-  while (true)
-  {
-    xfer += iprot->readFieldBegin(fname, ftype, fid);
-    if (ftype == ::apache::thrift::protocol::T_STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 0:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          xfer += iprot->readI32((*(this->success)));
-          this->__isset.success = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      default:
-        xfer += iprot->skip(ftype);
-        break;
-    }
-    xfer += iprot->readFieldEnd();
-  }
-
-  xfer += iprot->readStructEnd();
-
-  return xfer;
-}
-
-
-RaccooChat_findUser_args::~RaccooChat_findUser_args() throw() {
-}
-
-
-uint32_t RaccooChat_findUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifRegisteredUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -202,8 +36,8 @@ uint32_t RaccooChat_findUser_args::read(::apache::thrift::protocol::TProtocol* i
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -220,13 +54,13 @@ uint32_t RaccooChat_findUser_args::read(::apache::thrift::protocol::TProtocol* i
   return xfer;
 }
 
-uint32_t RaccooChat_findUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifRegisteredUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_findUser_args");
+  xfer += oprot->writeStructBegin("RaccooChat_ifRegisteredUser_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -235,17 +69,17 @@ uint32_t RaccooChat_findUser_args::write(::apache::thrift::protocol::TProtocol* 
 }
 
 
-RaccooChat_findUser_pargs::~RaccooChat_findUser_pargs() throw() {
+RaccooChat_ifRegisteredUser_pargs::~RaccooChat_ifRegisteredUser_pargs() throw() {
 }
 
 
-uint32_t RaccooChat_findUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifRegisteredUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_findUser_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_ifRegisteredUser_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -254,11 +88,11 @@ uint32_t RaccooChat_findUser_pargs::write(::apache::thrift::protocol::TProtocol*
 }
 
 
-RaccooChat_findUser_result::~RaccooChat_findUser_result() throw() {
+RaccooChat_ifRegisteredUser_result::~RaccooChat_ifRegisteredUser_result() throw() {
 }
 
 
-uint32_t RaccooChat_findUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifRegisteredUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -277,7 +111,20 @@ uint32_t RaccooChat_findUser_result::read(::apache::thrift::protocol::TProtocol*
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -286,23 +133,28 @@ uint32_t RaccooChat_findUser_result::read(::apache::thrift::protocol::TProtocol*
   return xfer;
 }
 
-uint32_t RaccooChat_findUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifRegisteredUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RaccooChat_findUser_result");
+  xfer += oprot->writeStructBegin("RaccooChat_ifRegisteredUser_result");
 
+  if (this->__isset.e) {
+    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->e.write(oprot);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-RaccooChat_findUser_presult::~RaccooChat_findUser_presult() throw() {
+RaccooChat_ifRegisteredUser_presult::~RaccooChat_ifRegisteredUser_presult() throw() {
 }
 
 
-uint32_t RaccooChat_findUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifRegisteredUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -321,7 +173,20 @@ uint32_t RaccooChat_findUser_presult::read(::apache::thrift::protocol::TProtocol
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -358,8 +223,8 @@ uint32_t RaccooChat_validateName_args::read(::apache::thrift::protocol::TProtoco
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -381,8 +246,8 @@ uint32_t RaccooChat_validateName_args::write(::apache::thrift::protocol::TProtoc
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_validateName_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -400,8 +265,8 @@ uint32_t RaccooChat_validateName_pargs::write(::apache::thrift::protocol::TProto
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_validateName_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -433,7 +298,20 @@ uint32_t RaccooChat_validateName_result::read(::apache::thrift::protocol::TProto
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -448,6 +326,11 @@ uint32_t RaccooChat_validateName_result::write(::apache::thrift::protocol::TProt
 
   xfer += oprot->writeStructBegin("RaccooChat_validateName_result");
 
+  if (this->__isset.e) {
+    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->e.write(oprot);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
@@ -477,7 +360,20 @@ uint32_t RaccooChat_validateName_presult::read(::apache::thrift::protocol::TProt
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -514,8 +410,8 @@ uint32_t RaccooChat_validatePassword_args::read(::apache::thrift::protocol::TPro
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->password);
-          this->__isset.password = true;
+          xfer += iprot->readString(this->userPassword);
+          this->__isset.userPassword = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -537,8 +433,8 @@ uint32_t RaccooChat_validatePassword_args::write(::apache::thrift::protocol::TPr
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_validatePassword_args");
 
-  xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->password);
+  xfer += oprot->writeFieldBegin("userPassword", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userPassword);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -556,8 +452,8 @@ uint32_t RaccooChat_validatePassword_pargs::write(::apache::thrift::protocol::TP
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_validatePassword_pargs");
 
-  xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->password)));
+  xfer += oprot->writeFieldBegin("userPassword", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userPassword)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -589,7 +485,20 @@ uint32_t RaccooChat_validatePassword_result::read(::apache::thrift::protocol::TP
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -604,6 +513,11 @@ uint32_t RaccooChat_validatePassword_result::write(::apache::thrift::protocol::T
 
   xfer += oprot->writeStructBegin("RaccooChat_validatePassword_result");
 
+  if (this->__isset.e) {
+    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->e.write(oprot);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
@@ -633,7 +547,20 @@ uint32_t RaccooChat_validatePassword_presult::read(::apache::thrift::protocol::T
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -643,11 +570,11 @@ uint32_t RaccooChat_validatePassword_presult::read(::apache::thrift::protocol::T
 }
 
 
-RaccooChat_checkPassword_args::~RaccooChat_checkPassword_args() throw() {
+RaccooChat_comparePassword_args::~RaccooChat_comparePassword_args() throw() {
 }
 
 
-uint32_t RaccooChat_checkPassword_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_comparePassword_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -670,16 +597,16 @@ uint32_t RaccooChat_checkPassword_args::read(::apache::thrift::protocol::TProtoc
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->password);
-          this->__isset.password = true;
+          xfer += iprot->readString(this->userPassword);
+          this->__isset.userPassword = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -696,17 +623,17 @@ uint32_t RaccooChat_checkPassword_args::read(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-uint32_t RaccooChat_checkPassword_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_comparePassword_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_checkPassword_args");
+  xfer += oprot->writeStructBegin("RaccooChat_comparePassword_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->password);
+  xfer += oprot->writeFieldBegin("userPassword", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->userPassword);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -715,21 +642,21 @@ uint32_t RaccooChat_checkPassword_args::write(::apache::thrift::protocol::TProto
 }
 
 
-RaccooChat_checkPassword_pargs::~RaccooChat_checkPassword_pargs() throw() {
+RaccooChat_comparePassword_pargs::~RaccooChat_comparePassword_pargs() throw() {
 }
 
 
-uint32_t RaccooChat_checkPassword_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_comparePassword_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_checkPassword_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_comparePassword_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->password)));
+  xfer += oprot->writeFieldBegin("userPassword", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString((*(this->userPassword)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -738,11 +665,11 @@ uint32_t RaccooChat_checkPassword_pargs::write(::apache::thrift::protocol::TProt
 }
 
 
-RaccooChat_checkPassword_result::~RaccooChat_checkPassword_result() throw() {
+RaccooChat_comparePassword_result::~RaccooChat_comparePassword_result() throw() {
 }
 
 
-uint32_t RaccooChat_checkPassword_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_comparePassword_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -761,7 +688,20 @@ uint32_t RaccooChat_checkPassword_result::read(::apache::thrift::protocol::TProt
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -770,23 +710,28 @@ uint32_t RaccooChat_checkPassword_result::read(::apache::thrift::protocol::TProt
   return xfer;
 }
 
-uint32_t RaccooChat_checkPassword_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_comparePassword_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RaccooChat_checkPassword_result");
+  xfer += oprot->writeStructBegin("RaccooChat_comparePassword_result");
 
+  if (this->__isset.e) {
+    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->e.write(oprot);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-RaccooChat_checkPassword_presult::~RaccooChat_checkPassword_presult() throw() {
+RaccooChat_comparePassword_presult::~RaccooChat_comparePassword_presult() throw() {
 }
 
 
-uint32_t RaccooChat_checkPassword_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_comparePassword_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -805,7 +750,20 @@ uint32_t RaccooChat_checkPassword_presult::read(::apache::thrift::protocol::TPro
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -815,11 +773,11 @@ uint32_t RaccooChat_checkPassword_presult::read(::apache::thrift::protocol::TPro
 }
 
 
-RaccooChat_checkIfUserOnline_args::~RaccooChat_checkIfUserOnline_args() throw() {
+RaccooChat_ifUserOnline_args::~RaccooChat_ifUserOnline_args() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOnline_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifUserOnline_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -842,8 +800,8 @@ uint32_t RaccooChat_checkIfUserOnline_args::read(::apache::thrift::protocol::TPr
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -860,13 +818,13 @@ uint32_t RaccooChat_checkIfUserOnline_args::read(::apache::thrift::protocol::TPr
   return xfer;
 }
 
-uint32_t RaccooChat_checkIfUserOnline_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifUserOnline_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_checkIfUserOnline_args");
+  xfer += oprot->writeStructBegin("RaccooChat_ifUserOnline_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -875,17 +833,17 @@ uint32_t RaccooChat_checkIfUserOnline_args::write(::apache::thrift::protocol::TP
 }
 
 
-RaccooChat_checkIfUserOnline_pargs::~RaccooChat_checkIfUserOnline_pargs() throw() {
+RaccooChat_ifUserOnline_pargs::~RaccooChat_ifUserOnline_pargs() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOnline_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifUserOnline_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_checkIfUserOnline_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_ifUserOnline_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -894,11 +852,11 @@ uint32_t RaccooChat_checkIfUserOnline_pargs::write(::apache::thrift::protocol::T
 }
 
 
-RaccooChat_checkIfUserOnline_result::~RaccooChat_checkIfUserOnline_result() throw() {
+RaccooChat_ifUserOnline_result::~RaccooChat_ifUserOnline_result() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOnline_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifUserOnline_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -917,7 +875,20 @@ uint32_t RaccooChat_checkIfUserOnline_result::read(::apache::thrift::protocol::T
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -926,23 +897,28 @@ uint32_t RaccooChat_checkIfUserOnline_result::read(::apache::thrift::protocol::T
   return xfer;
 }
 
-uint32_t RaccooChat_checkIfUserOnline_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifUserOnline_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RaccooChat_checkIfUserOnline_result");
+  xfer += oprot->writeStructBegin("RaccooChat_ifUserOnline_result");
 
+  if (this->__isset.e) {
+    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->e.write(oprot);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-RaccooChat_checkIfUserOnline_presult::~RaccooChat_checkIfUserOnline_presult() throw() {
+RaccooChat_ifUserOnline_presult::~RaccooChat_ifUserOnline_presult() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOnline_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifUserOnline_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -961,7 +937,20 @@ uint32_t RaccooChat_checkIfUserOnline_presult::read(::apache::thrift::protocol::
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -971,11 +960,11 @@ uint32_t RaccooChat_checkIfUserOnline_presult::read(::apache::thrift::protocol::
 }
 
 
-RaccooChat_checkIfUserOffline_args::~RaccooChat_checkIfUserOffline_args() throw() {
+RaccooChat_ifUserOffline_args::~RaccooChat_ifUserOffline_args() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOffline_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifUserOffline_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -998,8 +987,8 @@ uint32_t RaccooChat_checkIfUserOffline_args::read(::apache::thrift::protocol::TP
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -1016,13 +1005,13 @@ uint32_t RaccooChat_checkIfUserOffline_args::read(::apache::thrift::protocol::TP
   return xfer;
 }
 
-uint32_t RaccooChat_checkIfUserOffline_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifUserOffline_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_checkIfUserOffline_args");
+  xfer += oprot->writeStructBegin("RaccooChat_ifUserOffline_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1031,17 +1020,17 @@ uint32_t RaccooChat_checkIfUserOffline_args::write(::apache::thrift::protocol::T
 }
 
 
-RaccooChat_checkIfUserOffline_pargs::~RaccooChat_checkIfUserOffline_pargs() throw() {
+RaccooChat_ifUserOffline_pargs::~RaccooChat_ifUserOffline_pargs() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOffline_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifUserOffline_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_checkIfUserOffline_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_ifUserOffline_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1050,11 +1039,11 @@ uint32_t RaccooChat_checkIfUserOffline_pargs::write(::apache::thrift::protocol::
 }
 
 
-RaccooChat_checkIfUserOffline_result::~RaccooChat_checkIfUserOffline_result() throw() {
+RaccooChat_ifUserOffline_result::~RaccooChat_ifUserOffline_result() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOffline_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifUserOffline_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1073,7 +1062,20 @@ uint32_t RaccooChat_checkIfUserOffline_result::read(::apache::thrift::protocol::
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -1082,23 +1084,28 @@ uint32_t RaccooChat_checkIfUserOffline_result::read(::apache::thrift::protocol::
   return xfer;
 }
 
-uint32_t RaccooChat_checkIfUserOffline_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_ifUserOffline_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RaccooChat_checkIfUserOffline_result");
+  xfer += oprot->writeStructBegin("RaccooChat_ifUserOffline_result");
 
+  if (this->__isset.e) {
+    xfer += oprot->writeFieldBegin("e", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->e.write(oprot);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-RaccooChat_checkIfUserOffline_presult::~RaccooChat_checkIfUserOffline_presult() throw() {
+RaccooChat_ifUserOffline_presult::~RaccooChat_ifUserOffline_presult() throw() {
 }
 
 
-uint32_t RaccooChat_checkIfUserOffline_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_ifUserOffline_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1117,7 +1124,20 @@ uint32_t RaccooChat_checkIfUserOffline_presult::read(::apache::thrift::protocol:
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->e.read(iprot);
+          this->__isset.e = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -1127,11 +1147,11 @@ uint32_t RaccooChat_checkIfUserOffline_presult::read(::apache::thrift::protocol:
 }
 
 
-RaccooChat_registerUser_args::~RaccooChat_registerUser_args() throw() {
+RaccooChat_registrationUser_args::~RaccooChat_registrationUser_args() throw() {
 }
 
 
-uint32_t RaccooChat_registerUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_registrationUser_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1154,16 +1174,16 @@ uint32_t RaccooChat_registerUser_args::read(::apache::thrift::protocol::TProtoco
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->password);
-          this->__isset.password = true;
+          xfer += iprot->readString(this->userPassword);
+          this->__isset.userPassword = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -1180,17 +1200,17 @@ uint32_t RaccooChat_registerUser_args::read(::apache::thrift::protocol::TProtoco
   return xfer;
 }
 
-uint32_t RaccooChat_registerUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_registrationUser_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_registerUser_args");
+  xfer += oprot->writeStructBegin("RaccooChat_registrationUser_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->password);
+  xfer += oprot->writeFieldBegin("userPassword", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString(this->userPassword);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1199,21 +1219,21 @@ uint32_t RaccooChat_registerUser_args::write(::apache::thrift::protocol::TProtoc
 }
 
 
-RaccooChat_registerUser_pargs::~RaccooChat_registerUser_pargs() throw() {
+RaccooChat_registrationUser_pargs::~RaccooChat_registrationUser_pargs() throw() {
 }
 
 
-uint32_t RaccooChat_registerUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_registrationUser_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_registerUser_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_registrationUser_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->password)));
+  xfer += oprot->writeFieldBegin("userPassword", ::apache::thrift::protocol::T_STRING, 2);
+  xfer += oprot->writeString((*(this->userPassword)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1222,11 +1242,11 @@ uint32_t RaccooChat_registerUser_pargs::write(::apache::thrift::protocol::TProto
 }
 
 
-RaccooChat_registerUser_result::~RaccooChat_registerUser_result() throw() {
+RaccooChat_registrationUser_result::~RaccooChat_registrationUser_result() throw() {
 }
 
 
-uint32_t RaccooChat_registerUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_registrationUser_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1254,11 +1274,11 @@ uint32_t RaccooChat_registerUser_result::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t RaccooChat_registerUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_registrationUser_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RaccooChat_registerUser_result");
+  xfer += oprot->writeStructBegin("RaccooChat_registrationUser_result");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -1266,11 +1286,11 @@ uint32_t RaccooChat_registerUser_result::write(::apache::thrift::protocol::TProt
 }
 
 
-RaccooChat_registerUser_presult::~RaccooChat_registerUser_presult() throw() {
+RaccooChat_registrationUser_presult::~RaccooChat_registrationUser_presult() throw() {
 }
 
 
-uint32_t RaccooChat_registerUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_registrationUser_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1326,8 +1346,8 @@ uint32_t RaccooChat_connectUser_args::read(::apache::thrift::protocol::TProtocol
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -1349,8 +1369,8 @@ uint32_t RaccooChat_connectUser_args::write(::apache::thrift::protocol::TProtoco
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_connectUser_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1368,8 +1388,8 @@ uint32_t RaccooChat_connectUser_pargs::write(::apache::thrift::protocol::TProtoc
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_connectUser_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1401,7 +1421,20 @@ uint32_t RaccooChat_connectUser_result::read(::apache::thrift::protocol::TProtoc
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->success);
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -1416,6 +1449,11 @@ uint32_t RaccooChat_connectUser_result::write(::apache::thrift::protocol::TProto
 
   xfer += oprot->writeStructBegin("RaccooChat_connectUser_result");
 
+  if (this->__isset.success) {
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_I32, 0);
+    xfer += oprot->writeI32(this->success);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
@@ -1445,7 +1483,20 @@ uint32_t RaccooChat_connectUser_presult::read(::apache::thrift::protocol::TProto
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32((*(this->success)));
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -1481,9 +1532,9 @@ uint32_t RaccooChat_disconnectUser_args::read(::apache::thrift::protocol::TProto
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->userId);
+          this->__isset.userId = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -1505,8 +1556,8 @@ uint32_t RaccooChat_disconnectUser_args::write(::apache::thrift::protocol::TProt
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_disconnectUser_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->userId);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1524,8 +1575,8 @@ uint32_t RaccooChat_disconnectUser_pargs::write(::apache::thrift::protocol::TPro
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_disconnectUser_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32((*(this->userId)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -1602,6 +1653,380 @@ uint32_t RaccooChat_disconnectUser_presult::read(::apache::thrift::protocol::TPr
       break;
     }
     xfer += iprot->skip(ftype);
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+
+RaccooChat_getUserName_args::~RaccooChat_getUserName_args() throw() {
+}
+
+
+uint32_t RaccooChat_getUserName_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->userId);
+          this->__isset.userId = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t RaccooChat_getUserName_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("RaccooChat_getUserName_args");
+
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->userId);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getUserName_pargs::~RaccooChat_getUserName_pargs() throw() {
+}
+
+
+uint32_t RaccooChat_getUserName_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("RaccooChat_getUserName_pargs");
+
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32((*(this->userId)));
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getUserName_result::~RaccooChat_getUserName_result() throw() {
+}
+
+
+uint32_t RaccooChat_getUserName_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->success);
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t RaccooChat_getUserName_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+
+  uint32_t xfer = 0;
+
+  xfer += oprot->writeStructBegin("RaccooChat_getUserName_result");
+
+  if (this->__isset.success) {
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
+    xfer += oprot->writeString(this->success);
+    xfer += oprot->writeFieldEnd();
+  }
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getUserName_presult::~RaccooChat_getUserName_presult() throw() {
+}
+
+
+uint32_t RaccooChat_getUserName_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString((*(this->success)));
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+
+RaccooChat_getUserId_args::~RaccooChat_getUserId_args() throw() {
+}
+
+
+uint32_t RaccooChat_getUserId_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->userName);
+          this->__isset.userName = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t RaccooChat_getUserId_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("RaccooChat_getUserId_args");
+
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->userName);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getUserId_pargs::~RaccooChat_getUserId_pargs() throw() {
+}
+
+
+uint32_t RaccooChat_getUserId_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
+  xfer += oprot->writeStructBegin("RaccooChat_getUserId_pargs");
+
+  xfer += oprot->writeFieldBegin("userName", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->userName)));
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getUserId_result::~RaccooChat_getUserId_result() throw() {
+}
+
+
+uint32_t RaccooChat_getUserId_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->success);
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  return xfer;
+}
+
+uint32_t RaccooChat_getUserId_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+
+  uint32_t xfer = 0;
+
+  xfer += oprot->writeStructBegin("RaccooChat_getUserId_result");
+
+  if (this->__isset.success) {
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_I32, 0);
+    xfer += oprot->writeI32(this->success);
+    xfer += oprot->writeFieldEnd();
+  }
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+
+RaccooChat_getUserId_presult::~RaccooChat_getUserId_presult() throw() {
+}
+
+
+uint32_t RaccooChat_getUserId_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32((*(this->success)));
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -1695,19 +2120,20 @@ uint32_t RaccooChat_getAllOnlineUsers_result::read(::apache::thrift::protocol::T
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
+        if (ftype == ::apache::thrift::protocol::T_SET) {
           {
             this->success.clear();
-            uint32_t _size8;
-            ::apache::thrift::protocol::TType _etype11;
-            xfer += iprot->readListBegin(_etype11, _size8);
-            this->success.resize(_size8);
-            uint32_t _i12;
-            for (_i12 = 0; _i12 < _size8; ++_i12)
+            uint32_t _size6;
+            ::apache::thrift::protocol::TType _etype9;
+            xfer += iprot->readSetBegin(_etype9, _size6);
+            uint32_t _i10;
+            for (_i10 = 0; _i10 < _size6; ++_i10)
             {
-              xfer += iprot->readString(this->success[_i12]);
+              std::string _elem11;
+              xfer += iprot->readString(_elem11);
+              this->success.insert(_elem11);
             }
-            xfer += iprot->readListEnd();
+            xfer += iprot->readSetEnd();
           }
           this->__isset.success = true;
         } else {
@@ -1733,15 +2159,15 @@ uint32_t RaccooChat_getAllOnlineUsers_result::write(::apache::thrift::protocol::
   xfer += oprot->writeStructBegin("RaccooChat_getAllOnlineUsers_result");
 
   if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_SET, 0);
     {
-      xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->success.size()));
-      std::vector<std::string> ::const_iterator _iter13;
-      for (_iter13 = this->success.begin(); _iter13 != this->success.end(); ++_iter13)
+      xfer += oprot->writeSetBegin(::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->success.size()));
+      std::set<std::string> ::const_iterator _iter12;
+      for (_iter12 = this->success.begin(); _iter12 != this->success.end(); ++_iter12)
       {
-        xfer += oprot->writeString((*_iter13));
+        xfer += oprot->writeString((*_iter12));
       }
-      xfer += oprot->writeListEnd();
+      xfer += oprot->writeSetEnd();
     }
     xfer += oprot->writeFieldEnd();
   }
@@ -1777,19 +2203,20 @@ uint32_t RaccooChat_getAllOnlineUsers_presult::read(::apache::thrift::protocol::
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
+        if (ftype == ::apache::thrift::protocol::T_SET) {
           {
             (*(this->success)).clear();
-            uint32_t _size14;
-            ::apache::thrift::protocol::TType _etype17;
-            xfer += iprot->readListBegin(_etype17, _size14);
-            (*(this->success)).resize(_size14);
-            uint32_t _i18;
-            for (_i18 = 0; _i18 < _size14; ++_i18)
+            uint32_t _size13;
+            ::apache::thrift::protocol::TType _etype16;
+            xfer += iprot->readSetBegin(_etype16, _size13);
+            uint32_t _i17;
+            for (_i17 = 0; _i17 < _size13; ++_i17)
             {
-              xfer += iprot->readString((*(this->success))[_i18]);
+              std::string _elem18;
+              xfer += iprot->readString(_elem18);
+              (*(this->success)).insert(_elem18);
             }
-            xfer += iprot->readListEnd();
+            xfer += iprot->readSetEnd();
           }
           this->__isset.success = true;
         } else {
@@ -1809,11 +2236,11 @@ uint32_t RaccooChat_getAllOnlineUsers_presult::read(::apache::thrift::protocol::
 }
 
 
-RaccooChat_getHistory_args::~RaccooChat_getHistory_args() throw() {
+RaccooChat_getChatHistory_args::~RaccooChat_getChatHistory_args() throw() {
 }
 
 
-uint32_t RaccooChat_getHistory_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getChatHistory_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1841,10 +2268,10 @@ uint32_t RaccooChat_getHistory_args::read(::apache::thrift::protocol::TProtocol*
   return xfer;
 }
 
-uint32_t RaccooChat_getHistory_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getChatHistory_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_getHistory_args");
+  xfer += oprot->writeStructBegin("RaccooChat_getChatHistory_args");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -1852,14 +2279,14 @@ uint32_t RaccooChat_getHistory_args::write(::apache::thrift::protocol::TProtocol
 }
 
 
-RaccooChat_getHistory_pargs::~RaccooChat_getHistory_pargs() throw() {
+RaccooChat_getChatHistory_pargs::~RaccooChat_getChatHistory_pargs() throw() {
 }
 
 
-uint32_t RaccooChat_getHistory_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getChatHistory_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("RaccooChat_getHistory_pargs");
+  xfer += oprot->writeStructBegin("RaccooChat_getChatHistory_pargs");
 
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
@@ -1867,11 +2294,11 @@ uint32_t RaccooChat_getHistory_pargs::write(::apache::thrift::protocol::TProtoco
 }
 
 
-RaccooChat_getHistory_result::~RaccooChat_getHistory_result() throw() {
+RaccooChat_getChatHistory_result::~RaccooChat_getChatHistory_result() throw() {
 }
 
 
-uint32_t RaccooChat_getHistory_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getChatHistory_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -1924,17 +2351,17 @@ uint32_t RaccooChat_getHistory_result::read(::apache::thrift::protocol::TProtoco
   return xfer;
 }
 
-uint32_t RaccooChat_getHistory_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t RaccooChat_getChatHistory_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("RaccooChat_getHistory_result");
+  xfer += oprot->writeStructBegin("RaccooChat_getChatHistory_result");
 
   if (this->__isset.success) {
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
     {
       xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->success.size()));
-      std::vector<SimpleMessage> ::const_iterator _iter24;
+      std::vector<Message> ::const_iterator _iter24;
       for (_iter24 = this->success.begin(); _iter24 != this->success.end(); ++_iter24)
       {
         xfer += (*_iter24).write(oprot);
@@ -1949,11 +2376,11 @@ uint32_t RaccooChat_getHistory_result::write(::apache::thrift::protocol::TProtoc
 }
 
 
-RaccooChat_getHistory_presult::~RaccooChat_getHistory_presult() throw() {
+RaccooChat_getChatHistory_presult::~RaccooChat_getChatHistory_presult() throw() {
 }
 
 
-uint32_t RaccooChat_getHistory_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t RaccooChat_getChatHistory_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -2033,9 +2460,9 @@ uint32_t RaccooChat_getNewMessages_args::read(::apache::thrift::protocol::TProto
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->userId);
+          this->__isset.userId = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -2057,8 +2484,8 @@ uint32_t RaccooChat_getNewMessages_args::write(::apache::thrift::protocol::TProt
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_getNewMessages_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->userId);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -2076,8 +2503,8 @@ uint32_t RaccooChat_getNewMessages_pargs::write(::apache::thrift::protocol::TPro
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_getNewMessages_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32((*(this->userId)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -2153,7 +2580,7 @@ uint32_t RaccooChat_getNewMessages_result::write(::apache::thrift::protocol::TPr
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
     {
       xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->success.size()));
-      std::vector<SimpleMessage> ::const_iterator _iter35;
+      std::vector<Message> ::const_iterator _iter35;
       for (_iter35 = this->success.begin(); _iter35 != this->success.end(); ++_iter35)
       {
         xfer += (*_iter35).write(oprot);
@@ -2252,9 +2679,9 @@ uint32_t RaccooChat_getNewPrivateMessages_args::read(::apache::thrift::protocol:
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->userId);
+          this->__isset.userId = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -2276,8 +2703,8 @@ uint32_t RaccooChat_getNewPrivateMessages_args::write(::apache::thrift::protocol
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_getNewPrivateMessages_args");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->userId);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -2295,8 +2722,8 @@ uint32_t RaccooChat_getNewPrivateMessages_pargs::write(::apache::thrift::protoco
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_getNewPrivateMessages_pargs");
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32((*(this->userId)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -2372,7 +2799,7 @@ uint32_t RaccooChat_getNewPrivateMessages_result::write(::apache::thrift::protoc
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
     {
       xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->success.size()));
-      std::vector<SimpleMessage> ::const_iterator _iter46;
+      std::vector<Message> ::const_iterator _iter46;
       for (_iter46 = this->success.begin(); _iter46 != this->success.end(); ++_iter46)
       {
         xfer += (*_iter46).write(oprot);
@@ -2627,17 +3054,17 @@ uint32_t RaccooChat_addPrivateMessage_args::read(::apache::thrift::protocol::TPr
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->msg.read(iprot);
-          this->__isset.msg = true;
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          xfer += iprot->readI32(this->userId);
+          this->__isset.userId = true;
         } else {
           xfer += iprot->skip(ftype);
         }
         break;
       case 2:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->name);
-          this->__isset.name = true;
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->msg.read(iprot);
+          this->__isset.msg = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -2659,12 +3086,12 @@ uint32_t RaccooChat_addPrivateMessage_args::write(::apache::thrift::protocol::TP
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_addPrivateMessage_args");
 
-  xfer += oprot->writeFieldBegin("msg", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += this->msg.write(oprot);
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32(this->userId);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString(this->name);
+  xfer += oprot->writeFieldBegin("msg", ::apache::thrift::protocol::T_STRUCT, 2);
+  xfer += this->msg.write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -2682,12 +3109,12 @@ uint32_t RaccooChat_addPrivateMessage_pargs::write(::apache::thrift::protocol::T
   apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
   xfer += oprot->writeStructBegin("RaccooChat_addPrivateMessage_pargs");
 
-  xfer += oprot->writeFieldBegin("msg", ::apache::thrift::protocol::T_STRUCT, 1);
-  xfer += (*(this->msg)).write(oprot);
+  xfer += oprot->writeFieldBegin("userId", ::apache::thrift::protocol::T_I32, 1);
+  xfer += oprot->writeI32((*(this->userId)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("name", ::apache::thrift::protocol::T_STRING, 2);
-  xfer += oprot->writeString((*(this->name)));
+  xfer += oprot->writeFieldBegin("msg", ::apache::thrift::protocol::T_STRUCT, 2);
+  xfer += (*(this->msg)).write(oprot);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -2772,18 +3199,19 @@ uint32_t RaccooChat_addPrivateMessage_presult::read(::apache::thrift::protocol::
   return xfer;
 }
 
-int32_t RaccooChatClient::getMaxUserNameSize()
+void RaccooChatClient::ifRegisteredUser(const std::string& userName)
 {
-  send_getMaxUserNameSize();
-  return recv_getMaxUserNameSize();
+  send_ifRegisteredUser(userName);
+  recv_ifRegisteredUser();
 }
 
-void RaccooChatClient::send_getMaxUserNameSize()
+void RaccooChatClient::send_ifRegisteredUser(const std::string& userName)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("getMaxUserNameSize", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("ifRegisteredUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_getMaxUserNameSize_pargs args;
+  RaccooChat_ifRegisteredUser_pargs args;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -2791,7 +3219,7 @@ void RaccooChatClient::send_getMaxUserNameSize()
   oprot_->getTransport()->flush();
 }
 
-int32_t RaccooChatClient::recv_getMaxUserNameSize()
+void RaccooChatClient::recv_ifRegisteredUser()
 {
 
   int32_t rseqid = 0;
@@ -2811,90 +3239,35 @@ int32_t RaccooChatClient::recv_getMaxUserNameSize()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("getMaxUserNameSize") != 0) {
+  if (fname.compare("ifRegisteredUser") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  int32_t _return;
-  RaccooChat_getMaxUserNameSize_presult result;
-  result.success = &_return;
+  RaccooChat_ifRegisteredUser_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
-  if (result.__isset.success) {
-    return _return;
+  if (result.__isset.e) {
+    throw result.e;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getMaxUserNameSize failed: unknown result");
-}
-
-void RaccooChatClient::findUser(const std::string& name)
-{
-  send_findUser(name);
-  recv_findUser();
-}
-
-void RaccooChatClient::send_findUser(const std::string& name)
-{
-  int32_t cseqid = 0;
-  oprot_->writeMessageBegin("findUser", ::apache::thrift::protocol::T_CALL, cseqid);
-
-  RaccooChat_findUser_pargs args;
-  args.name = &name;
-  args.write(oprot_);
-
-  oprot_->writeMessageEnd();
-  oprot_->getTransport()->writeEnd();
-  oprot_->getTransport()->flush();
-}
-
-void RaccooChatClient::recv_findUser()
-{
-
-  int32_t rseqid = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TMessageType mtype;
-
-  iprot_->readMessageBegin(fname, mtype, rseqid);
-  if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
-    ::apache::thrift::TApplicationException x;
-    x.read(iprot_);
-    iprot_->readMessageEnd();
-    iprot_->getTransport()->readEnd();
-    throw x;
-  }
-  if (mtype != ::apache::thrift::protocol::T_REPLY) {
-    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-    iprot_->readMessageEnd();
-    iprot_->getTransport()->readEnd();
-  }
-  if (fname.compare("findUser") != 0) {
-    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-    iprot_->readMessageEnd();
-    iprot_->getTransport()->readEnd();
-  }
-  RaccooChat_findUser_presult result;
-  result.read(iprot_);
-  iprot_->readMessageEnd();
-  iprot_->getTransport()->readEnd();
-
   return;
 }
 
-void RaccooChatClient::validateName(const std::string& name)
+void RaccooChatClient::validateName(const std::string& userName)
 {
-  send_validateName(name);
+  send_validateName(userName);
   recv_validateName();
 }
 
-void RaccooChatClient::send_validateName(const std::string& name)
+void RaccooChatClient::send_validateName(const std::string& userName)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("validateName", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_validateName_pargs args;
-  args.name = &name;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -2932,22 +3305,25 @@ void RaccooChatClient::recv_validateName()
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
+  if (result.__isset.e) {
+    throw result.e;
+  }
   return;
 }
 
-void RaccooChatClient::validatePassword(const std::string& password)
+void RaccooChatClient::validatePassword(const std::string& userPassword)
 {
-  send_validatePassword(password);
+  send_validatePassword(userPassword);
   recv_validatePassword();
 }
 
-void RaccooChatClient::send_validatePassword(const std::string& password)
+void RaccooChatClient::send_validatePassword(const std::string& userPassword)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("validatePassword", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_validatePassword_pargs args;
-  args.password = &password;
+  args.userPassword = &userPassword;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -2985,23 +3361,26 @@ void RaccooChatClient::recv_validatePassword()
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
+  if (result.__isset.e) {
+    throw result.e;
+  }
   return;
 }
 
-void RaccooChatClient::checkPassword(const std::string& name, const std::string& password)
+void RaccooChatClient::comparePassword(const std::string& userName, const std::string& userPassword)
 {
-  send_checkPassword(name, password);
-  recv_checkPassword();
+  send_comparePassword(userName, userPassword);
+  recv_comparePassword();
 }
 
-void RaccooChatClient::send_checkPassword(const std::string& name, const std::string& password)
+void RaccooChatClient::send_comparePassword(const std::string& userName, const std::string& userPassword)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("checkPassword", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("comparePassword", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_checkPassword_pargs args;
-  args.name = &name;
-  args.password = &password;
+  RaccooChat_comparePassword_pargs args;
+  args.userName = &userName;
+  args.userPassword = &userPassword;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3009,7 +3388,7 @@ void RaccooChatClient::send_checkPassword(const std::string& name, const std::st
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_checkPassword()
+void RaccooChatClient::recv_comparePassword()
 {
 
   int32_t rseqid = 0;
@@ -3029,32 +3408,35 @@ void RaccooChatClient::recv_checkPassword()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("checkPassword") != 0) {
+  if (fname.compare("comparePassword") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RaccooChat_checkPassword_presult result;
+  RaccooChat_comparePassword_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
+  if (result.__isset.e) {
+    throw result.e;
+  }
   return;
 }
 
-void RaccooChatClient::checkIfUserOnline(const std::string& name)
+void RaccooChatClient::ifUserOnline(const std::string& userName)
 {
-  send_checkIfUserOnline(name);
-  recv_checkIfUserOnline();
+  send_ifUserOnline(userName);
+  recv_ifUserOnline();
 }
 
-void RaccooChatClient::send_checkIfUserOnline(const std::string& name)
+void RaccooChatClient::send_ifUserOnline(const std::string& userName)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("checkIfUserOnline", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("ifUserOnline", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_checkIfUserOnline_pargs args;
-  args.name = &name;
+  RaccooChat_ifUserOnline_pargs args;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3062,7 +3444,7 @@ void RaccooChatClient::send_checkIfUserOnline(const std::string& name)
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_checkIfUserOnline()
+void RaccooChatClient::recv_ifUserOnline()
 {
 
   int32_t rseqid = 0;
@@ -3082,32 +3464,35 @@ void RaccooChatClient::recv_checkIfUserOnline()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("checkIfUserOnline") != 0) {
+  if (fname.compare("ifUserOnline") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RaccooChat_checkIfUserOnline_presult result;
+  RaccooChat_ifUserOnline_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
+  if (result.__isset.e) {
+    throw result.e;
+  }
   return;
 }
 
-void RaccooChatClient::checkIfUserOffline(const std::string& name)
+void RaccooChatClient::ifUserOffline(const std::string& userName)
 {
-  send_checkIfUserOffline(name);
-  recv_checkIfUserOffline();
+  send_ifUserOffline(userName);
+  recv_ifUserOffline();
 }
 
-void RaccooChatClient::send_checkIfUserOffline(const std::string& name)
+void RaccooChatClient::send_ifUserOffline(const std::string& userName)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("checkIfUserOffline", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("ifUserOffline", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_checkIfUserOffline_pargs args;
-  args.name = &name;
+  RaccooChat_ifUserOffline_pargs args;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3115,7 +3500,7 @@ void RaccooChatClient::send_checkIfUserOffline(const std::string& name)
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_checkIfUserOffline()
+void RaccooChatClient::recv_ifUserOffline()
 {
 
   int32_t rseqid = 0;
@@ -3135,33 +3520,36 @@ void RaccooChatClient::recv_checkIfUserOffline()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("checkIfUserOffline") != 0) {
+  if (fname.compare("ifUserOffline") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RaccooChat_checkIfUserOffline_presult result;
+  RaccooChat_ifUserOffline_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
+  if (result.__isset.e) {
+    throw result.e;
+  }
   return;
 }
 
-void RaccooChatClient::registerUser(const std::string& name, const std::string& password)
+void RaccooChatClient::registrationUser(const std::string& userName, const std::string& userPassword)
 {
-  send_registerUser(name, password);
-  recv_registerUser();
+  send_registrationUser(userName, userPassword);
+  recv_registrationUser();
 }
 
-void RaccooChatClient::send_registerUser(const std::string& name, const std::string& password)
+void RaccooChatClient::send_registrationUser(const std::string& userName, const std::string& userPassword)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("registerUser", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("registrationUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_registerUser_pargs args;
-  args.name = &name;
-  args.password = &password;
+  RaccooChat_registrationUser_pargs args;
+  args.userName = &userName;
+  args.userPassword = &userPassword;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3169,7 +3557,7 @@ void RaccooChatClient::send_registerUser(const std::string& name, const std::str
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_registerUser()
+void RaccooChatClient::recv_registrationUser()
 {
 
   int32_t rseqid = 0;
@@ -3189,12 +3577,12 @@ void RaccooChatClient::recv_registerUser()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("registerUser") != 0) {
+  if (fname.compare("registrationUser") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RaccooChat_registerUser_presult result;
+  RaccooChat_registrationUser_presult result;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
@@ -3202,19 +3590,19 @@ void RaccooChatClient::recv_registerUser()
   return;
 }
 
-void RaccooChatClient::connectUser(const std::string& name)
+int32_t RaccooChatClient::connectUser(const std::string& userName)
 {
-  send_connectUser(name);
-  recv_connectUser();
+  send_connectUser(userName);
+  return recv_connectUser();
 }
 
-void RaccooChatClient::send_connectUser(const std::string& name)
+void RaccooChatClient::send_connectUser(const std::string& userName)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("connectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_connectUser_pargs args;
-  args.name = &name;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3222,7 +3610,7 @@ void RaccooChatClient::send_connectUser(const std::string& name)
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_connectUser()
+int32_t RaccooChatClient::recv_connectUser()
 {
 
   int32_t rseqid = 0;
@@ -3247,27 +3635,32 @@ void RaccooChatClient::recv_connectUser()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
+  int32_t _return;
   RaccooChat_connectUser_presult result;
+  result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
-  return;
+  if (result.__isset.success) {
+    return _return;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "connectUser failed: unknown result");
 }
 
-void RaccooChatClient::disconnectUser(const std::string& name)
+void RaccooChatClient::disconnectUser(const int32_t userId)
 {
-  send_disconnectUser(name);
+  send_disconnectUser(userId);
   recv_disconnectUser();
 }
 
-void RaccooChatClient::send_disconnectUser(const std::string& name)
+void RaccooChatClient::send_disconnectUser(const int32_t userId)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("disconnectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_disconnectUser_pargs args;
-  args.name = &name;
+  args.userId = &userId;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3308,7 +3701,123 @@ void RaccooChatClient::recv_disconnectUser()
   return;
 }
 
-void RaccooChatClient::getAllOnlineUsers(std::vector<std::string> & _return)
+void RaccooChatClient::getUserName(std::string& _return, const int32_t userId)
+{
+  send_getUserName(userId);
+  recv_getUserName(_return);
+}
+
+void RaccooChatClient::send_getUserName(const int32_t userId)
+{
+  int32_t cseqid = 0;
+  oprot_->writeMessageBegin("getUserName", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  RaccooChat_getUserName_pargs args;
+  args.userId = &userId;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
+}
+
+void RaccooChatClient::recv_getUserName(std::string& _return)
+{
+
+  int32_t rseqid = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TMessageType mtype;
+
+  iprot_->readMessageBegin(fname, mtype, rseqid);
+  if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
+    ::apache::thrift::TApplicationException x;
+    x.read(iprot_);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+    throw x;
+  }
+  if (mtype != ::apache::thrift::protocol::T_REPLY) {
+    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+  }
+  if (fname.compare("getUserName") != 0) {
+    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+  }
+  RaccooChat_getUserName_presult result;
+  result.success = &_return;
+  result.read(iprot_);
+  iprot_->readMessageEnd();
+  iprot_->getTransport()->readEnd();
+
+  if (result.__isset.success) {
+    // _return pointer has now been filled
+    return;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getUserName failed: unknown result");
+}
+
+int32_t RaccooChatClient::getUserId(const std::string& userName)
+{
+  send_getUserId(userName);
+  return recv_getUserId();
+}
+
+void RaccooChatClient::send_getUserId(const std::string& userName)
+{
+  int32_t cseqid = 0;
+  oprot_->writeMessageBegin("getUserId", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  RaccooChat_getUserId_pargs args;
+  args.userName = &userName;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
+}
+
+int32_t RaccooChatClient::recv_getUserId()
+{
+
+  int32_t rseqid = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TMessageType mtype;
+
+  iprot_->readMessageBegin(fname, mtype, rseqid);
+  if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
+    ::apache::thrift::TApplicationException x;
+    x.read(iprot_);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+    throw x;
+  }
+  if (mtype != ::apache::thrift::protocol::T_REPLY) {
+    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+  }
+  if (fname.compare("getUserId") != 0) {
+    iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+    iprot_->readMessageEnd();
+    iprot_->getTransport()->readEnd();
+  }
+  int32_t _return;
+  RaccooChat_getUserId_presult result;
+  result.success = &_return;
+  result.read(iprot_);
+  iprot_->readMessageEnd();
+  iprot_->getTransport()->readEnd();
+
+  if (result.__isset.success) {
+    return _return;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getUserId failed: unknown result");
+}
+
+void RaccooChatClient::getAllOnlineUsers(std::set<std::string> & _return)
 {
   send_getAllOnlineUsers();
   recv_getAllOnlineUsers(_return);
@@ -3327,7 +3836,7 @@ void RaccooChatClient::send_getAllOnlineUsers()
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_getAllOnlineUsers(std::vector<std::string> & _return)
+void RaccooChatClient::recv_getAllOnlineUsers(std::set<std::string> & _return)
 {
 
   int32_t rseqid = 0;
@@ -3365,18 +3874,18 @@ void RaccooChatClient::recv_getAllOnlineUsers(std::vector<std::string> & _return
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getAllOnlineUsers failed: unknown result");
 }
 
-void RaccooChatClient::getHistory(std::vector<SimpleMessage> & _return)
+void RaccooChatClient::getChatHistory(std::vector<Message> & _return)
 {
-  send_getHistory();
-  recv_getHistory(_return);
+  send_getChatHistory();
+  recv_getChatHistory(_return);
 }
 
-void RaccooChatClient::send_getHistory()
+void RaccooChatClient::send_getChatHistory()
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("getHistory", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("getChatHistory", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_getHistory_pargs args;
+  RaccooChat_getChatHistory_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3384,7 +3893,7 @@ void RaccooChatClient::send_getHistory()
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_getHistory(std::vector<SimpleMessage> & _return)
+void RaccooChatClient::recv_getChatHistory(std::vector<Message> & _return)
 {
 
   int32_t rseqid = 0;
@@ -3404,12 +3913,12 @@ void RaccooChatClient::recv_getHistory(std::vector<SimpleMessage> & _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("getHistory") != 0) {
+  if (fname.compare("getChatHistory") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  RaccooChat_getHistory_presult result;
+  RaccooChat_getChatHistory_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -3419,22 +3928,22 @@ void RaccooChatClient::recv_getHistory(std::vector<SimpleMessage> & _return)
     // _return pointer has now been filled
     return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getHistory failed: unknown result");
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getChatHistory failed: unknown result");
 }
 
-void RaccooChatClient::getNewMessages(std::vector<SimpleMessage> & _return, const std::string& name)
+void RaccooChatClient::getNewMessages(std::vector<Message> & _return, const int32_t userId)
 {
-  send_getNewMessages(name);
+  send_getNewMessages(userId);
   recv_getNewMessages(_return);
 }
 
-void RaccooChatClient::send_getNewMessages(const std::string& name)
+void RaccooChatClient::send_getNewMessages(const int32_t userId)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("getNewMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_getNewMessages_pargs args;
-  args.name = &name;
+  args.userId = &userId;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3442,7 +3951,7 @@ void RaccooChatClient::send_getNewMessages(const std::string& name)
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_getNewMessages(std::vector<SimpleMessage> & _return)
+void RaccooChatClient::recv_getNewMessages(std::vector<Message> & _return)
 {
 
   int32_t rseqid = 0;
@@ -3480,19 +3989,19 @@ void RaccooChatClient::recv_getNewMessages(std::vector<SimpleMessage> & _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getNewMessages failed: unknown result");
 }
 
-void RaccooChatClient::getNewPrivateMessages(std::vector<SimpleMessage> & _return, const std::string& name)
+void RaccooChatClient::getNewPrivateMessages(std::vector<Message> & _return, const int32_t userId)
 {
-  send_getNewPrivateMessages(name);
+  send_getNewPrivateMessages(userId);
   recv_getNewPrivateMessages(_return);
 }
 
-void RaccooChatClient::send_getNewPrivateMessages(const std::string& name)
+void RaccooChatClient::send_getNewPrivateMessages(const int32_t userId)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("getNewPrivateMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_getNewPrivateMessages_pargs args;
-  args.name = &name;
+  args.userId = &userId;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3500,7 +4009,7 @@ void RaccooChatClient::send_getNewPrivateMessages(const std::string& name)
   oprot_->getTransport()->flush();
 }
 
-void RaccooChatClient::recv_getNewPrivateMessages(std::vector<SimpleMessage> & _return)
+void RaccooChatClient::recv_getNewPrivateMessages(std::vector<Message> & _return)
 {
 
   int32_t rseqid = 0;
@@ -3538,13 +4047,13 @@ void RaccooChatClient::recv_getNewPrivateMessages(std::vector<SimpleMessage> & _
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getNewPrivateMessages failed: unknown result");
 }
 
-void RaccooChatClient::addMessage(const SimpleMessage& msg)
+void RaccooChatClient::addMessage(const Message& msg)
 {
   send_addMessage(msg);
   recv_addMessage();
 }
 
-void RaccooChatClient::send_addMessage(const SimpleMessage& msg)
+void RaccooChatClient::send_addMessage(const Message& msg)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("addMessage", ::apache::thrift::protocol::T_CALL, cseqid);
@@ -3591,20 +4100,20 @@ void RaccooChatClient::recv_addMessage()
   return;
 }
 
-void RaccooChatClient::addPrivateMessage(const SimpleMessage& msg, const std::string& name)
+void RaccooChatClient::addPrivateMessage(const int32_t userId, const Message& msg)
 {
-  send_addPrivateMessage(msg, name);
+  send_addPrivateMessage(userId, msg);
   recv_addPrivateMessage();
 }
 
-void RaccooChatClient::send_addPrivateMessage(const SimpleMessage& msg, const std::string& name)
+void RaccooChatClient::send_addPrivateMessage(const int32_t userId, const Message& msg)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("addPrivateMessage", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_addPrivateMessage_pargs args;
+  args.userId = &userId;
   args.msg = &msg;
-  args.name = &name;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -3664,38 +4173,40 @@ bool RaccooChatProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* ip
   return true;
 }
 
-void RaccooChatProcessor::process_getMaxUserNameSize(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_ifRegisteredUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.getMaxUserNameSize", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.ifRegisteredUser", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getMaxUserNameSize");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.ifRegisteredUser");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.getMaxUserNameSize");
+    this->eventHandler_->preRead(ctx, "RaccooChat.ifRegisteredUser");
   }
 
-  RaccooChat_getMaxUserNameSize_args args;
+  RaccooChat_ifRegisteredUser_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.getMaxUserNameSize", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.ifRegisteredUser", bytes);
   }
 
-  RaccooChat_getMaxUserNameSize_result result;
+  RaccooChat_ifRegisteredUser_result result;
   try {
-    result.success = iface_->getMaxUserNameSize();
-    result.__isset.success = true;
+    iface_->ifRegisteredUser(args.userName);
+  } catch (InvalidNameException &e) {
+    result.e = e;
+    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.getMaxUserNameSize");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.ifRegisteredUser");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("getMaxUserNameSize", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("ifRegisteredUser", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -3704,70 +4215,17 @@ void RaccooChatProcessor::process_getMaxUserNameSize(int32_t seqid, ::apache::th
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.getMaxUserNameSize");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.ifRegisteredUser");
   }
 
-  oprot->writeMessageBegin("getMaxUserNameSize", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("ifRegisteredUser", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.getMaxUserNameSize", bytes);
-  }
-}
-
-void RaccooChatProcessor::process_findUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
-{
-  void* ctx = NULL;
-  if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.findUser", callContext);
-  }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.findUser");
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.findUser");
-  }
-
-  RaccooChat_findUser_args args;
-  args.read(iprot);
-  iprot->readMessageEnd();
-  uint32_t bytes = iprot->getTransport()->readEnd();
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.findUser", bytes);
-  }
-
-  RaccooChat_findUser_result result;
-  try {
-    iface_->findUser(args.name);
-  } catch (const std::exception& e) {
-    if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.findUser");
-    }
-
-    ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("findUser", ::apache::thrift::protocol::T_EXCEPTION, seqid);
-    x.write(oprot);
-    oprot->writeMessageEnd();
-    oprot->getTransport()->writeEnd();
-    oprot->getTransport()->flush();
-    return;
-  }
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.findUser");
-  }
-
-  oprot->writeMessageBegin("findUser", ::apache::thrift::protocol::T_REPLY, seqid);
-  result.write(oprot);
-  oprot->writeMessageEnd();
-  bytes = oprot->getTransport()->writeEnd();
-  oprot->getTransport()->flush();
-
-  if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.findUser", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.ifRegisteredUser", bytes);
   }
 }
 
@@ -3794,7 +4252,10 @@ void RaccooChatProcessor::process_validateName(int32_t seqid, ::apache::thrift::
 
   RaccooChat_validateName_result result;
   try {
-    iface_->validateName(args.name);
+    iface_->validateName(args.userName);
+  } catch (InvalidNameException &e) {
+    result.e = e;
+    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
       this->eventHandler_->handlerError(ctx, "RaccooChat.validateName");
@@ -3847,7 +4308,10 @@ void RaccooChatProcessor::process_validatePassword(int32_t seqid, ::apache::thri
 
   RaccooChat_validatePassword_result result;
   try {
-    iface_->validatePassword(args.password);
+    iface_->validatePassword(args.userPassword);
+  } catch (InvalidNameException &e) {
+    result.e = e;
+    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
       this->eventHandler_->handlerError(ctx, "RaccooChat.validatePassword");
@@ -3877,37 +4341,40 @@ void RaccooChatProcessor::process_validatePassword(int32_t seqid, ::apache::thri
   }
 }
 
-void RaccooChatProcessor::process_checkPassword(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_comparePassword(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.checkPassword", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.comparePassword", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.checkPassword");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.comparePassword");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.checkPassword");
+    this->eventHandler_->preRead(ctx, "RaccooChat.comparePassword");
   }
 
-  RaccooChat_checkPassword_args args;
+  RaccooChat_comparePassword_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.checkPassword", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.comparePassword", bytes);
   }
 
-  RaccooChat_checkPassword_result result;
+  RaccooChat_comparePassword_result result;
   try {
-    iface_->checkPassword(args.name, args.password);
+    iface_->comparePassword(args.userName, args.userPassword);
+  } catch (InvalidNameException &e) {
+    result.e = e;
+    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.checkPassword");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.comparePassword");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("checkPassword", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("comparePassword", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -3916,51 +4383,54 @@ void RaccooChatProcessor::process_checkPassword(int32_t seqid, ::apache::thrift:
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.checkPassword");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.comparePassword");
   }
 
-  oprot->writeMessageBegin("checkPassword", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("comparePassword", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.checkPassword", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.comparePassword", bytes);
   }
 }
 
-void RaccooChatProcessor::process_checkIfUserOnline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_ifUserOnline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.checkIfUserOnline", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.ifUserOnline", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.checkIfUserOnline");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.ifUserOnline");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.checkIfUserOnline");
+    this->eventHandler_->preRead(ctx, "RaccooChat.ifUserOnline");
   }
 
-  RaccooChat_checkIfUserOnline_args args;
+  RaccooChat_ifUserOnline_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.checkIfUserOnline", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.ifUserOnline", bytes);
   }
 
-  RaccooChat_checkIfUserOnline_result result;
+  RaccooChat_ifUserOnline_result result;
   try {
-    iface_->checkIfUserOnline(args.name);
+    iface_->ifUserOnline(args.userName);
+  } catch (InvalidNameException &e) {
+    result.e = e;
+    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.checkIfUserOnline");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.ifUserOnline");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("checkIfUserOnline", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("ifUserOnline", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -3969,51 +4439,54 @@ void RaccooChatProcessor::process_checkIfUserOnline(int32_t seqid, ::apache::thr
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.checkIfUserOnline");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.ifUserOnline");
   }
 
-  oprot->writeMessageBegin("checkIfUserOnline", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("ifUserOnline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.checkIfUserOnline", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.ifUserOnline", bytes);
   }
 }
 
-void RaccooChatProcessor::process_checkIfUserOffline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_ifUserOffline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.checkIfUserOffline", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.ifUserOffline", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.checkIfUserOffline");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.ifUserOffline");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.checkIfUserOffline");
+    this->eventHandler_->preRead(ctx, "RaccooChat.ifUserOffline");
   }
 
-  RaccooChat_checkIfUserOffline_args args;
+  RaccooChat_ifUserOffline_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.checkIfUserOffline", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.ifUserOffline", bytes);
   }
 
-  RaccooChat_checkIfUserOffline_result result;
+  RaccooChat_ifUserOffline_result result;
   try {
-    iface_->checkIfUserOffline(args.name);
+    iface_->ifUserOffline(args.userName);
+  } catch (InvalidNameException &e) {
+    result.e = e;
+    result.__isset.e = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.checkIfUserOffline");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.ifUserOffline");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("checkIfUserOffline", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("ifUserOffline", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -4022,51 +4495,51 @@ void RaccooChatProcessor::process_checkIfUserOffline(int32_t seqid, ::apache::th
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.checkIfUserOffline");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.ifUserOffline");
   }
 
-  oprot->writeMessageBegin("checkIfUserOffline", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("ifUserOffline", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.checkIfUserOffline", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.ifUserOffline", bytes);
   }
 }
 
-void RaccooChatProcessor::process_registerUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_registrationUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.registerUser", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.registrationUser", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.registerUser");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.registrationUser");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.registerUser");
+    this->eventHandler_->preRead(ctx, "RaccooChat.registrationUser");
   }
 
-  RaccooChat_registerUser_args args;
+  RaccooChat_registrationUser_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.registerUser", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.registrationUser", bytes);
   }
 
-  RaccooChat_registerUser_result result;
+  RaccooChat_registrationUser_result result;
   try {
-    iface_->registerUser(args.name, args.password);
+    iface_->registrationUser(args.userName, args.userPassword);
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.registerUser");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.registrationUser");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("registerUser", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("registrationUser", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -4075,17 +4548,17 @@ void RaccooChatProcessor::process_registerUser(int32_t seqid, ::apache::thrift::
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.registerUser");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.registrationUser");
   }
 
-  oprot->writeMessageBegin("registerUser", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("registrationUser", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.registerUser", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.registrationUser", bytes);
   }
 }
 
@@ -4112,7 +4585,8 @@ void RaccooChatProcessor::process_connectUser(int32_t seqid, ::apache::thrift::p
 
   RaccooChat_connectUser_result result;
   try {
-    iface_->connectUser(args.name);
+    result.success = iface_->connectUser(args.userName);
+    result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
       this->eventHandler_->handlerError(ctx, "RaccooChat.connectUser");
@@ -4165,7 +4639,7 @@ void RaccooChatProcessor::process_disconnectUser(int32_t seqid, ::apache::thrift
 
   RaccooChat_disconnectUser_result result;
   try {
-    iface_->disconnectUser(args.name);
+    iface_->disconnectUser(args.userId);
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
       this->eventHandler_->handlerError(ctx, "RaccooChat.disconnectUser");
@@ -4192,6 +4666,114 @@ void RaccooChatProcessor::process_disconnectUser(int32_t seqid, ::apache::thrift
 
   if (this->eventHandler_.get() != NULL) {
     this->eventHandler_->postWrite(ctx, "RaccooChat.disconnectUser", bytes);
+  }
+}
+
+void RaccooChatProcessor::process_getUserName(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+{
+  void* ctx = NULL;
+  if (this->eventHandler_.get() != NULL) {
+    ctx = this->eventHandler_->getContext("RaccooChat.getUserName", callContext);
+  }
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getUserName");
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preRead(ctx, "RaccooChat.getUserName");
+  }
+
+  RaccooChat_getUserName_args args;
+  args.read(iprot);
+  iprot->readMessageEnd();
+  uint32_t bytes = iprot->getTransport()->readEnd();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postRead(ctx, "RaccooChat.getUserName", bytes);
+  }
+
+  RaccooChat_getUserName_result result;
+  try {
+    iface_->getUserName(result.success, args.userId);
+    result.__isset.success = true;
+  } catch (const std::exception& e) {
+    if (this->eventHandler_.get() != NULL) {
+      this->eventHandler_->handlerError(ctx, "RaccooChat.getUserName");
+    }
+
+    ::apache::thrift::TApplicationException x(e.what());
+    oprot->writeMessageBegin("getUserName", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    x.write(oprot);
+    oprot->writeMessageEnd();
+    oprot->getTransport()->writeEnd();
+    oprot->getTransport()->flush();
+    return;
+  }
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preWrite(ctx, "RaccooChat.getUserName");
+  }
+
+  oprot->writeMessageBegin("getUserName", ::apache::thrift::protocol::T_REPLY, seqid);
+  result.write(oprot);
+  oprot->writeMessageEnd();
+  bytes = oprot->getTransport()->writeEnd();
+  oprot->getTransport()->flush();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postWrite(ctx, "RaccooChat.getUserName", bytes);
+  }
+}
+
+void RaccooChatProcessor::process_getUserId(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+{
+  void* ctx = NULL;
+  if (this->eventHandler_.get() != NULL) {
+    ctx = this->eventHandler_->getContext("RaccooChat.getUserId", callContext);
+  }
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getUserId");
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preRead(ctx, "RaccooChat.getUserId");
+  }
+
+  RaccooChat_getUserId_args args;
+  args.read(iprot);
+  iprot->readMessageEnd();
+  uint32_t bytes = iprot->getTransport()->readEnd();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postRead(ctx, "RaccooChat.getUserId", bytes);
+  }
+
+  RaccooChat_getUserId_result result;
+  try {
+    result.success = iface_->getUserId(args.userName);
+    result.__isset.success = true;
+  } catch (const std::exception& e) {
+    if (this->eventHandler_.get() != NULL) {
+      this->eventHandler_->handlerError(ctx, "RaccooChat.getUserId");
+    }
+
+    ::apache::thrift::TApplicationException x(e.what());
+    oprot->writeMessageBegin("getUserId", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    x.write(oprot);
+    oprot->writeMessageEnd();
+    oprot->getTransport()->writeEnd();
+    oprot->getTransport()->flush();
+    return;
+  }
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->preWrite(ctx, "RaccooChat.getUserId");
+  }
+
+  oprot->writeMessageBegin("getUserId", ::apache::thrift::protocol::T_REPLY, seqid);
+  result.write(oprot);
+  oprot->writeMessageEnd();
+  bytes = oprot->getTransport()->writeEnd();
+  oprot->getTransport()->flush();
+
+  if (this->eventHandler_.get() != NULL) {
+    this->eventHandler_->postWrite(ctx, "RaccooChat.getUserId", bytes);
   }
 }
 
@@ -4249,38 +4831,38 @@ void RaccooChatProcessor::process_getAllOnlineUsers(int32_t seqid, ::apache::thr
   }
 }
 
-void RaccooChatProcessor::process_getHistory(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void RaccooChatProcessor::process_getChatHistory(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("RaccooChat.getHistory", callContext);
+    ctx = this->eventHandler_->getContext("RaccooChat.getChatHistory", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getHistory");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "RaccooChat.getChatHistory");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "RaccooChat.getHistory");
+    this->eventHandler_->preRead(ctx, "RaccooChat.getChatHistory");
   }
 
-  RaccooChat_getHistory_args args;
+  RaccooChat_getChatHistory_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "RaccooChat.getHistory", bytes);
+    this->eventHandler_->postRead(ctx, "RaccooChat.getChatHistory", bytes);
   }
 
-  RaccooChat_getHistory_result result;
+  RaccooChat_getChatHistory_result result;
   try {
-    iface_->getHistory(result.success);
+    iface_->getChatHistory(result.success);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "RaccooChat.getHistory");
+      this->eventHandler_->handlerError(ctx, "RaccooChat.getChatHistory");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("getHistory", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("getChatHistory", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -4289,17 +4871,17 @@ void RaccooChatProcessor::process_getHistory(int32_t seqid, ::apache::thrift::pr
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "RaccooChat.getHistory");
+    this->eventHandler_->preWrite(ctx, "RaccooChat.getChatHistory");
   }
 
-  oprot->writeMessageBegin("getHistory", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("getChatHistory", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "RaccooChat.getHistory", bytes);
+    this->eventHandler_->postWrite(ctx, "RaccooChat.getChatHistory", bytes);
   }
 }
 
@@ -4326,7 +4908,7 @@ void RaccooChatProcessor::process_getNewMessages(int32_t seqid, ::apache::thrift
 
   RaccooChat_getNewMessages_result result;
   try {
-    iface_->getNewMessages(result.success, args.name);
+    iface_->getNewMessages(result.success, args.userId);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
@@ -4380,7 +4962,7 @@ void RaccooChatProcessor::process_getNewPrivateMessages(int32_t seqid, ::apache:
 
   RaccooChat_getNewPrivateMessages_result result;
   try {
-    iface_->getNewPrivateMessages(result.success, args.name);
+    iface_->getNewPrivateMessages(result.success, args.userId);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
@@ -4487,7 +5069,7 @@ void RaccooChatProcessor::process_addPrivateMessage(int32_t seqid, ::apache::thr
 
   RaccooChat_addPrivateMessage_result result;
   try {
-    iface_->addPrivateMessage(args.msg, args.name);
+    iface_->addPrivateMessage(args.userId, args.msg);
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
       this->eventHandler_->handlerError(ctx, "RaccooChat.addPrivateMessage");
@@ -4524,19 +5106,20 @@ void RaccooChatProcessor::process_addPrivateMessage(int32_t seqid, ::apache::thr
   return processor;
 }
 
-int32_t RaccooChatConcurrentClient::getMaxUserNameSize()
+void RaccooChatConcurrentClient::ifRegisteredUser(const std::string& userName)
 {
-  int32_t seqid = send_getMaxUserNameSize();
-  return recv_getMaxUserNameSize(seqid);
+  int32_t seqid = send_ifRegisteredUser(userName);
+  recv_ifRegisteredUser(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_getMaxUserNameSize()
+int32_t RaccooChatConcurrentClient::send_ifRegisteredUser(const std::string& userName)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("getMaxUserNameSize", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("ifRegisteredUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_getMaxUserNameSize_pargs args;
+  RaccooChat_ifRegisteredUser_pargs args;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -4547,7 +5130,7 @@ int32_t RaccooChatConcurrentClient::send_getMaxUserNameSize()
   return cseqid;
 }
 
-int32_t RaccooChatConcurrentClient::recv_getMaxUserNameSize(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_ifRegisteredUser(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -4576,7 +5159,7 @@ int32_t RaccooChatConcurrentClient::recv_getMaxUserNameSize(const int32_t seqid)
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("getMaxUserNameSize") != 0) {
+      if (fname.compare("ifRegisteredUser") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -4585,95 +5168,15 @@ int32_t RaccooChatConcurrentClient::recv_getMaxUserNameSize(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      int32_t _return;
-      RaccooChat_getMaxUserNameSize_presult result;
-      result.success = &_return;
+      RaccooChat_ifRegisteredUser_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
-      if (result.__isset.success) {
+      if (result.__isset.e) {
         sentry.commit();
-        return _return;
+        throw result.e;
       }
-      // in a bad state, don't commit
-      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getMaxUserNameSize failed: unknown result");
-    }
-    // seqid != rseqid
-    this->sync_.updatePending(fname, mtype, rseqid);
-
-    // this will temporarily unlock the readMutex, and let other clients get work done
-    this->sync_.waitForWork(seqid);
-  } // end while(true)
-}
-
-void RaccooChatConcurrentClient::findUser(const std::string& name)
-{
-  int32_t seqid = send_findUser(name);
-  recv_findUser(seqid);
-}
-
-int32_t RaccooChatConcurrentClient::send_findUser(const std::string& name)
-{
-  int32_t cseqid = this->sync_.generateSeqId();
-  ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("findUser", ::apache::thrift::protocol::T_CALL, cseqid);
-
-  RaccooChat_findUser_pargs args;
-  args.name = &name;
-  args.write(oprot_);
-
-  oprot_->writeMessageEnd();
-  oprot_->getTransport()->writeEnd();
-  oprot_->getTransport()->flush();
-
-  sentry.commit();
-  return cseqid;
-}
-
-void RaccooChatConcurrentClient::recv_findUser(const int32_t seqid)
-{
-
-  int32_t rseqid = 0;
-  std::string fname;
-  ::apache::thrift::protocol::TMessageType mtype;
-
-  // the read mutex gets dropped and reacquired as part of waitForWork()
-  // The destructor of this sentry wakes up other clients
-  ::apache::thrift::async::TConcurrentRecvSentry sentry(&this->sync_, seqid);
-
-  while(true) {
-    if(!this->sync_.getPending(fname, mtype, rseqid)) {
-      iprot_->readMessageBegin(fname, mtype, rseqid);
-    }
-    if(seqid == rseqid) {
-      if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
-        ::apache::thrift::TApplicationException x;
-        x.read(iprot_);
-        iprot_->readMessageEnd();
-        iprot_->getTransport()->readEnd();
-        sentry.commit();
-        throw x;
-      }
-      if (mtype != ::apache::thrift::protocol::T_REPLY) {
-        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-        iprot_->readMessageEnd();
-        iprot_->getTransport()->readEnd();
-      }
-      if (fname.compare("findUser") != 0) {
-        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
-        iprot_->readMessageEnd();
-        iprot_->getTransport()->readEnd();
-
-        // in a bad state, don't commit
-        using ::apache::thrift::protocol::TProtocolException;
-        throw TProtocolException(TProtocolException::INVALID_DATA);
-      }
-      RaccooChat_findUser_presult result;
-      result.read(iprot_);
-      iprot_->readMessageEnd();
-      iprot_->getTransport()->readEnd();
-
       sentry.commit();
       return;
     }
@@ -4685,20 +5188,20 @@ void RaccooChatConcurrentClient::recv_findUser(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::validateName(const std::string& name)
+void RaccooChatConcurrentClient::validateName(const std::string& userName)
 {
-  int32_t seqid = send_validateName(name);
+  int32_t seqid = send_validateName(userName);
   recv_validateName(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_validateName(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_validateName(const std::string& userName)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("validateName", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_validateName_pargs args;
-  args.name = &name;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -4752,6 +5255,10 @@ void RaccooChatConcurrentClient::recv_validateName(const int32_t seqid)
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
+      if (result.__isset.e) {
+        sentry.commit();
+        throw result.e;
+      }
       sentry.commit();
       return;
     }
@@ -4763,20 +5270,20 @@ void RaccooChatConcurrentClient::recv_validateName(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::validatePassword(const std::string& password)
+void RaccooChatConcurrentClient::validatePassword(const std::string& userPassword)
 {
-  int32_t seqid = send_validatePassword(password);
+  int32_t seqid = send_validatePassword(userPassword);
   recv_validatePassword(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_validatePassword(const std::string& password)
+int32_t RaccooChatConcurrentClient::send_validatePassword(const std::string& userPassword)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("validatePassword", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_validatePassword_pargs args;
-  args.password = &password;
+  args.userPassword = &userPassword;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -4830,6 +5337,10 @@ void RaccooChatConcurrentClient::recv_validatePassword(const int32_t seqid)
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
+      if (result.__isset.e) {
+        sentry.commit();
+        throw result.e;
+      }
       sentry.commit();
       return;
     }
@@ -4841,21 +5352,21 @@ void RaccooChatConcurrentClient::recv_validatePassword(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::checkPassword(const std::string& name, const std::string& password)
+void RaccooChatConcurrentClient::comparePassword(const std::string& userName, const std::string& userPassword)
 {
-  int32_t seqid = send_checkPassword(name, password);
-  recv_checkPassword(seqid);
+  int32_t seqid = send_comparePassword(userName, userPassword);
+  recv_comparePassword(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_checkPassword(const std::string& name, const std::string& password)
+int32_t RaccooChatConcurrentClient::send_comparePassword(const std::string& userName, const std::string& userPassword)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("checkPassword", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("comparePassword", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_checkPassword_pargs args;
-  args.name = &name;
-  args.password = &password;
+  RaccooChat_comparePassword_pargs args;
+  args.userName = &userName;
+  args.userPassword = &userPassword;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -4866,7 +5377,7 @@ int32_t RaccooChatConcurrentClient::send_checkPassword(const std::string& name, 
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_checkPassword(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_comparePassword(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -4895,7 +5406,7 @@ void RaccooChatConcurrentClient::recv_checkPassword(const int32_t seqid)
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("checkPassword") != 0) {
+      if (fname.compare("comparePassword") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -4904,11 +5415,15 @@ void RaccooChatConcurrentClient::recv_checkPassword(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RaccooChat_checkPassword_presult result;
+      RaccooChat_comparePassword_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
+      if (result.__isset.e) {
+        sentry.commit();
+        throw result.e;
+      }
       sentry.commit();
       return;
     }
@@ -4920,20 +5435,20 @@ void RaccooChatConcurrentClient::recv_checkPassword(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::checkIfUserOnline(const std::string& name)
+void RaccooChatConcurrentClient::ifUserOnline(const std::string& userName)
 {
-  int32_t seqid = send_checkIfUserOnline(name);
-  recv_checkIfUserOnline(seqid);
+  int32_t seqid = send_ifUserOnline(userName);
+  recv_ifUserOnline(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_checkIfUserOnline(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_ifUserOnline(const std::string& userName)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("checkIfUserOnline", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("ifUserOnline", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_checkIfUserOnline_pargs args;
-  args.name = &name;
+  RaccooChat_ifUserOnline_pargs args;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -4944,7 +5459,7 @@ int32_t RaccooChatConcurrentClient::send_checkIfUserOnline(const std::string& na
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_checkIfUserOnline(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_ifUserOnline(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -4973,7 +5488,7 @@ void RaccooChatConcurrentClient::recv_checkIfUserOnline(const int32_t seqid)
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("checkIfUserOnline") != 0) {
+      if (fname.compare("ifUserOnline") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -4982,11 +5497,15 @@ void RaccooChatConcurrentClient::recv_checkIfUserOnline(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RaccooChat_checkIfUserOnline_presult result;
+      RaccooChat_ifUserOnline_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
+      if (result.__isset.e) {
+        sentry.commit();
+        throw result.e;
+      }
       sentry.commit();
       return;
     }
@@ -4998,20 +5517,20 @@ void RaccooChatConcurrentClient::recv_checkIfUserOnline(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::checkIfUserOffline(const std::string& name)
+void RaccooChatConcurrentClient::ifUserOffline(const std::string& userName)
 {
-  int32_t seqid = send_checkIfUserOffline(name);
-  recv_checkIfUserOffline(seqid);
+  int32_t seqid = send_ifUserOffline(userName);
+  recv_ifUserOffline(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_checkIfUserOffline(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_ifUserOffline(const std::string& userName)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("checkIfUserOffline", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("ifUserOffline", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_checkIfUserOffline_pargs args;
-  args.name = &name;
+  RaccooChat_ifUserOffline_pargs args;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5022,7 +5541,7 @@ int32_t RaccooChatConcurrentClient::send_checkIfUserOffline(const std::string& n
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_checkIfUserOffline(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_ifUserOffline(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5051,7 +5570,7 @@ void RaccooChatConcurrentClient::recv_checkIfUserOffline(const int32_t seqid)
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("checkIfUserOffline") != 0) {
+      if (fname.compare("ifUserOffline") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -5060,11 +5579,15 @@ void RaccooChatConcurrentClient::recv_checkIfUserOffline(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RaccooChat_checkIfUserOffline_presult result;
+      RaccooChat_ifUserOffline_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
+      if (result.__isset.e) {
+        sentry.commit();
+        throw result.e;
+      }
       sentry.commit();
       return;
     }
@@ -5076,21 +5599,21 @@ void RaccooChatConcurrentClient::recv_checkIfUserOffline(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::registerUser(const std::string& name, const std::string& password)
+void RaccooChatConcurrentClient::registrationUser(const std::string& userName, const std::string& userPassword)
 {
-  int32_t seqid = send_registerUser(name, password);
-  recv_registerUser(seqid);
+  int32_t seqid = send_registrationUser(userName, userPassword);
+  recv_registrationUser(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_registerUser(const std::string& name, const std::string& password)
+int32_t RaccooChatConcurrentClient::send_registrationUser(const std::string& userName, const std::string& userPassword)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("registerUser", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("registrationUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_registerUser_pargs args;
-  args.name = &name;
-  args.password = &password;
+  RaccooChat_registrationUser_pargs args;
+  args.userName = &userName;
+  args.userPassword = &userPassword;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5101,7 +5624,7 @@ int32_t RaccooChatConcurrentClient::send_registerUser(const std::string& name, c
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_registerUser(const int32_t seqid)
+void RaccooChatConcurrentClient::recv_registrationUser(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5130,7 +5653,7 @@ void RaccooChatConcurrentClient::recv_registerUser(const int32_t seqid)
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("registerUser") != 0) {
+      if (fname.compare("registrationUser") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -5139,7 +5662,7 @@ void RaccooChatConcurrentClient::recv_registerUser(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RaccooChat_registerUser_presult result;
+      RaccooChat_registrationUser_presult result;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
@@ -5155,20 +5678,20 @@ void RaccooChatConcurrentClient::recv_registerUser(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::connectUser(const std::string& name)
+int32_t RaccooChatConcurrentClient::connectUser(const std::string& userName)
 {
-  int32_t seqid = send_connectUser(name);
-  recv_connectUser(seqid);
+  int32_t seqid = send_connectUser(userName);
+  return recv_connectUser(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_connectUser(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_connectUser(const std::string& userName)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("connectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_connectUser_pargs args;
-  args.name = &name;
+  args.userName = &userName;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5179,7 +5702,7 @@ int32_t RaccooChatConcurrentClient::send_connectUser(const std::string& name)
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_connectUser(const int32_t seqid)
+int32_t RaccooChatConcurrentClient::recv_connectUser(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5217,13 +5740,19 @@ void RaccooChatConcurrentClient::recv_connectUser(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
+      int32_t _return;
       RaccooChat_connectUser_presult result;
+      result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
-      sentry.commit();
-      return;
+      if (result.__isset.success) {
+        sentry.commit();
+        return _return;
+      }
+      // in a bad state, don't commit
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "connectUser failed: unknown result");
     }
     // seqid != rseqid
     this->sync_.updatePending(fname, mtype, rseqid);
@@ -5233,20 +5762,20 @@ void RaccooChatConcurrentClient::recv_connectUser(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::disconnectUser(const std::string& name)
+void RaccooChatConcurrentClient::disconnectUser(const int32_t userId)
 {
-  int32_t seqid = send_disconnectUser(name);
+  int32_t seqid = send_disconnectUser(userId);
   recv_disconnectUser(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_disconnectUser(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_disconnectUser(const int32_t userId)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("disconnectUser", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_disconnectUser_pargs args;
-  args.name = &name;
+  args.userId = &userId;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5311,7 +5840,175 @@ void RaccooChatConcurrentClient::recv_disconnectUser(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::getAllOnlineUsers(std::vector<std::string> & _return)
+void RaccooChatConcurrentClient::getUserName(std::string& _return, const int32_t userId)
+{
+  int32_t seqid = send_getUserName(userId);
+  recv_getUserName(_return, seqid);
+}
+
+int32_t RaccooChatConcurrentClient::send_getUserName(const int32_t userId)
+{
+  int32_t cseqid = this->sync_.generateSeqId();
+  ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
+  oprot_->writeMessageBegin("getUserName", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  RaccooChat_getUserName_pargs args;
+  args.userId = &userId;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
+
+  sentry.commit();
+  return cseqid;
+}
+
+void RaccooChatConcurrentClient::recv_getUserName(std::string& _return, const int32_t seqid)
+{
+
+  int32_t rseqid = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TMessageType mtype;
+
+  // the read mutex gets dropped and reacquired as part of waitForWork()
+  // The destructor of this sentry wakes up other clients
+  ::apache::thrift::async::TConcurrentRecvSentry sentry(&this->sync_, seqid);
+
+  while(true) {
+    if(!this->sync_.getPending(fname, mtype, rseqid)) {
+      iprot_->readMessageBegin(fname, mtype, rseqid);
+    }
+    if(seqid == rseqid) {
+      if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
+        ::apache::thrift::TApplicationException x;
+        x.read(iprot_);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+        sentry.commit();
+        throw x;
+      }
+      if (mtype != ::apache::thrift::protocol::T_REPLY) {
+        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+      }
+      if (fname.compare("getUserName") != 0) {
+        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+
+        // in a bad state, don't commit
+        using ::apache::thrift::protocol::TProtocolException;
+        throw TProtocolException(TProtocolException::INVALID_DATA);
+      }
+      RaccooChat_getUserName_presult result;
+      result.success = &_return;
+      result.read(iprot_);
+      iprot_->readMessageEnd();
+      iprot_->getTransport()->readEnd();
+
+      if (result.__isset.success) {
+        // _return pointer has now been filled
+        sentry.commit();
+        return;
+      }
+      // in a bad state, don't commit
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getUserName failed: unknown result");
+    }
+    // seqid != rseqid
+    this->sync_.updatePending(fname, mtype, rseqid);
+
+    // this will temporarily unlock the readMutex, and let other clients get work done
+    this->sync_.waitForWork(seqid);
+  } // end while(true)
+}
+
+int32_t RaccooChatConcurrentClient::getUserId(const std::string& userName)
+{
+  int32_t seqid = send_getUserId(userName);
+  return recv_getUserId(seqid);
+}
+
+int32_t RaccooChatConcurrentClient::send_getUserId(const std::string& userName)
+{
+  int32_t cseqid = this->sync_.generateSeqId();
+  ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
+  oprot_->writeMessageBegin("getUserId", ::apache::thrift::protocol::T_CALL, cseqid);
+
+  RaccooChat_getUserId_pargs args;
+  args.userName = &userName;
+  args.write(oprot_);
+
+  oprot_->writeMessageEnd();
+  oprot_->getTransport()->writeEnd();
+  oprot_->getTransport()->flush();
+
+  sentry.commit();
+  return cseqid;
+}
+
+int32_t RaccooChatConcurrentClient::recv_getUserId(const int32_t seqid)
+{
+
+  int32_t rseqid = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TMessageType mtype;
+
+  // the read mutex gets dropped and reacquired as part of waitForWork()
+  // The destructor of this sentry wakes up other clients
+  ::apache::thrift::async::TConcurrentRecvSentry sentry(&this->sync_, seqid);
+
+  while(true) {
+    if(!this->sync_.getPending(fname, mtype, rseqid)) {
+      iprot_->readMessageBegin(fname, mtype, rseqid);
+    }
+    if(seqid == rseqid) {
+      if (mtype == ::apache::thrift::protocol::T_EXCEPTION) {
+        ::apache::thrift::TApplicationException x;
+        x.read(iprot_);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+        sentry.commit();
+        throw x;
+      }
+      if (mtype != ::apache::thrift::protocol::T_REPLY) {
+        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+      }
+      if (fname.compare("getUserId") != 0) {
+        iprot_->skip(::apache::thrift::protocol::T_STRUCT);
+        iprot_->readMessageEnd();
+        iprot_->getTransport()->readEnd();
+
+        // in a bad state, don't commit
+        using ::apache::thrift::protocol::TProtocolException;
+        throw TProtocolException(TProtocolException::INVALID_DATA);
+      }
+      int32_t _return;
+      RaccooChat_getUserId_presult result;
+      result.success = &_return;
+      result.read(iprot_);
+      iprot_->readMessageEnd();
+      iprot_->getTransport()->readEnd();
+
+      if (result.__isset.success) {
+        sentry.commit();
+        return _return;
+      }
+      // in a bad state, don't commit
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getUserId failed: unknown result");
+    }
+    // seqid != rseqid
+    this->sync_.updatePending(fname, mtype, rseqid);
+
+    // this will temporarily unlock the readMutex, and let other clients get work done
+    this->sync_.waitForWork(seqid);
+  } // end while(true)
+}
+
+void RaccooChatConcurrentClient::getAllOnlineUsers(std::set<std::string> & _return)
 {
   int32_t seqid = send_getAllOnlineUsers();
   recv_getAllOnlineUsers(_return, seqid);
@@ -5334,7 +6031,7 @@ int32_t RaccooChatConcurrentClient::send_getAllOnlineUsers()
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_getAllOnlineUsers(std::vector<std::string> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getAllOnlineUsers(std::set<std::string> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5394,19 +6091,19 @@ void RaccooChatConcurrentClient::recv_getAllOnlineUsers(std::vector<std::string>
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::getHistory(std::vector<SimpleMessage> & _return)
+void RaccooChatConcurrentClient::getChatHistory(std::vector<Message> & _return)
 {
-  int32_t seqid = send_getHistory();
-  recv_getHistory(_return, seqid);
+  int32_t seqid = send_getChatHistory();
+  recv_getChatHistory(_return, seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_getHistory()
+int32_t RaccooChatConcurrentClient::send_getChatHistory()
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
-  oprot_->writeMessageBegin("getHistory", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("getChatHistory", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  RaccooChat_getHistory_pargs args;
+  RaccooChat_getChatHistory_pargs args;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5417,7 +6114,7 @@ int32_t RaccooChatConcurrentClient::send_getHistory()
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_getHistory(std::vector<SimpleMessage> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getChatHistory(std::vector<Message> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5446,7 +6143,7 @@ void RaccooChatConcurrentClient::recv_getHistory(std::vector<SimpleMessage> & _r
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("getHistory") != 0) {
+      if (fname.compare("getChatHistory") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -5455,7 +6152,7 @@ void RaccooChatConcurrentClient::recv_getHistory(std::vector<SimpleMessage> & _r
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      RaccooChat_getHistory_presult result;
+      RaccooChat_getChatHistory_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -5467,7 +6164,7 @@ void RaccooChatConcurrentClient::recv_getHistory(std::vector<SimpleMessage> & _r
         return;
       }
       // in a bad state, don't commit
-      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getHistory failed: unknown result");
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "getChatHistory failed: unknown result");
     }
     // seqid != rseqid
     this->sync_.updatePending(fname, mtype, rseqid);
@@ -5477,20 +6174,20 @@ void RaccooChatConcurrentClient::recv_getHistory(std::vector<SimpleMessage> & _r
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::getNewMessages(std::vector<SimpleMessage> & _return, const std::string& name)
+void RaccooChatConcurrentClient::getNewMessages(std::vector<Message> & _return, const int32_t userId)
 {
-  int32_t seqid = send_getNewMessages(name);
+  int32_t seqid = send_getNewMessages(userId);
   recv_getNewMessages(_return, seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_getNewMessages(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_getNewMessages(const int32_t userId)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("getNewMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_getNewMessages_pargs args;
-  args.name = &name;
+  args.userId = &userId;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5501,7 +6198,7 @@ int32_t RaccooChatConcurrentClient::send_getNewMessages(const std::string& name)
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_getNewMessages(std::vector<SimpleMessage> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getNewMessages(std::vector<Message> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5561,20 +6258,20 @@ void RaccooChatConcurrentClient::recv_getNewMessages(std::vector<SimpleMessage> 
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::getNewPrivateMessages(std::vector<SimpleMessage> & _return, const std::string& name)
+void RaccooChatConcurrentClient::getNewPrivateMessages(std::vector<Message> & _return, const int32_t userId)
 {
-  int32_t seqid = send_getNewPrivateMessages(name);
+  int32_t seqid = send_getNewPrivateMessages(userId);
   recv_getNewPrivateMessages(_return, seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_getNewPrivateMessages(const std::string& name)
+int32_t RaccooChatConcurrentClient::send_getNewPrivateMessages(const int32_t userId)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("getNewPrivateMessages", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_getNewPrivateMessages_pargs args;
-  args.name = &name;
+  args.userId = &userId;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -5585,7 +6282,7 @@ int32_t RaccooChatConcurrentClient::send_getNewPrivateMessages(const std::string
   return cseqid;
 }
 
-void RaccooChatConcurrentClient::recv_getNewPrivateMessages(std::vector<SimpleMessage> & _return, const int32_t seqid)
+void RaccooChatConcurrentClient::recv_getNewPrivateMessages(std::vector<Message> & _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -5645,13 +6342,13 @@ void RaccooChatConcurrentClient::recv_getNewPrivateMessages(std::vector<SimpleMe
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::addMessage(const SimpleMessage& msg)
+void RaccooChatConcurrentClient::addMessage(const Message& msg)
 {
   int32_t seqid = send_addMessage(msg);
   recv_addMessage(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_addMessage(const SimpleMessage& msg)
+int32_t RaccooChatConcurrentClient::send_addMessage(const Message& msg)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
@@ -5723,21 +6420,21 @@ void RaccooChatConcurrentClient::recv_addMessage(const int32_t seqid)
   } // end while(true)
 }
 
-void RaccooChatConcurrentClient::addPrivateMessage(const SimpleMessage& msg, const std::string& name)
+void RaccooChatConcurrentClient::addPrivateMessage(const int32_t userId, const Message& msg)
 {
-  int32_t seqid = send_addPrivateMessage(msg, name);
+  int32_t seqid = send_addPrivateMessage(userId, msg);
   recv_addPrivateMessage(seqid);
 }
 
-int32_t RaccooChatConcurrentClient::send_addPrivateMessage(const SimpleMessage& msg, const std::string& name)
+int32_t RaccooChatConcurrentClient::send_addPrivateMessage(const int32_t userId, const Message& msg)
 {
   int32_t cseqid = this->sync_.generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(&this->sync_);
   oprot_->writeMessageBegin("addPrivateMessage", ::apache::thrift::protocol::T_CALL, cseqid);
 
   RaccooChat_addPrivateMessage_pargs args;
+  args.userId = &userId;
   args.msg = &msg;
-  args.name = &name;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();

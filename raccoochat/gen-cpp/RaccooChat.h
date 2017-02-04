@@ -21,22 +21,23 @@ namespace raccoochat {
 class RaccooChatIf {
  public:
   virtual ~RaccooChatIf() {}
-  virtual int32_t getMaxUserNameSize() = 0;
-  virtual void findUser(const std::string& name) = 0;
-  virtual void validateName(const std::string& name) = 0;
-  virtual void validatePassword(const std::string& password) = 0;
-  virtual void checkPassword(const std::string& name, const std::string& password) = 0;
-  virtual void checkIfUserOnline(const std::string& name) = 0;
-  virtual void checkIfUserOffline(const std::string& name) = 0;
-  virtual void registerUser(const std::string& name, const std::string& password) = 0;
-  virtual void connectUser(const std::string& name) = 0;
-  virtual void disconnectUser(const std::string& name) = 0;
-  virtual void getAllOnlineUsers(std::vector<std::string> & _return) = 0;
-  virtual void getHistory(std::vector<SimpleMessage> & _return) = 0;
-  virtual void getNewMessages(std::vector<SimpleMessage> & _return, const std::string& name) = 0;
-  virtual void getNewPrivateMessages(std::vector<SimpleMessage> & _return, const std::string& name) = 0;
-  virtual void addMessage(const SimpleMessage& msg) = 0;
-  virtual void addPrivateMessage(const SimpleMessage& msg, const std::string& name) = 0;
+  virtual void ifRegisteredUser(const std::string& userName) = 0;
+  virtual void validateName(const std::string& userName) = 0;
+  virtual void validatePassword(const std::string& userPassword) = 0;
+  virtual void comparePassword(const std::string& userName, const std::string& userPassword) = 0;
+  virtual void ifUserOnline(const std::string& userName) = 0;
+  virtual void ifUserOffline(const std::string& userName) = 0;
+  virtual void registrationUser(const std::string& userName, const std::string& userPassword) = 0;
+  virtual int32_t connectUser(const std::string& userName) = 0;
+  virtual void disconnectUser(const int32_t userId) = 0;
+  virtual void getUserName(std::string& _return, const int32_t userId) = 0;
+  virtual int32_t getUserId(const std::string& userName) = 0;
+  virtual void getAllOnlineUsers(std::set<std::string> & _return) = 0;
+  virtual void getChatHistory(std::vector<Message> & _return) = 0;
+  virtual void getNewMessages(std::vector<Message> & _return, const int32_t userId) = 0;
+  virtual void getNewPrivateMessages(std::vector<Message> & _return, const int32_t userId) = 0;
+  virtual void addMessage(const Message& msg) = 0;
+  virtual void addPrivateMessage(const int32_t userId, const Message& msg) = 0;
 };
 
 class RaccooChatIfFactory {
@@ -66,238 +67,168 @@ class RaccooChatIfSingletonFactory : virtual public RaccooChatIfFactory {
 class RaccooChatNull : virtual public RaccooChatIf {
  public:
   virtual ~RaccooChatNull() {}
-  int32_t getMaxUserNameSize() {
+  void ifRegisteredUser(const std::string& /* userName */) {
+    return;
+  }
+  void validateName(const std::string& /* userName */) {
+    return;
+  }
+  void validatePassword(const std::string& /* userPassword */) {
+    return;
+  }
+  void comparePassword(const std::string& /* userName */, const std::string& /* userPassword */) {
+    return;
+  }
+  void ifUserOnline(const std::string& /* userName */) {
+    return;
+  }
+  void ifUserOffline(const std::string& /* userName */) {
+    return;
+  }
+  void registrationUser(const std::string& /* userName */, const std::string& /* userPassword */) {
+    return;
+  }
+  int32_t connectUser(const std::string& /* userName */) {
     int32_t _return = 0;
     return _return;
   }
-  void findUser(const std::string& /* name */) {
+  void disconnectUser(const int32_t /* userId */) {
     return;
   }
-  void validateName(const std::string& /* name */) {
+  void getUserName(std::string& /* _return */, const int32_t /* userId */) {
     return;
   }
-  void validatePassword(const std::string& /* password */) {
+  int32_t getUserId(const std::string& /* userName */) {
+    int32_t _return = 0;
+    return _return;
+  }
+  void getAllOnlineUsers(std::set<std::string> & /* _return */) {
     return;
   }
-  void checkPassword(const std::string& /* name */, const std::string& /* password */) {
+  void getChatHistory(std::vector<Message> & /* _return */) {
     return;
   }
-  void checkIfUserOnline(const std::string& /* name */) {
+  void getNewMessages(std::vector<Message> & /* _return */, const int32_t /* userId */) {
     return;
   }
-  void checkIfUserOffline(const std::string& /* name */) {
+  void getNewPrivateMessages(std::vector<Message> & /* _return */, const int32_t /* userId */) {
     return;
   }
-  void registerUser(const std::string& /* name */, const std::string& /* password */) {
+  void addMessage(const Message& /* msg */) {
     return;
   }
-  void connectUser(const std::string& /* name */) {
-    return;
-  }
-  void disconnectUser(const std::string& /* name */) {
-    return;
-  }
-  void getAllOnlineUsers(std::vector<std::string> & /* _return */) {
-    return;
-  }
-  void getHistory(std::vector<SimpleMessage> & /* _return */) {
-    return;
-  }
-  void getNewMessages(std::vector<SimpleMessage> & /* _return */, const std::string& /* name */) {
-    return;
-  }
-  void getNewPrivateMessages(std::vector<SimpleMessage> & /* _return */, const std::string& /* name */) {
-    return;
-  }
-  void addMessage(const SimpleMessage& /* msg */) {
-    return;
-  }
-  void addPrivateMessage(const SimpleMessage& /* msg */, const std::string& /* name */) {
+  void addPrivateMessage(const int32_t /* userId */, const Message& /* msg */) {
     return;
   }
 };
 
+typedef struct _RaccooChat_ifRegisteredUser_args__isset {
+  _RaccooChat_ifRegisteredUser_args__isset() : userName(false) {}
+  bool userName :1;
+} _RaccooChat_ifRegisteredUser_args__isset;
 
-class RaccooChat_getMaxUserNameSize_args {
+class RaccooChat_ifRegisteredUser_args {
  public:
 
-  RaccooChat_getMaxUserNameSize_args(const RaccooChat_getMaxUserNameSize_args&);
-  RaccooChat_getMaxUserNameSize_args& operator=(const RaccooChat_getMaxUserNameSize_args&);
-  RaccooChat_getMaxUserNameSize_args() {
+  RaccooChat_ifRegisteredUser_args(const RaccooChat_ifRegisteredUser_args&);
+  RaccooChat_ifRegisteredUser_args& operator=(const RaccooChat_ifRegisteredUser_args&);
+  RaccooChat_ifRegisteredUser_args() : userName() {
   }
 
-  virtual ~RaccooChat_getMaxUserNameSize_args() throw();
+  virtual ~RaccooChat_ifRegisteredUser_args() throw();
+  std::string userName;
 
-  bool operator == (const RaccooChat_getMaxUserNameSize_args & /* rhs */) const
+  _RaccooChat_ifRegisteredUser_args__isset __isset;
+
+  void __set_userName(const std::string& val);
+
+  bool operator == (const RaccooChat_ifRegisteredUser_args & rhs) const
   {
-    return true;
-  }
-  bool operator != (const RaccooChat_getMaxUserNameSize_args &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const RaccooChat_getMaxUserNameSize_args & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_getMaxUserNameSize_pargs {
- public:
-
-
-  virtual ~RaccooChat_getMaxUserNameSize_pargs() throw();
-
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-typedef struct _RaccooChat_getMaxUserNameSize_result__isset {
-  _RaccooChat_getMaxUserNameSize_result__isset() : success(false) {}
-  bool success :1;
-} _RaccooChat_getMaxUserNameSize_result__isset;
-
-class RaccooChat_getMaxUserNameSize_result {
- public:
-
-  RaccooChat_getMaxUserNameSize_result(const RaccooChat_getMaxUserNameSize_result&);
-  RaccooChat_getMaxUserNameSize_result& operator=(const RaccooChat_getMaxUserNameSize_result&);
-  RaccooChat_getMaxUserNameSize_result() : success(0) {
-  }
-
-  virtual ~RaccooChat_getMaxUserNameSize_result() throw();
-  int32_t success;
-
-  _RaccooChat_getMaxUserNameSize_result__isset __isset;
-
-  void __set_success(const int32_t val);
-
-  bool operator == (const RaccooChat_getMaxUserNameSize_result & rhs) const
-  {
-    if (!(success == rhs.success))
+    if (!(userName == rhs.userName))
       return false;
     return true;
   }
-  bool operator != (const RaccooChat_getMaxUserNameSize_result &rhs) const {
+  bool operator != (const RaccooChat_ifRegisteredUser_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_getMaxUserNameSize_result & ) const;
+  bool operator < (const RaccooChat_ifRegisteredUser_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _RaccooChat_getMaxUserNameSize_presult__isset {
-  _RaccooChat_getMaxUserNameSize_presult__isset() : success(false) {}
-  bool success :1;
-} _RaccooChat_getMaxUserNameSize_presult__isset;
 
-class RaccooChat_getMaxUserNameSize_presult {
+class RaccooChat_ifRegisteredUser_pargs {
  public:
 
 
-  virtual ~RaccooChat_getMaxUserNameSize_presult() throw();
-  int32_t* success;
+  virtual ~RaccooChat_ifRegisteredUser_pargs() throw();
+  const std::string* userName;
 
-  _RaccooChat_getMaxUserNameSize_presult__isset __isset;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _RaccooChat_findUser_args__isset {
-  _RaccooChat_findUser_args__isset() : name(false) {}
-  bool name :1;
-} _RaccooChat_findUser_args__isset;
+typedef struct _RaccooChat_ifRegisteredUser_result__isset {
+  _RaccooChat_ifRegisteredUser_result__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_ifRegisteredUser_result__isset;
 
-class RaccooChat_findUser_args {
+class RaccooChat_ifRegisteredUser_result {
  public:
 
-  RaccooChat_findUser_args(const RaccooChat_findUser_args&);
-  RaccooChat_findUser_args& operator=(const RaccooChat_findUser_args&);
-  RaccooChat_findUser_args() : name() {
+  RaccooChat_ifRegisteredUser_result(const RaccooChat_ifRegisteredUser_result&);
+  RaccooChat_ifRegisteredUser_result& operator=(const RaccooChat_ifRegisteredUser_result&);
+  RaccooChat_ifRegisteredUser_result() {
   }
 
-  virtual ~RaccooChat_findUser_args() throw();
-  std::string name;
+  virtual ~RaccooChat_ifRegisteredUser_result() throw();
+  InvalidNameException e;
 
-  _RaccooChat_findUser_args__isset __isset;
+  _RaccooChat_ifRegisteredUser_result__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_e(const InvalidNameException& val);
 
-  bool operator == (const RaccooChat_findUser_args & rhs) const
+  bool operator == (const RaccooChat_ifRegisteredUser_result & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(e == rhs.e))
       return false;
     return true;
   }
-  bool operator != (const RaccooChat_findUser_args &rhs) const {
+  bool operator != (const RaccooChat_ifRegisteredUser_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_findUser_args & ) const;
+  bool operator < (const RaccooChat_ifRegisteredUser_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
+typedef struct _RaccooChat_ifRegisteredUser_presult__isset {
+  _RaccooChat_ifRegisteredUser_presult__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_ifRegisteredUser_presult__isset;
 
-class RaccooChat_findUser_pargs {
+class RaccooChat_ifRegisteredUser_presult {
  public:
 
 
-  virtual ~RaccooChat_findUser_pargs() throw();
-  const std::string* name;
+  virtual ~RaccooChat_ifRegisteredUser_presult() throw();
+  InvalidNameException e;
 
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_findUser_result {
- public:
-
-  RaccooChat_findUser_result(const RaccooChat_findUser_result&);
-  RaccooChat_findUser_result& operator=(const RaccooChat_findUser_result&);
-  RaccooChat_findUser_result() {
-  }
-
-  virtual ~RaccooChat_findUser_result() throw();
-
-  bool operator == (const RaccooChat_findUser_result & /* rhs */) const
-  {
-    return true;
-  }
-  bool operator != (const RaccooChat_findUser_result &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const RaccooChat_findUser_result & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_findUser_presult {
- public:
-
-
-  virtual ~RaccooChat_findUser_presult() throw();
+  _RaccooChat_ifRegisteredUser_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
 typedef struct _RaccooChat_validateName_args__isset {
-  _RaccooChat_validateName_args__isset() : name(false) {}
-  bool name :1;
+  _RaccooChat_validateName_args__isset() : userName(false) {}
+  bool userName :1;
 } _RaccooChat_validateName_args__isset;
 
 class RaccooChat_validateName_args {
@@ -305,19 +236,19 @@ class RaccooChat_validateName_args {
 
   RaccooChat_validateName_args(const RaccooChat_validateName_args&);
   RaccooChat_validateName_args& operator=(const RaccooChat_validateName_args&);
-  RaccooChat_validateName_args() : name() {
+  RaccooChat_validateName_args() : userName() {
   }
 
   virtual ~RaccooChat_validateName_args() throw();
-  std::string name;
+  std::string userName;
 
   _RaccooChat_validateName_args__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_userName(const std::string& val);
 
   bool operator == (const RaccooChat_validateName_args & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(userName == rhs.userName))
       return false;
     return true;
   }
@@ -338,12 +269,16 @@ class RaccooChat_validateName_pargs {
 
 
   virtual ~RaccooChat_validateName_pargs() throw();
-  const std::string* name;
+  const std::string* userName;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
+typedef struct _RaccooChat_validateName_result__isset {
+  _RaccooChat_validateName_result__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_validateName_result__isset;
 
 class RaccooChat_validateName_result {
  public:
@@ -354,9 +289,16 @@ class RaccooChat_validateName_result {
   }
 
   virtual ~RaccooChat_validateName_result() throw();
+  InvalidNameException e;
 
-  bool operator == (const RaccooChat_validateName_result & /* rhs */) const
+  _RaccooChat_validateName_result__isset __isset;
+
+  void __set_e(const InvalidNameException& val);
+
+  bool operator == (const RaccooChat_validateName_result & rhs) const
   {
+    if (!(e == rhs.e))
+      return false;
     return true;
   }
   bool operator != (const RaccooChat_validateName_result &rhs) const {
@@ -370,20 +312,27 @@ class RaccooChat_validateName_result {
 
 };
 
+typedef struct _RaccooChat_validateName_presult__isset {
+  _RaccooChat_validateName_presult__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_validateName_presult__isset;
 
 class RaccooChat_validateName_presult {
  public:
 
 
   virtual ~RaccooChat_validateName_presult() throw();
+  InvalidNameException e;
+
+  _RaccooChat_validateName_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
 typedef struct _RaccooChat_validatePassword_args__isset {
-  _RaccooChat_validatePassword_args__isset() : password(false) {}
-  bool password :1;
+  _RaccooChat_validatePassword_args__isset() : userPassword(false) {}
+  bool userPassword :1;
 } _RaccooChat_validatePassword_args__isset;
 
 class RaccooChat_validatePassword_args {
@@ -391,19 +340,19 @@ class RaccooChat_validatePassword_args {
 
   RaccooChat_validatePassword_args(const RaccooChat_validatePassword_args&);
   RaccooChat_validatePassword_args& operator=(const RaccooChat_validatePassword_args&);
-  RaccooChat_validatePassword_args() : password() {
+  RaccooChat_validatePassword_args() : userPassword() {
   }
 
   virtual ~RaccooChat_validatePassword_args() throw();
-  std::string password;
+  std::string userPassword;
 
   _RaccooChat_validatePassword_args__isset __isset;
 
-  void __set_password(const std::string& val);
+  void __set_userPassword(const std::string& val);
 
   bool operator == (const RaccooChat_validatePassword_args & rhs) const
   {
-    if (!(password == rhs.password))
+    if (!(userPassword == rhs.userPassword))
       return false;
     return true;
   }
@@ -424,12 +373,16 @@ class RaccooChat_validatePassword_pargs {
 
 
   virtual ~RaccooChat_validatePassword_pargs() throw();
-  const std::string* password;
+  const std::string* userPassword;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
+typedef struct _RaccooChat_validatePassword_result__isset {
+  _RaccooChat_validatePassword_result__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_validatePassword_result__isset;
 
 class RaccooChat_validatePassword_result {
  public:
@@ -440,9 +393,16 @@ class RaccooChat_validatePassword_result {
   }
 
   virtual ~RaccooChat_validatePassword_result() throw();
+  InvalidNameException e;
 
-  bool operator == (const RaccooChat_validatePassword_result & /* rhs */) const
+  _RaccooChat_validatePassword_result__isset __isset;
+
+  void __set_e(const InvalidNameException& val);
+
+  bool operator == (const RaccooChat_validatePassword_result & rhs) const
   {
+    if (!(e == rhs.e))
+      return false;
     return true;
   }
   bool operator != (const RaccooChat_validatePassword_result &rhs) const {
@@ -456,141 +416,61 @@ class RaccooChat_validatePassword_result {
 
 };
 
+typedef struct _RaccooChat_validatePassword_presult__isset {
+  _RaccooChat_validatePassword_presult__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_validatePassword_presult__isset;
 
 class RaccooChat_validatePassword_presult {
  public:
 
 
   virtual ~RaccooChat_validatePassword_presult() throw();
+  InvalidNameException e;
+
+  _RaccooChat_validatePassword_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
-typedef struct _RaccooChat_checkPassword_args__isset {
-  _RaccooChat_checkPassword_args__isset() : name(false), password(false) {}
-  bool name :1;
-  bool password :1;
-} _RaccooChat_checkPassword_args__isset;
+typedef struct _RaccooChat_comparePassword_args__isset {
+  _RaccooChat_comparePassword_args__isset() : userName(false), userPassword(false) {}
+  bool userName :1;
+  bool userPassword :1;
+} _RaccooChat_comparePassword_args__isset;
 
-class RaccooChat_checkPassword_args {
+class RaccooChat_comparePassword_args {
  public:
 
-  RaccooChat_checkPassword_args(const RaccooChat_checkPassword_args&);
-  RaccooChat_checkPassword_args& operator=(const RaccooChat_checkPassword_args&);
-  RaccooChat_checkPassword_args() : name(), password() {
+  RaccooChat_comparePassword_args(const RaccooChat_comparePassword_args&);
+  RaccooChat_comparePassword_args& operator=(const RaccooChat_comparePassword_args&);
+  RaccooChat_comparePassword_args() : userName(), userPassword() {
   }
 
-  virtual ~RaccooChat_checkPassword_args() throw();
-  std::string name;
-  std::string password;
+  virtual ~RaccooChat_comparePassword_args() throw();
+  std::string userName;
+  std::string userPassword;
 
-  _RaccooChat_checkPassword_args__isset __isset;
+  _RaccooChat_comparePassword_args__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_userName(const std::string& val);
 
-  void __set_password(const std::string& val);
+  void __set_userPassword(const std::string& val);
 
-  bool operator == (const RaccooChat_checkPassword_args & rhs) const
+  bool operator == (const RaccooChat_comparePassword_args & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(userName == rhs.userName))
       return false;
-    if (!(password == rhs.password))
-      return false;
-    return true;
-  }
-  bool operator != (const RaccooChat_checkPassword_args &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const RaccooChat_checkPassword_args & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_checkPassword_pargs {
- public:
-
-
-  virtual ~RaccooChat_checkPassword_pargs() throw();
-  const std::string* name;
-  const std::string* password;
-
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_checkPassword_result {
- public:
-
-  RaccooChat_checkPassword_result(const RaccooChat_checkPassword_result&);
-  RaccooChat_checkPassword_result& operator=(const RaccooChat_checkPassword_result&);
-  RaccooChat_checkPassword_result() {
-  }
-
-  virtual ~RaccooChat_checkPassword_result() throw();
-
-  bool operator == (const RaccooChat_checkPassword_result & /* rhs */) const
-  {
-    return true;
-  }
-  bool operator != (const RaccooChat_checkPassword_result &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const RaccooChat_checkPassword_result & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_checkPassword_presult {
- public:
-
-
-  virtual ~RaccooChat_checkPassword_presult() throw();
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-
-};
-
-typedef struct _RaccooChat_checkIfUserOnline_args__isset {
-  _RaccooChat_checkIfUserOnline_args__isset() : name(false) {}
-  bool name :1;
-} _RaccooChat_checkIfUserOnline_args__isset;
-
-class RaccooChat_checkIfUserOnline_args {
- public:
-
-  RaccooChat_checkIfUserOnline_args(const RaccooChat_checkIfUserOnline_args&);
-  RaccooChat_checkIfUserOnline_args& operator=(const RaccooChat_checkIfUserOnline_args&);
-  RaccooChat_checkIfUserOnline_args() : name() {
-  }
-
-  virtual ~RaccooChat_checkIfUserOnline_args() throw();
-  std::string name;
-
-  _RaccooChat_checkIfUserOnline_args__isset __isset;
-
-  void __set_name(const std::string& val);
-
-  bool operator == (const RaccooChat_checkIfUserOnline_args & rhs) const
-  {
-    if (!(name == rhs.name))
+    if (!(userPassword == rhs.userPassword))
       return false;
     return true;
   }
-  bool operator != (const RaccooChat_checkIfUserOnline_args &rhs) const {
+  bool operator != (const RaccooChat_comparePassword_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_checkIfUserOnline_args & ) const;
+  bool operator < (const RaccooChat_comparePassword_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -598,177 +478,104 @@ class RaccooChat_checkIfUserOnline_args {
 };
 
 
-class RaccooChat_checkIfUserOnline_pargs {
+class RaccooChat_comparePassword_pargs {
  public:
 
 
-  virtual ~RaccooChat_checkIfUserOnline_pargs() throw();
-  const std::string* name;
+  virtual ~RaccooChat_comparePassword_pargs() throw();
+  const std::string* userName;
+  const std::string* userPassword;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
+typedef struct _RaccooChat_comparePassword_result__isset {
+  _RaccooChat_comparePassword_result__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_comparePassword_result__isset;
 
-class RaccooChat_checkIfUserOnline_result {
+class RaccooChat_comparePassword_result {
  public:
 
-  RaccooChat_checkIfUserOnline_result(const RaccooChat_checkIfUserOnline_result&);
-  RaccooChat_checkIfUserOnline_result& operator=(const RaccooChat_checkIfUserOnline_result&);
-  RaccooChat_checkIfUserOnline_result() {
+  RaccooChat_comparePassword_result(const RaccooChat_comparePassword_result&);
+  RaccooChat_comparePassword_result& operator=(const RaccooChat_comparePassword_result&);
+  RaccooChat_comparePassword_result() {
   }
 
-  virtual ~RaccooChat_checkIfUserOnline_result() throw();
+  virtual ~RaccooChat_comparePassword_result() throw();
+  InvalidNameException e;
 
-  bool operator == (const RaccooChat_checkIfUserOnline_result & /* rhs */) const
+  _RaccooChat_comparePassword_result__isset __isset;
+
+  void __set_e(const InvalidNameException& val);
+
+  bool operator == (const RaccooChat_comparePassword_result & rhs) const
   {
-    return true;
-  }
-  bool operator != (const RaccooChat_checkIfUserOnline_result &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const RaccooChat_checkIfUserOnline_result & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_checkIfUserOnline_presult {
- public:
-
-
-  virtual ~RaccooChat_checkIfUserOnline_presult() throw();
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-
-};
-
-typedef struct _RaccooChat_checkIfUserOffline_args__isset {
-  _RaccooChat_checkIfUserOffline_args__isset() : name(false) {}
-  bool name :1;
-} _RaccooChat_checkIfUserOffline_args__isset;
-
-class RaccooChat_checkIfUserOffline_args {
- public:
-
-  RaccooChat_checkIfUserOffline_args(const RaccooChat_checkIfUserOffline_args&);
-  RaccooChat_checkIfUserOffline_args& operator=(const RaccooChat_checkIfUserOffline_args&);
-  RaccooChat_checkIfUserOffline_args() : name() {
-  }
-
-  virtual ~RaccooChat_checkIfUserOffline_args() throw();
-  std::string name;
-
-  _RaccooChat_checkIfUserOffline_args__isset __isset;
-
-  void __set_name(const std::string& val);
-
-  bool operator == (const RaccooChat_checkIfUserOffline_args & rhs) const
-  {
-    if (!(name == rhs.name))
+    if (!(e == rhs.e))
       return false;
     return true;
   }
-  bool operator != (const RaccooChat_checkIfUserOffline_args &rhs) const {
+  bool operator != (const RaccooChat_comparePassword_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_checkIfUserOffline_args & ) const;
+  bool operator < (const RaccooChat_comparePassword_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
+typedef struct _RaccooChat_comparePassword_presult__isset {
+  _RaccooChat_comparePassword_presult__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_comparePassword_presult__isset;
 
-class RaccooChat_checkIfUserOffline_pargs {
+class RaccooChat_comparePassword_presult {
  public:
 
 
-  virtual ~RaccooChat_checkIfUserOffline_pargs() throw();
-  const std::string* name;
+  virtual ~RaccooChat_comparePassword_presult() throw();
+  InvalidNameException e;
 
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+  _RaccooChat_comparePassword_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
+typedef struct _RaccooChat_ifUserOnline_args__isset {
+  _RaccooChat_ifUserOnline_args__isset() : userName(false) {}
+  bool userName :1;
+} _RaccooChat_ifUserOnline_args__isset;
 
-class RaccooChat_checkIfUserOffline_result {
+class RaccooChat_ifUserOnline_args {
  public:
 
-  RaccooChat_checkIfUserOffline_result(const RaccooChat_checkIfUserOffline_result&);
-  RaccooChat_checkIfUserOffline_result& operator=(const RaccooChat_checkIfUserOffline_result&);
-  RaccooChat_checkIfUserOffline_result() {
+  RaccooChat_ifUserOnline_args(const RaccooChat_ifUserOnline_args&);
+  RaccooChat_ifUserOnline_args& operator=(const RaccooChat_ifUserOnline_args&);
+  RaccooChat_ifUserOnline_args() : userName() {
   }
 
-  virtual ~RaccooChat_checkIfUserOffline_result() throw();
+  virtual ~RaccooChat_ifUserOnline_args() throw();
+  std::string userName;
 
-  bool operator == (const RaccooChat_checkIfUserOffline_result & /* rhs */) const
+  _RaccooChat_ifUserOnline_args__isset __isset;
+
+  void __set_userName(const std::string& val);
+
+  bool operator == (const RaccooChat_ifUserOnline_args & rhs) const
   {
-    return true;
-  }
-  bool operator != (const RaccooChat_checkIfUserOffline_result &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const RaccooChat_checkIfUserOffline_result & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-
-class RaccooChat_checkIfUserOffline_presult {
- public:
-
-
-  virtual ~RaccooChat_checkIfUserOffline_presult() throw();
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-
-};
-
-typedef struct _RaccooChat_registerUser_args__isset {
-  _RaccooChat_registerUser_args__isset() : name(false), password(false) {}
-  bool name :1;
-  bool password :1;
-} _RaccooChat_registerUser_args__isset;
-
-class RaccooChat_registerUser_args {
- public:
-
-  RaccooChat_registerUser_args(const RaccooChat_registerUser_args&);
-  RaccooChat_registerUser_args& operator=(const RaccooChat_registerUser_args&);
-  RaccooChat_registerUser_args() : name(), password() {
-  }
-
-  virtual ~RaccooChat_registerUser_args() throw();
-  std::string name;
-  std::string password;
-
-  _RaccooChat_registerUser_args__isset __isset;
-
-  void __set_name(const std::string& val);
-
-  void __set_password(const std::string& val);
-
-  bool operator == (const RaccooChat_registerUser_args & rhs) const
-  {
-    if (!(name == rhs.name))
-      return false;
-    if (!(password == rhs.password))
+    if (!(userName == rhs.userName))
       return false;
     return true;
   }
-  bool operator != (const RaccooChat_registerUser_args &rhs) const {
+  bool operator != (const RaccooChat_ifUserOnline_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_registerUser_args & ) const;
+  bool operator < (const RaccooChat_ifUserOnline_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -776,38 +583,252 @@ class RaccooChat_registerUser_args {
 };
 
 
-class RaccooChat_registerUser_pargs {
+class RaccooChat_ifUserOnline_pargs {
  public:
 
 
-  virtual ~RaccooChat_registerUser_pargs() throw();
-  const std::string* name;
-  const std::string* password;
+  virtual ~RaccooChat_ifUserOnline_pargs() throw();
+  const std::string* userName;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_ifUserOnline_result__isset {
+  _RaccooChat_ifUserOnline_result__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_ifUserOnline_result__isset;
+
+class RaccooChat_ifUserOnline_result {
+ public:
+
+  RaccooChat_ifUserOnline_result(const RaccooChat_ifUserOnline_result&);
+  RaccooChat_ifUserOnline_result& operator=(const RaccooChat_ifUserOnline_result&);
+  RaccooChat_ifUserOnline_result() {
+  }
+
+  virtual ~RaccooChat_ifUserOnline_result() throw();
+  InvalidNameException e;
+
+  _RaccooChat_ifUserOnline_result__isset __isset;
+
+  void __set_e(const InvalidNameException& val);
+
+  bool operator == (const RaccooChat_ifUserOnline_result & rhs) const
+  {
+    if (!(e == rhs.e))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_ifUserOnline_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_ifUserOnline_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_ifUserOnline_presult__isset {
+  _RaccooChat_ifUserOnline_presult__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_ifUserOnline_presult__isset;
+
+class RaccooChat_ifUserOnline_presult {
+ public:
+
+
+  virtual ~RaccooChat_ifUserOnline_presult() throw();
+  InvalidNameException e;
+
+  _RaccooChat_ifUserOnline_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _RaccooChat_ifUserOffline_args__isset {
+  _RaccooChat_ifUserOffline_args__isset() : userName(false) {}
+  bool userName :1;
+} _RaccooChat_ifUserOffline_args__isset;
+
+class RaccooChat_ifUserOffline_args {
+ public:
+
+  RaccooChat_ifUserOffline_args(const RaccooChat_ifUserOffline_args&);
+  RaccooChat_ifUserOffline_args& operator=(const RaccooChat_ifUserOffline_args&);
+  RaccooChat_ifUserOffline_args() : userName() {
+  }
+
+  virtual ~RaccooChat_ifUserOffline_args() throw();
+  std::string userName;
+
+  _RaccooChat_ifUserOffline_args__isset __isset;
+
+  void __set_userName(const std::string& val);
+
+  bool operator == (const RaccooChat_ifUserOffline_args & rhs) const
+  {
+    if (!(userName == rhs.userName))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_ifUserOffline_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_ifUserOffline_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class RaccooChat_ifUserOffline_pargs {
+ public:
+
+
+  virtual ~RaccooChat_ifUserOffline_pargs() throw();
+  const std::string* userName;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_ifUserOffline_result__isset {
+  _RaccooChat_ifUserOffline_result__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_ifUserOffline_result__isset;
+
+class RaccooChat_ifUserOffline_result {
+ public:
+
+  RaccooChat_ifUserOffline_result(const RaccooChat_ifUserOffline_result&);
+  RaccooChat_ifUserOffline_result& operator=(const RaccooChat_ifUserOffline_result&);
+  RaccooChat_ifUserOffline_result() {
+  }
+
+  virtual ~RaccooChat_ifUserOffline_result() throw();
+  InvalidNameException e;
+
+  _RaccooChat_ifUserOffline_result__isset __isset;
+
+  void __set_e(const InvalidNameException& val);
+
+  bool operator == (const RaccooChat_ifUserOffline_result & rhs) const
+  {
+    if (!(e == rhs.e))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_ifUserOffline_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_ifUserOffline_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_ifUserOffline_presult__isset {
+  _RaccooChat_ifUserOffline_presult__isset() : e(false) {}
+  bool e :1;
+} _RaccooChat_ifUserOffline_presult__isset;
+
+class RaccooChat_ifUserOffline_presult {
+ public:
+
+
+  virtual ~RaccooChat_ifUserOffline_presult() throw();
+  InvalidNameException e;
+
+  _RaccooChat_ifUserOffline_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _RaccooChat_registrationUser_args__isset {
+  _RaccooChat_registrationUser_args__isset() : userName(false), userPassword(false) {}
+  bool userName :1;
+  bool userPassword :1;
+} _RaccooChat_registrationUser_args__isset;
+
+class RaccooChat_registrationUser_args {
+ public:
+
+  RaccooChat_registrationUser_args(const RaccooChat_registrationUser_args&);
+  RaccooChat_registrationUser_args& operator=(const RaccooChat_registrationUser_args&);
+  RaccooChat_registrationUser_args() : userName(), userPassword() {
+  }
+
+  virtual ~RaccooChat_registrationUser_args() throw();
+  std::string userName;
+  std::string userPassword;
+
+  _RaccooChat_registrationUser_args__isset __isset;
+
+  void __set_userName(const std::string& val);
+
+  void __set_userPassword(const std::string& val);
+
+  bool operator == (const RaccooChat_registrationUser_args & rhs) const
+  {
+    if (!(userName == rhs.userName))
+      return false;
+    if (!(userPassword == rhs.userPassword))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_registrationUser_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_registrationUser_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class RaccooChat_registrationUser_pargs {
+ public:
+
+
+  virtual ~RaccooChat_registrationUser_pargs() throw();
+  const std::string* userName;
+  const std::string* userPassword;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
 
-class RaccooChat_registerUser_result {
+class RaccooChat_registrationUser_result {
  public:
 
-  RaccooChat_registerUser_result(const RaccooChat_registerUser_result&);
-  RaccooChat_registerUser_result& operator=(const RaccooChat_registerUser_result&);
-  RaccooChat_registerUser_result() {
+  RaccooChat_registrationUser_result(const RaccooChat_registrationUser_result&);
+  RaccooChat_registrationUser_result& operator=(const RaccooChat_registrationUser_result&);
+  RaccooChat_registrationUser_result() {
   }
 
-  virtual ~RaccooChat_registerUser_result() throw();
+  virtual ~RaccooChat_registrationUser_result() throw();
 
-  bool operator == (const RaccooChat_registerUser_result & /* rhs */) const
+  bool operator == (const RaccooChat_registrationUser_result & /* rhs */) const
   {
     return true;
   }
-  bool operator != (const RaccooChat_registerUser_result &rhs) const {
+  bool operator != (const RaccooChat_registrationUser_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_registerUser_result & ) const;
+  bool operator < (const RaccooChat_registrationUser_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -815,19 +836,19 @@ class RaccooChat_registerUser_result {
 };
 
 
-class RaccooChat_registerUser_presult {
+class RaccooChat_registrationUser_presult {
  public:
 
 
-  virtual ~RaccooChat_registerUser_presult() throw();
+  virtual ~RaccooChat_registrationUser_presult() throw();
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
 typedef struct _RaccooChat_connectUser_args__isset {
-  _RaccooChat_connectUser_args__isset() : name(false) {}
-  bool name :1;
+  _RaccooChat_connectUser_args__isset() : userName(false) {}
+  bool userName :1;
 } _RaccooChat_connectUser_args__isset;
 
 class RaccooChat_connectUser_args {
@@ -835,19 +856,19 @@ class RaccooChat_connectUser_args {
 
   RaccooChat_connectUser_args(const RaccooChat_connectUser_args&);
   RaccooChat_connectUser_args& operator=(const RaccooChat_connectUser_args&);
-  RaccooChat_connectUser_args() : name() {
+  RaccooChat_connectUser_args() : userName() {
   }
 
   virtual ~RaccooChat_connectUser_args() throw();
-  std::string name;
+  std::string userName;
 
   _RaccooChat_connectUser_args__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_userName(const std::string& val);
 
   bool operator == (const RaccooChat_connectUser_args & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(userName == rhs.userName))
       return false;
     return true;
   }
@@ -868,25 +889,36 @@ class RaccooChat_connectUser_pargs {
 
 
   virtual ~RaccooChat_connectUser_pargs() throw();
-  const std::string* name;
+  const std::string* userName;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
+typedef struct _RaccooChat_connectUser_result__isset {
+  _RaccooChat_connectUser_result__isset() : success(false) {}
+  bool success :1;
+} _RaccooChat_connectUser_result__isset;
 
 class RaccooChat_connectUser_result {
  public:
 
   RaccooChat_connectUser_result(const RaccooChat_connectUser_result&);
   RaccooChat_connectUser_result& operator=(const RaccooChat_connectUser_result&);
-  RaccooChat_connectUser_result() {
+  RaccooChat_connectUser_result() : success(0) {
   }
 
   virtual ~RaccooChat_connectUser_result() throw();
+  int32_t success;
 
-  bool operator == (const RaccooChat_connectUser_result & /* rhs */) const
+  _RaccooChat_connectUser_result__isset __isset;
+
+  void __set_success(const int32_t val);
+
+  bool operator == (const RaccooChat_connectUser_result & rhs) const
   {
+    if (!(success == rhs.success))
+      return false;
     return true;
   }
   bool operator != (const RaccooChat_connectUser_result &rhs) const {
@@ -900,20 +932,27 @@ class RaccooChat_connectUser_result {
 
 };
 
+typedef struct _RaccooChat_connectUser_presult__isset {
+  _RaccooChat_connectUser_presult__isset() : success(false) {}
+  bool success :1;
+} _RaccooChat_connectUser_presult__isset;
 
 class RaccooChat_connectUser_presult {
  public:
 
 
   virtual ~RaccooChat_connectUser_presult() throw();
+  int32_t* success;
+
+  _RaccooChat_connectUser_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
 typedef struct _RaccooChat_disconnectUser_args__isset {
-  _RaccooChat_disconnectUser_args__isset() : name(false) {}
-  bool name :1;
+  _RaccooChat_disconnectUser_args__isset() : userId(false) {}
+  bool userId :1;
 } _RaccooChat_disconnectUser_args__isset;
 
 class RaccooChat_disconnectUser_args {
@@ -921,19 +960,19 @@ class RaccooChat_disconnectUser_args {
 
   RaccooChat_disconnectUser_args(const RaccooChat_disconnectUser_args&);
   RaccooChat_disconnectUser_args& operator=(const RaccooChat_disconnectUser_args&);
-  RaccooChat_disconnectUser_args() : name() {
+  RaccooChat_disconnectUser_args() : userId(0) {
   }
 
   virtual ~RaccooChat_disconnectUser_args() throw();
-  std::string name;
+  int32_t userId;
 
   _RaccooChat_disconnectUser_args__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_userId(const int32_t val);
 
   bool operator == (const RaccooChat_disconnectUser_args & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(userId == rhs.userId))
       return false;
     return true;
   }
@@ -954,7 +993,7 @@ class RaccooChat_disconnectUser_pargs {
 
 
   virtual ~RaccooChat_disconnectUser_pargs() throw();
-  const std::string* name;
+  const int32_t* userId;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -992,6 +1031,214 @@ class RaccooChat_disconnectUser_presult {
 
 
   virtual ~RaccooChat_disconnectUser_presult() throw();
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _RaccooChat_getUserName_args__isset {
+  _RaccooChat_getUserName_args__isset() : userId(false) {}
+  bool userId :1;
+} _RaccooChat_getUserName_args__isset;
+
+class RaccooChat_getUserName_args {
+ public:
+
+  RaccooChat_getUserName_args(const RaccooChat_getUserName_args&);
+  RaccooChat_getUserName_args& operator=(const RaccooChat_getUserName_args&);
+  RaccooChat_getUserName_args() : userId(0) {
+  }
+
+  virtual ~RaccooChat_getUserName_args() throw();
+  int32_t userId;
+
+  _RaccooChat_getUserName_args__isset __isset;
+
+  void __set_userId(const int32_t val);
+
+  bool operator == (const RaccooChat_getUserName_args & rhs) const
+  {
+    if (!(userId == rhs.userId))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_getUserName_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_getUserName_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class RaccooChat_getUserName_pargs {
+ public:
+
+
+  virtual ~RaccooChat_getUserName_pargs() throw();
+  const int32_t* userId;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_getUserName_result__isset {
+  _RaccooChat_getUserName_result__isset() : success(false) {}
+  bool success :1;
+} _RaccooChat_getUserName_result__isset;
+
+class RaccooChat_getUserName_result {
+ public:
+
+  RaccooChat_getUserName_result(const RaccooChat_getUserName_result&);
+  RaccooChat_getUserName_result& operator=(const RaccooChat_getUserName_result&);
+  RaccooChat_getUserName_result() : success() {
+  }
+
+  virtual ~RaccooChat_getUserName_result() throw();
+  std::string success;
+
+  _RaccooChat_getUserName_result__isset __isset;
+
+  void __set_success(const std::string& val);
+
+  bool operator == (const RaccooChat_getUserName_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_getUserName_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_getUserName_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_getUserName_presult__isset {
+  _RaccooChat_getUserName_presult__isset() : success(false) {}
+  bool success :1;
+} _RaccooChat_getUserName_presult__isset;
+
+class RaccooChat_getUserName_presult {
+ public:
+
+
+  virtual ~RaccooChat_getUserName_presult() throw();
+  std::string* success;
+
+  _RaccooChat_getUserName_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _RaccooChat_getUserId_args__isset {
+  _RaccooChat_getUserId_args__isset() : userName(false) {}
+  bool userName :1;
+} _RaccooChat_getUserId_args__isset;
+
+class RaccooChat_getUserId_args {
+ public:
+
+  RaccooChat_getUserId_args(const RaccooChat_getUserId_args&);
+  RaccooChat_getUserId_args& operator=(const RaccooChat_getUserId_args&);
+  RaccooChat_getUserId_args() : userName() {
+  }
+
+  virtual ~RaccooChat_getUserId_args() throw();
+  std::string userName;
+
+  _RaccooChat_getUserId_args__isset __isset;
+
+  void __set_userName(const std::string& val);
+
+  bool operator == (const RaccooChat_getUserId_args & rhs) const
+  {
+    if (!(userName == rhs.userName))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_getUserId_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_getUserId_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class RaccooChat_getUserId_pargs {
+ public:
+
+
+  virtual ~RaccooChat_getUserId_pargs() throw();
+  const std::string* userName;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_getUserId_result__isset {
+  _RaccooChat_getUserId_result__isset() : success(false) {}
+  bool success :1;
+} _RaccooChat_getUserId_result__isset;
+
+class RaccooChat_getUserId_result {
+ public:
+
+  RaccooChat_getUserId_result(const RaccooChat_getUserId_result&);
+  RaccooChat_getUserId_result& operator=(const RaccooChat_getUserId_result&);
+  RaccooChat_getUserId_result() : success(0) {
+  }
+
+  virtual ~RaccooChat_getUserId_result() throw();
+  int32_t success;
+
+  _RaccooChat_getUserId_result__isset __isset;
+
+  void __set_success(const int32_t val);
+
+  bool operator == (const RaccooChat_getUserId_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const RaccooChat_getUserId_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const RaccooChat_getUserId_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _RaccooChat_getUserId_presult__isset {
+  _RaccooChat_getUserId_presult__isset() : success(false) {}
+  bool success :1;
+} _RaccooChat_getUserId_presult__isset;
+
+class RaccooChat_getUserId_presult {
+ public:
+
+
+  virtual ~RaccooChat_getUserId_presult() throw();
+  int32_t* success;
+
+  _RaccooChat_getUserId_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
@@ -1048,11 +1295,11 @@ class RaccooChat_getAllOnlineUsers_result {
   }
 
   virtual ~RaccooChat_getAllOnlineUsers_result() throw();
-  std::vector<std::string>  success;
+  std::set<std::string>  success;
 
   _RaccooChat_getAllOnlineUsers_result__isset __isset;
 
-  void __set_success(const std::vector<std::string> & val);
+  void __set_success(const std::set<std::string> & val);
 
   bool operator == (const RaccooChat_getAllOnlineUsers_result & rhs) const
   {
@@ -1081,7 +1328,7 @@ class RaccooChat_getAllOnlineUsers_presult {
 
 
   virtual ~RaccooChat_getAllOnlineUsers_presult() throw();
-  std::vector<std::string> * success;
+  std::set<std::string> * success;
 
   _RaccooChat_getAllOnlineUsers_presult__isset __isset;
 
@@ -1090,25 +1337,25 @@ class RaccooChat_getAllOnlineUsers_presult {
 };
 
 
-class RaccooChat_getHistory_args {
+class RaccooChat_getChatHistory_args {
  public:
 
-  RaccooChat_getHistory_args(const RaccooChat_getHistory_args&);
-  RaccooChat_getHistory_args& operator=(const RaccooChat_getHistory_args&);
-  RaccooChat_getHistory_args() {
+  RaccooChat_getChatHistory_args(const RaccooChat_getChatHistory_args&);
+  RaccooChat_getChatHistory_args& operator=(const RaccooChat_getChatHistory_args&);
+  RaccooChat_getChatHistory_args() {
   }
 
-  virtual ~RaccooChat_getHistory_args() throw();
+  virtual ~RaccooChat_getChatHistory_args() throw();
 
-  bool operator == (const RaccooChat_getHistory_args & /* rhs */) const
+  bool operator == (const RaccooChat_getChatHistory_args & /* rhs */) const
   {
     return true;
   }
-  bool operator != (const RaccooChat_getHistory_args &rhs) const {
+  bool operator != (const RaccooChat_getChatHistory_args &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_getHistory_args & ) const;
+  bool operator < (const RaccooChat_getChatHistory_args & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
@@ -1116,74 +1363,74 @@ class RaccooChat_getHistory_args {
 };
 
 
-class RaccooChat_getHistory_pargs {
+class RaccooChat_getChatHistory_pargs {
  public:
 
 
-  virtual ~RaccooChat_getHistory_pargs() throw();
+  virtual ~RaccooChat_getChatHistory_pargs() throw();
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _RaccooChat_getHistory_result__isset {
-  _RaccooChat_getHistory_result__isset() : success(false) {}
+typedef struct _RaccooChat_getChatHistory_result__isset {
+  _RaccooChat_getChatHistory_result__isset() : success(false) {}
   bool success :1;
-} _RaccooChat_getHistory_result__isset;
+} _RaccooChat_getChatHistory_result__isset;
 
-class RaccooChat_getHistory_result {
+class RaccooChat_getChatHistory_result {
  public:
 
-  RaccooChat_getHistory_result(const RaccooChat_getHistory_result&);
-  RaccooChat_getHistory_result& operator=(const RaccooChat_getHistory_result&);
-  RaccooChat_getHistory_result() {
+  RaccooChat_getChatHistory_result(const RaccooChat_getChatHistory_result&);
+  RaccooChat_getChatHistory_result& operator=(const RaccooChat_getChatHistory_result&);
+  RaccooChat_getChatHistory_result() {
   }
 
-  virtual ~RaccooChat_getHistory_result() throw();
-  std::vector<SimpleMessage>  success;
+  virtual ~RaccooChat_getChatHistory_result() throw();
+  std::vector<Message>  success;
 
-  _RaccooChat_getHistory_result__isset __isset;
+  _RaccooChat_getChatHistory_result__isset __isset;
 
-  void __set_success(const std::vector<SimpleMessage> & val);
+  void __set_success(const std::vector<Message> & val);
 
-  bool operator == (const RaccooChat_getHistory_result & rhs) const
+  bool operator == (const RaccooChat_getChatHistory_result & rhs) const
   {
     if (!(success == rhs.success))
       return false;
     return true;
   }
-  bool operator != (const RaccooChat_getHistory_result &rhs) const {
+  bool operator != (const RaccooChat_getChatHistory_result &rhs) const {
     return !(*this == rhs);
   }
 
-  bool operator < (const RaccooChat_getHistory_result & ) const;
+  bool operator < (const RaccooChat_getChatHistory_result & ) const;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
 };
 
-typedef struct _RaccooChat_getHistory_presult__isset {
-  _RaccooChat_getHistory_presult__isset() : success(false) {}
+typedef struct _RaccooChat_getChatHistory_presult__isset {
+  _RaccooChat_getChatHistory_presult__isset() : success(false) {}
   bool success :1;
-} _RaccooChat_getHistory_presult__isset;
+} _RaccooChat_getChatHistory_presult__isset;
 
-class RaccooChat_getHistory_presult {
+class RaccooChat_getChatHistory_presult {
  public:
 
 
-  virtual ~RaccooChat_getHistory_presult() throw();
-  std::vector<SimpleMessage> * success;
+  virtual ~RaccooChat_getChatHistory_presult() throw();
+  std::vector<Message> * success;
 
-  _RaccooChat_getHistory_presult__isset __isset;
+  _RaccooChat_getChatHistory_presult__isset __isset;
 
   uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
 
 };
 
 typedef struct _RaccooChat_getNewMessages_args__isset {
-  _RaccooChat_getNewMessages_args__isset() : name(false) {}
-  bool name :1;
+  _RaccooChat_getNewMessages_args__isset() : userId(false) {}
+  bool userId :1;
 } _RaccooChat_getNewMessages_args__isset;
 
 class RaccooChat_getNewMessages_args {
@@ -1191,19 +1438,19 @@ class RaccooChat_getNewMessages_args {
 
   RaccooChat_getNewMessages_args(const RaccooChat_getNewMessages_args&);
   RaccooChat_getNewMessages_args& operator=(const RaccooChat_getNewMessages_args&);
-  RaccooChat_getNewMessages_args() : name() {
+  RaccooChat_getNewMessages_args() : userId(0) {
   }
 
   virtual ~RaccooChat_getNewMessages_args() throw();
-  std::string name;
+  int32_t userId;
 
   _RaccooChat_getNewMessages_args__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_userId(const int32_t val);
 
   bool operator == (const RaccooChat_getNewMessages_args & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(userId == rhs.userId))
       return false;
     return true;
   }
@@ -1224,7 +1471,7 @@ class RaccooChat_getNewMessages_pargs {
 
 
   virtual ~RaccooChat_getNewMessages_pargs() throw();
-  const std::string* name;
+  const int32_t* userId;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -1244,11 +1491,11 @@ class RaccooChat_getNewMessages_result {
   }
 
   virtual ~RaccooChat_getNewMessages_result() throw();
-  std::vector<SimpleMessage>  success;
+  std::vector<Message>  success;
 
   _RaccooChat_getNewMessages_result__isset __isset;
 
-  void __set_success(const std::vector<SimpleMessage> & val);
+  void __set_success(const std::vector<Message> & val);
 
   bool operator == (const RaccooChat_getNewMessages_result & rhs) const
   {
@@ -1277,7 +1524,7 @@ class RaccooChat_getNewMessages_presult {
 
 
   virtual ~RaccooChat_getNewMessages_presult() throw();
-  std::vector<SimpleMessage> * success;
+  std::vector<Message> * success;
 
   _RaccooChat_getNewMessages_presult__isset __isset;
 
@@ -1286,8 +1533,8 @@ class RaccooChat_getNewMessages_presult {
 };
 
 typedef struct _RaccooChat_getNewPrivateMessages_args__isset {
-  _RaccooChat_getNewPrivateMessages_args__isset() : name(false) {}
-  bool name :1;
+  _RaccooChat_getNewPrivateMessages_args__isset() : userId(false) {}
+  bool userId :1;
 } _RaccooChat_getNewPrivateMessages_args__isset;
 
 class RaccooChat_getNewPrivateMessages_args {
@@ -1295,19 +1542,19 @@ class RaccooChat_getNewPrivateMessages_args {
 
   RaccooChat_getNewPrivateMessages_args(const RaccooChat_getNewPrivateMessages_args&);
   RaccooChat_getNewPrivateMessages_args& operator=(const RaccooChat_getNewPrivateMessages_args&);
-  RaccooChat_getNewPrivateMessages_args() : name() {
+  RaccooChat_getNewPrivateMessages_args() : userId(0) {
   }
 
   virtual ~RaccooChat_getNewPrivateMessages_args() throw();
-  std::string name;
+  int32_t userId;
 
   _RaccooChat_getNewPrivateMessages_args__isset __isset;
 
-  void __set_name(const std::string& val);
+  void __set_userId(const int32_t val);
 
   bool operator == (const RaccooChat_getNewPrivateMessages_args & rhs) const
   {
-    if (!(name == rhs.name))
+    if (!(userId == rhs.userId))
       return false;
     return true;
   }
@@ -1328,7 +1575,7 @@ class RaccooChat_getNewPrivateMessages_pargs {
 
 
   virtual ~RaccooChat_getNewPrivateMessages_pargs() throw();
-  const std::string* name;
+  const int32_t* userId;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -1348,11 +1595,11 @@ class RaccooChat_getNewPrivateMessages_result {
   }
 
   virtual ~RaccooChat_getNewPrivateMessages_result() throw();
-  std::vector<SimpleMessage>  success;
+  std::vector<Message>  success;
 
   _RaccooChat_getNewPrivateMessages_result__isset __isset;
 
-  void __set_success(const std::vector<SimpleMessage> & val);
+  void __set_success(const std::vector<Message> & val);
 
   bool operator == (const RaccooChat_getNewPrivateMessages_result & rhs) const
   {
@@ -1381,7 +1628,7 @@ class RaccooChat_getNewPrivateMessages_presult {
 
 
   virtual ~RaccooChat_getNewPrivateMessages_presult() throw();
-  std::vector<SimpleMessage> * success;
+  std::vector<Message> * success;
 
   _RaccooChat_getNewPrivateMessages_presult__isset __isset;
 
@@ -1403,11 +1650,11 @@ class RaccooChat_addMessage_args {
   }
 
   virtual ~RaccooChat_addMessage_args() throw();
-  SimpleMessage msg;
+  Message msg;
 
   _RaccooChat_addMessage_args__isset __isset;
 
-  void __set_msg(const SimpleMessage& val);
+  void __set_msg(const Message& val);
 
   bool operator == (const RaccooChat_addMessage_args & rhs) const
   {
@@ -1432,7 +1679,7 @@ class RaccooChat_addMessage_pargs {
 
 
   virtual ~RaccooChat_addMessage_pargs() throw();
-  const SimpleMessage* msg;
+  const Message* msg;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -1476,9 +1723,9 @@ class RaccooChat_addMessage_presult {
 };
 
 typedef struct _RaccooChat_addPrivateMessage_args__isset {
-  _RaccooChat_addPrivateMessage_args__isset() : msg(false), name(false) {}
+  _RaccooChat_addPrivateMessage_args__isset() : userId(false), msg(false) {}
+  bool userId :1;
   bool msg :1;
-  bool name :1;
 } _RaccooChat_addPrivateMessage_args__isset;
 
 class RaccooChat_addPrivateMessage_args {
@@ -1486,24 +1733,24 @@ class RaccooChat_addPrivateMessage_args {
 
   RaccooChat_addPrivateMessage_args(const RaccooChat_addPrivateMessage_args&);
   RaccooChat_addPrivateMessage_args& operator=(const RaccooChat_addPrivateMessage_args&);
-  RaccooChat_addPrivateMessage_args() : name() {
+  RaccooChat_addPrivateMessage_args() : userId(0) {
   }
 
   virtual ~RaccooChat_addPrivateMessage_args() throw();
-  SimpleMessage msg;
-  std::string name;
+  int32_t userId;
+  Message msg;
 
   _RaccooChat_addPrivateMessage_args__isset __isset;
 
-  void __set_msg(const SimpleMessage& val);
+  void __set_userId(const int32_t val);
 
-  void __set_name(const std::string& val);
+  void __set_msg(const Message& val);
 
   bool operator == (const RaccooChat_addPrivateMessage_args & rhs) const
   {
-    if (!(msg == rhs.msg))
+    if (!(userId == rhs.userId))
       return false;
-    if (!(name == rhs.name))
+    if (!(msg == rhs.msg))
       return false;
     return true;
   }
@@ -1524,8 +1771,8 @@ class RaccooChat_addPrivateMessage_pargs {
 
 
   virtual ~RaccooChat_addPrivateMessage_pargs() throw();
-  const SimpleMessage* msg;
-  const std::string* name;
+  const int32_t* userId;
+  const Message* msg;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -1593,53 +1840,56 @@ class RaccooChatClient : virtual public RaccooChatIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  int32_t getMaxUserNameSize();
-  void send_getMaxUserNameSize();
-  int32_t recv_getMaxUserNameSize();
-  void findUser(const std::string& name);
-  void send_findUser(const std::string& name);
-  void recv_findUser();
-  void validateName(const std::string& name);
-  void send_validateName(const std::string& name);
+  void ifRegisteredUser(const std::string& userName);
+  void send_ifRegisteredUser(const std::string& userName);
+  void recv_ifRegisteredUser();
+  void validateName(const std::string& userName);
+  void send_validateName(const std::string& userName);
   void recv_validateName();
-  void validatePassword(const std::string& password);
-  void send_validatePassword(const std::string& password);
+  void validatePassword(const std::string& userPassword);
+  void send_validatePassword(const std::string& userPassword);
   void recv_validatePassword();
-  void checkPassword(const std::string& name, const std::string& password);
-  void send_checkPassword(const std::string& name, const std::string& password);
-  void recv_checkPassword();
-  void checkIfUserOnline(const std::string& name);
-  void send_checkIfUserOnline(const std::string& name);
-  void recv_checkIfUserOnline();
-  void checkIfUserOffline(const std::string& name);
-  void send_checkIfUserOffline(const std::string& name);
-  void recv_checkIfUserOffline();
-  void registerUser(const std::string& name, const std::string& password);
-  void send_registerUser(const std::string& name, const std::string& password);
-  void recv_registerUser();
-  void connectUser(const std::string& name);
-  void send_connectUser(const std::string& name);
-  void recv_connectUser();
-  void disconnectUser(const std::string& name);
-  void send_disconnectUser(const std::string& name);
+  void comparePassword(const std::string& userName, const std::string& userPassword);
+  void send_comparePassword(const std::string& userName, const std::string& userPassword);
+  void recv_comparePassword();
+  void ifUserOnline(const std::string& userName);
+  void send_ifUserOnline(const std::string& userName);
+  void recv_ifUserOnline();
+  void ifUserOffline(const std::string& userName);
+  void send_ifUserOffline(const std::string& userName);
+  void recv_ifUserOffline();
+  void registrationUser(const std::string& userName, const std::string& userPassword);
+  void send_registrationUser(const std::string& userName, const std::string& userPassword);
+  void recv_registrationUser();
+  int32_t connectUser(const std::string& userName);
+  void send_connectUser(const std::string& userName);
+  int32_t recv_connectUser();
+  void disconnectUser(const int32_t userId);
+  void send_disconnectUser(const int32_t userId);
   void recv_disconnectUser();
-  void getAllOnlineUsers(std::vector<std::string> & _return);
+  void getUserName(std::string& _return, const int32_t userId);
+  void send_getUserName(const int32_t userId);
+  void recv_getUserName(std::string& _return);
+  int32_t getUserId(const std::string& userName);
+  void send_getUserId(const std::string& userName);
+  int32_t recv_getUserId();
+  void getAllOnlineUsers(std::set<std::string> & _return);
   void send_getAllOnlineUsers();
-  void recv_getAllOnlineUsers(std::vector<std::string> & _return);
-  void getHistory(std::vector<SimpleMessage> & _return);
-  void send_getHistory();
-  void recv_getHistory(std::vector<SimpleMessage> & _return);
-  void getNewMessages(std::vector<SimpleMessage> & _return, const std::string& name);
-  void send_getNewMessages(const std::string& name);
-  void recv_getNewMessages(std::vector<SimpleMessage> & _return);
-  void getNewPrivateMessages(std::vector<SimpleMessage> & _return, const std::string& name);
-  void send_getNewPrivateMessages(const std::string& name);
-  void recv_getNewPrivateMessages(std::vector<SimpleMessage> & _return);
-  void addMessage(const SimpleMessage& msg);
-  void send_addMessage(const SimpleMessage& msg);
+  void recv_getAllOnlineUsers(std::set<std::string> & _return);
+  void getChatHistory(std::vector<Message> & _return);
+  void send_getChatHistory();
+  void recv_getChatHistory(std::vector<Message> & _return);
+  void getNewMessages(std::vector<Message> & _return, const int32_t userId);
+  void send_getNewMessages(const int32_t userId);
+  void recv_getNewMessages(std::vector<Message> & _return);
+  void getNewPrivateMessages(std::vector<Message> & _return, const int32_t userId);
+  void send_getNewPrivateMessages(const int32_t userId);
+  void recv_getNewPrivateMessages(std::vector<Message> & _return);
+  void addMessage(const Message& msg);
+  void send_addMessage(const Message& msg);
   void recv_addMessage();
-  void addPrivateMessage(const SimpleMessage& msg, const std::string& name);
-  void send_addPrivateMessage(const SimpleMessage& msg, const std::string& name);
+  void addPrivateMessage(const int32_t userId, const Message& msg);
+  void send_addPrivateMessage(const int32_t userId, const Message& msg);
   void recv_addPrivateMessage();
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
@@ -1656,18 +1906,19 @@ class RaccooChatProcessor : public ::apache::thrift::TDispatchProcessor {
   typedef  void (RaccooChatProcessor::*ProcessFunction)(int32_t, ::apache::thrift::protocol::TProtocol*, ::apache::thrift::protocol::TProtocol*, void*);
   typedef std::map<std::string, ProcessFunction> ProcessMap;
   ProcessMap processMap_;
-  void process_getMaxUserNameSize(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_findUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_ifRegisteredUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_validateName(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_validatePassword(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_checkPassword(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_checkIfUserOnline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_checkIfUserOffline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_registerUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_comparePassword(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_ifUserOnline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_ifUserOffline(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_registrationUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_connectUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_disconnectUser(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_getUserName(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_getUserId(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getAllOnlineUsers(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
-  void process_getHistory(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_getChatHistory(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getNewMessages(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_getNewPrivateMessages(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
   void process_addMessage(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
@@ -1675,18 +1926,19 @@ class RaccooChatProcessor : public ::apache::thrift::TDispatchProcessor {
  public:
   RaccooChatProcessor(boost::shared_ptr<RaccooChatIf> iface) :
     iface_(iface) {
-    processMap_["getMaxUserNameSize"] = &RaccooChatProcessor::process_getMaxUserNameSize;
-    processMap_["findUser"] = &RaccooChatProcessor::process_findUser;
+    processMap_["ifRegisteredUser"] = &RaccooChatProcessor::process_ifRegisteredUser;
     processMap_["validateName"] = &RaccooChatProcessor::process_validateName;
     processMap_["validatePassword"] = &RaccooChatProcessor::process_validatePassword;
-    processMap_["checkPassword"] = &RaccooChatProcessor::process_checkPassword;
-    processMap_["checkIfUserOnline"] = &RaccooChatProcessor::process_checkIfUserOnline;
-    processMap_["checkIfUserOffline"] = &RaccooChatProcessor::process_checkIfUserOffline;
-    processMap_["registerUser"] = &RaccooChatProcessor::process_registerUser;
+    processMap_["comparePassword"] = &RaccooChatProcessor::process_comparePassword;
+    processMap_["ifUserOnline"] = &RaccooChatProcessor::process_ifUserOnline;
+    processMap_["ifUserOffline"] = &RaccooChatProcessor::process_ifUserOffline;
+    processMap_["registrationUser"] = &RaccooChatProcessor::process_registrationUser;
     processMap_["connectUser"] = &RaccooChatProcessor::process_connectUser;
     processMap_["disconnectUser"] = &RaccooChatProcessor::process_disconnectUser;
+    processMap_["getUserName"] = &RaccooChatProcessor::process_getUserName;
+    processMap_["getUserId"] = &RaccooChatProcessor::process_getUserId;
     processMap_["getAllOnlineUsers"] = &RaccooChatProcessor::process_getAllOnlineUsers;
-    processMap_["getHistory"] = &RaccooChatProcessor::process_getHistory;
+    processMap_["getChatHistory"] = &RaccooChatProcessor::process_getChatHistory;
     processMap_["getNewMessages"] = &RaccooChatProcessor::process_getNewMessages;
     processMap_["getNewPrivateMessages"] = &RaccooChatProcessor::process_getNewPrivateMessages;
     processMap_["addMessage"] = &RaccooChatProcessor::process_addMessage;
@@ -1719,97 +1971,107 @@ class RaccooChatMultiface : virtual public RaccooChatIf {
     ifaces_.push_back(iface);
   }
  public:
-  int32_t getMaxUserNameSize() {
+  void ifRegisteredUser(const std::string& userName) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->getMaxUserNameSize();
+      ifaces_[i]->ifRegisteredUser(userName);
     }
-    return ifaces_[i]->getMaxUserNameSize();
+    ifaces_[i]->ifRegisteredUser(userName);
   }
 
-  void findUser(const std::string& name) {
+  void validateName(const std::string& userName) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->findUser(name);
+      ifaces_[i]->validateName(userName);
     }
-    ifaces_[i]->findUser(name);
+    ifaces_[i]->validateName(userName);
   }
 
-  void validateName(const std::string& name) {
+  void validatePassword(const std::string& userPassword) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->validateName(name);
+      ifaces_[i]->validatePassword(userPassword);
     }
-    ifaces_[i]->validateName(name);
+    ifaces_[i]->validatePassword(userPassword);
   }
 
-  void validatePassword(const std::string& password) {
+  void comparePassword(const std::string& userName, const std::string& userPassword) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->validatePassword(password);
+      ifaces_[i]->comparePassword(userName, userPassword);
     }
-    ifaces_[i]->validatePassword(password);
+    ifaces_[i]->comparePassword(userName, userPassword);
   }
 
-  void checkPassword(const std::string& name, const std::string& password) {
+  void ifUserOnline(const std::string& userName) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->checkPassword(name, password);
+      ifaces_[i]->ifUserOnline(userName);
     }
-    ifaces_[i]->checkPassword(name, password);
+    ifaces_[i]->ifUserOnline(userName);
   }
 
-  void checkIfUserOnline(const std::string& name) {
+  void ifUserOffline(const std::string& userName) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->checkIfUserOnline(name);
+      ifaces_[i]->ifUserOffline(userName);
     }
-    ifaces_[i]->checkIfUserOnline(name);
+    ifaces_[i]->ifUserOffline(userName);
   }
 
-  void checkIfUserOffline(const std::string& name) {
+  void registrationUser(const std::string& userName, const std::string& userPassword) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->checkIfUserOffline(name);
+      ifaces_[i]->registrationUser(userName, userPassword);
     }
-    ifaces_[i]->checkIfUserOffline(name);
+    ifaces_[i]->registrationUser(userName, userPassword);
   }
 
-  void registerUser(const std::string& name, const std::string& password) {
+  int32_t connectUser(const std::string& userName) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->registerUser(name, password);
+      ifaces_[i]->connectUser(userName);
     }
-    ifaces_[i]->registerUser(name, password);
+    return ifaces_[i]->connectUser(userName);
   }
 
-  void connectUser(const std::string& name) {
+  void disconnectUser(const int32_t userId) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->connectUser(name);
+      ifaces_[i]->disconnectUser(userId);
     }
-    ifaces_[i]->connectUser(name);
+    ifaces_[i]->disconnectUser(userId);
   }
 
-  void disconnectUser(const std::string& name) {
+  void getUserName(std::string& _return, const int32_t userId) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->disconnectUser(name);
+      ifaces_[i]->getUserName(_return, userId);
     }
-    ifaces_[i]->disconnectUser(name);
+    ifaces_[i]->getUserName(_return, userId);
+    return;
   }
 
-  void getAllOnlineUsers(std::vector<std::string> & _return) {
+  int32_t getUserId(const std::string& userName) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->getUserId(userName);
+    }
+    return ifaces_[i]->getUserId(userName);
+  }
+
+  void getAllOnlineUsers(std::set<std::string> & _return) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
@@ -1819,37 +2081,37 @@ class RaccooChatMultiface : virtual public RaccooChatIf {
     return;
   }
 
-  void getHistory(std::vector<SimpleMessage> & _return) {
+  void getChatHistory(std::vector<Message> & _return) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->getHistory(_return);
+      ifaces_[i]->getChatHistory(_return);
     }
-    ifaces_[i]->getHistory(_return);
+    ifaces_[i]->getChatHistory(_return);
     return;
   }
 
-  void getNewMessages(std::vector<SimpleMessage> & _return, const std::string& name) {
+  void getNewMessages(std::vector<Message> & _return, const int32_t userId) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->getNewMessages(_return, name);
+      ifaces_[i]->getNewMessages(_return, userId);
     }
-    ifaces_[i]->getNewMessages(_return, name);
+    ifaces_[i]->getNewMessages(_return, userId);
     return;
   }
 
-  void getNewPrivateMessages(std::vector<SimpleMessage> & _return, const std::string& name) {
+  void getNewPrivateMessages(std::vector<Message> & _return, const int32_t userId) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->getNewPrivateMessages(_return, name);
+      ifaces_[i]->getNewPrivateMessages(_return, userId);
     }
-    ifaces_[i]->getNewPrivateMessages(_return, name);
+    ifaces_[i]->getNewPrivateMessages(_return, userId);
     return;
   }
 
-  void addMessage(const SimpleMessage& msg) {
+  void addMessage(const Message& msg) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
@@ -1858,13 +2120,13 @@ class RaccooChatMultiface : virtual public RaccooChatIf {
     ifaces_[i]->addMessage(msg);
   }
 
-  void addPrivateMessage(const SimpleMessage& msg, const std::string& name) {
+  void addPrivateMessage(const int32_t userId, const Message& msg) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->addPrivateMessage(msg, name);
+      ifaces_[i]->addPrivateMessage(userId, msg);
     }
-    ifaces_[i]->addPrivateMessage(msg, name);
+    ifaces_[i]->addPrivateMessage(userId, msg);
   }
 
 };
@@ -1897,53 +2159,56 @@ class RaccooChatConcurrentClient : virtual public RaccooChatIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  int32_t getMaxUserNameSize();
-  int32_t send_getMaxUserNameSize();
-  int32_t recv_getMaxUserNameSize(const int32_t seqid);
-  void findUser(const std::string& name);
-  int32_t send_findUser(const std::string& name);
-  void recv_findUser(const int32_t seqid);
-  void validateName(const std::string& name);
-  int32_t send_validateName(const std::string& name);
+  void ifRegisteredUser(const std::string& userName);
+  int32_t send_ifRegisteredUser(const std::string& userName);
+  void recv_ifRegisteredUser(const int32_t seqid);
+  void validateName(const std::string& userName);
+  int32_t send_validateName(const std::string& userName);
   void recv_validateName(const int32_t seqid);
-  void validatePassword(const std::string& password);
-  int32_t send_validatePassword(const std::string& password);
+  void validatePassword(const std::string& userPassword);
+  int32_t send_validatePassword(const std::string& userPassword);
   void recv_validatePassword(const int32_t seqid);
-  void checkPassword(const std::string& name, const std::string& password);
-  int32_t send_checkPassword(const std::string& name, const std::string& password);
-  void recv_checkPassword(const int32_t seqid);
-  void checkIfUserOnline(const std::string& name);
-  int32_t send_checkIfUserOnline(const std::string& name);
-  void recv_checkIfUserOnline(const int32_t seqid);
-  void checkIfUserOffline(const std::string& name);
-  int32_t send_checkIfUserOffline(const std::string& name);
-  void recv_checkIfUserOffline(const int32_t seqid);
-  void registerUser(const std::string& name, const std::string& password);
-  int32_t send_registerUser(const std::string& name, const std::string& password);
-  void recv_registerUser(const int32_t seqid);
-  void connectUser(const std::string& name);
-  int32_t send_connectUser(const std::string& name);
-  void recv_connectUser(const int32_t seqid);
-  void disconnectUser(const std::string& name);
-  int32_t send_disconnectUser(const std::string& name);
+  void comparePassword(const std::string& userName, const std::string& userPassword);
+  int32_t send_comparePassword(const std::string& userName, const std::string& userPassword);
+  void recv_comparePassword(const int32_t seqid);
+  void ifUserOnline(const std::string& userName);
+  int32_t send_ifUserOnline(const std::string& userName);
+  void recv_ifUserOnline(const int32_t seqid);
+  void ifUserOffline(const std::string& userName);
+  int32_t send_ifUserOffline(const std::string& userName);
+  void recv_ifUserOffline(const int32_t seqid);
+  void registrationUser(const std::string& userName, const std::string& userPassword);
+  int32_t send_registrationUser(const std::string& userName, const std::string& userPassword);
+  void recv_registrationUser(const int32_t seqid);
+  int32_t connectUser(const std::string& userName);
+  int32_t send_connectUser(const std::string& userName);
+  int32_t recv_connectUser(const int32_t seqid);
+  void disconnectUser(const int32_t userId);
+  int32_t send_disconnectUser(const int32_t userId);
   void recv_disconnectUser(const int32_t seqid);
-  void getAllOnlineUsers(std::vector<std::string> & _return);
+  void getUserName(std::string& _return, const int32_t userId);
+  int32_t send_getUserName(const int32_t userId);
+  void recv_getUserName(std::string& _return, const int32_t seqid);
+  int32_t getUserId(const std::string& userName);
+  int32_t send_getUserId(const std::string& userName);
+  int32_t recv_getUserId(const int32_t seqid);
+  void getAllOnlineUsers(std::set<std::string> & _return);
   int32_t send_getAllOnlineUsers();
-  void recv_getAllOnlineUsers(std::vector<std::string> & _return, const int32_t seqid);
-  void getHistory(std::vector<SimpleMessage> & _return);
-  int32_t send_getHistory();
-  void recv_getHistory(std::vector<SimpleMessage> & _return, const int32_t seqid);
-  void getNewMessages(std::vector<SimpleMessage> & _return, const std::string& name);
-  int32_t send_getNewMessages(const std::string& name);
-  void recv_getNewMessages(std::vector<SimpleMessage> & _return, const int32_t seqid);
-  void getNewPrivateMessages(std::vector<SimpleMessage> & _return, const std::string& name);
-  int32_t send_getNewPrivateMessages(const std::string& name);
-  void recv_getNewPrivateMessages(std::vector<SimpleMessage> & _return, const int32_t seqid);
-  void addMessage(const SimpleMessage& msg);
-  int32_t send_addMessage(const SimpleMessage& msg);
+  void recv_getAllOnlineUsers(std::set<std::string> & _return, const int32_t seqid);
+  void getChatHistory(std::vector<Message> & _return);
+  int32_t send_getChatHistory();
+  void recv_getChatHistory(std::vector<Message> & _return, const int32_t seqid);
+  void getNewMessages(std::vector<Message> & _return, const int32_t userId);
+  int32_t send_getNewMessages(const int32_t userId);
+  void recv_getNewMessages(std::vector<Message> & _return, const int32_t seqid);
+  void getNewPrivateMessages(std::vector<Message> & _return, const int32_t userId);
+  int32_t send_getNewPrivateMessages(const int32_t userId);
+  void recv_getNewPrivateMessages(std::vector<Message> & _return, const int32_t seqid);
+  void addMessage(const Message& msg);
+  int32_t send_addMessage(const Message& msg);
   void recv_addMessage(const int32_t seqid);
-  void addPrivateMessage(const SimpleMessage& msg, const std::string& name);
-  int32_t send_addPrivateMessage(const SimpleMessage& msg, const std::string& name);
+  void addPrivateMessage(const int32_t userId, const Message& msg);
+  int32_t send_addPrivateMessage(const int32_t userId, const Message& msg);
   void recv_addPrivateMessage(const int32_t seqid);
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;

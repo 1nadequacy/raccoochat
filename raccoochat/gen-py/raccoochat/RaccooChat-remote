@@ -24,22 +24,23 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
     print('Usage: ' + sys.argv[0] + ' [-h host[:port]] [-u url] [-f[ramed]] [-s[sl]] [-novalidate] [-ca_certs certs] [-keyfile keyfile] [-certfile certfile] function [arg1 [arg2...]]')
     print('')
     print('Functions:')
-    print('  i32 getMaxUserNameSize()')
-    print('  void findUser(string name)')
-    print('  void validateName(string name)')
-    print('  void validatePassword(string password)')
-    print('  void checkPassword(string name, string password)')
-    print('  void checkIfUserOnline(string name)')
-    print('  void checkIfUserOffline(string name)')
-    print('  void registerUser(string name, string password)')
-    print('  void connectUser(string name)')
-    print('  void disconnectUser(string name)')
+    print('  void ifRegisteredUser(string userName)')
+    print('  void validateName(string userName)')
+    print('  void validatePassword(string userPassword)')
+    print('  void comparePassword(string userName, string userPassword)')
+    print('  void ifUserOnline(string userName)')
+    print('  void ifUserOffline(string userName)')
+    print('  void registrationUser(string userName, string userPassword)')
+    print('  i32 connectUser(string userName)')
+    print('  void disconnectUser(i32 userId)')
+    print('  string getUserName(i32 userId)')
+    print('  i32 getUserId(string userName)')
     print('   getAllOnlineUsers()')
-    print('   getHistory()')
-    print('   getNewMessages(string name)')
-    print('   getNewPrivateMessages(string name)')
-    print('  void addMessage(SimpleMessage msg)')
-    print('  void addPrivateMessage(SimpleMessage msg, string name)')
+    print('   getChatHistory()')
+    print('   getNewMessages(i32 userId)')
+    print('   getNewPrivateMessages(i32 userId)')
+    print('  void addMessage(Message msg)')
+    print('  void addPrivateMessage(i32 userId, Message msg)')
     print('')
     sys.exit(0)
 
@@ -119,17 +120,11 @@ protocol = TBinaryProtocol(transport)
 client = RaccooChat.Client(protocol)
 transport.open()
 
-if cmd == 'getMaxUserNameSize':
-    if len(args) != 0:
-        print('getMaxUserNameSize requires 0 args')
-        sys.exit(1)
-    pp.pprint(client.getMaxUserNameSize())
-
-elif cmd == 'findUser':
+if cmd == 'ifRegisteredUser':
     if len(args) != 1:
-        print('findUser requires 1 args')
+        print('ifRegisteredUser requires 1 args')
         sys.exit(1)
-    pp.pprint(client.findUser(args[0],))
+    pp.pprint(client.ifRegisteredUser(args[0],))
 
 elif cmd == 'validateName':
     if len(args) != 1:
@@ -143,29 +138,29 @@ elif cmd == 'validatePassword':
         sys.exit(1)
     pp.pprint(client.validatePassword(args[0],))
 
-elif cmd == 'checkPassword':
+elif cmd == 'comparePassword':
     if len(args) != 2:
-        print('checkPassword requires 2 args')
+        print('comparePassword requires 2 args')
         sys.exit(1)
-    pp.pprint(client.checkPassword(args[0], args[1],))
+    pp.pprint(client.comparePassword(args[0], args[1],))
 
-elif cmd == 'checkIfUserOnline':
+elif cmd == 'ifUserOnline':
     if len(args) != 1:
-        print('checkIfUserOnline requires 1 args')
+        print('ifUserOnline requires 1 args')
         sys.exit(1)
-    pp.pprint(client.checkIfUserOnline(args[0],))
+    pp.pprint(client.ifUserOnline(args[0],))
 
-elif cmd == 'checkIfUserOffline':
+elif cmd == 'ifUserOffline':
     if len(args) != 1:
-        print('checkIfUserOffline requires 1 args')
+        print('ifUserOffline requires 1 args')
         sys.exit(1)
-    pp.pprint(client.checkIfUserOffline(args[0],))
+    pp.pprint(client.ifUserOffline(args[0],))
 
-elif cmd == 'registerUser':
+elif cmd == 'registrationUser':
     if len(args) != 2:
-        print('registerUser requires 2 args')
+        print('registrationUser requires 2 args')
         sys.exit(1)
-    pp.pprint(client.registerUser(args[0], args[1],))
+    pp.pprint(client.registrationUser(args[0], args[1],))
 
 elif cmd == 'connectUser':
     if len(args) != 1:
@@ -177,7 +172,19 @@ elif cmd == 'disconnectUser':
     if len(args) != 1:
         print('disconnectUser requires 1 args')
         sys.exit(1)
-    pp.pprint(client.disconnectUser(args[0],))
+    pp.pprint(client.disconnectUser(eval(args[0]),))
+
+elif cmd == 'getUserName':
+    if len(args) != 1:
+        print('getUserName requires 1 args')
+        sys.exit(1)
+    pp.pprint(client.getUserName(eval(args[0]),))
+
+elif cmd == 'getUserId':
+    if len(args) != 1:
+        print('getUserId requires 1 args')
+        sys.exit(1)
+    pp.pprint(client.getUserId(args[0],))
 
 elif cmd == 'getAllOnlineUsers':
     if len(args) != 0:
@@ -185,23 +192,23 @@ elif cmd == 'getAllOnlineUsers':
         sys.exit(1)
     pp.pprint(client.getAllOnlineUsers())
 
-elif cmd == 'getHistory':
+elif cmd == 'getChatHistory':
     if len(args) != 0:
-        print('getHistory requires 0 args')
+        print('getChatHistory requires 0 args')
         sys.exit(1)
-    pp.pprint(client.getHistory())
+    pp.pprint(client.getChatHistory())
 
 elif cmd == 'getNewMessages':
     if len(args) != 1:
         print('getNewMessages requires 1 args')
         sys.exit(1)
-    pp.pprint(client.getNewMessages(args[0],))
+    pp.pprint(client.getNewMessages(eval(args[0]),))
 
 elif cmd == 'getNewPrivateMessages':
     if len(args) != 1:
         print('getNewPrivateMessages requires 1 args')
         sys.exit(1)
-    pp.pprint(client.getNewPrivateMessages(args[0],))
+    pp.pprint(client.getNewPrivateMessages(eval(args[0]),))
 
 elif cmd == 'addMessage':
     if len(args) != 1:
@@ -213,7 +220,7 @@ elif cmd == 'addPrivateMessage':
     if len(args) != 2:
         print('addPrivateMessage requires 2 args')
         sys.exit(1)
-    pp.pprint(client.addPrivateMessage(eval(args[0]), args[1],))
+    pp.pprint(client.addPrivateMessage(eval(args[0]), eval(args[1]),))
 
 else:
     print('Unrecognized method %s' % cmd)
